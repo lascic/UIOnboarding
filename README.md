@@ -65,9 +65,11 @@ navigationController?.present(onboardingController, animated: false)
 Dismiss the onboarding view with the provided delegate method.
 
 ``` swift
-func didFinishOnboarding(onboardingViewController: UIOnboardingViewController) {
-    onboardingViewController.modalTransitionStyle = .crossDissolve
-    onboardingViewController.dismiss(animated: true, completion: nil)
+extension ViewController: UIOnboardingViewControllerDelegate {
+    func didFinishOnboarding(onboardingViewController: UIOnboardingViewController) {
+        onboardingViewController.modalTransitionStyle = .crossDissolve
+        onboardingViewController.dismiss(animated: true, completion: nil)
+    }
 }
 ```
 
