@@ -29,7 +29,7 @@ public final class UIOnboardingViewController: UIViewController {
     
     private let configuration: UIOnboardingViewConfiguration
     private let device: UIDevice
-    weak var delegate: UIOnboardingViewControllerDelegate?
+    public weak var delegate: UIOnboardingViewControllerDelegate?
     
     public init(withConfiguration configuration: UIOnboardingViewConfiguration, device: UIDevice = .current) {
         self.configuration = configuration
