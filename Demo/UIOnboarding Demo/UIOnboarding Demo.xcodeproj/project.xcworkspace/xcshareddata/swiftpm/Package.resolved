@@ -1,0 +1,16 @@
+{
+  "object": {
+    "pins": [
+      {
+        "package": "UIOnboarding",
+        "repositoryURL": "https://github.com/lascic/UIOnboarding.git",
+        "state": {
+          "branch": "main",
+          "revision": "64b9c775d49f787f3b5c694ce209cf40885f1056",
+          "version": null
+        }
+      }
+    ]
+  },
+  "version": 1
+}
