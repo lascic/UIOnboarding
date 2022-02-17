@@ -2,7 +2,7 @@
 
 <img src="readme-resources/140222 UIOnboarding Result.png" img>
 
-Configurable animated onboarding screen written programmaticaly in Swift for UIKit – [inspired](#moodboard) by many Apple-designed user interfaces in iOS – with [Insignia](https://apps.apple.com/ch/app/abzeichen/id1551002238) as an example.
+Configurable animated onboarding screen written programmatically in Swift for UIKit – [inspired](#moodboard) by many Apple-designed user interfaces in iOS – with [Insignia](https://apps.apple.com/ch/app/abzeichen/id1551002238) as an example.
 
  Designed for iPhone and iPod touch running iOS 13 or higher. Portrait mode only. Supports Dynamic Type, VoiceOver and Reduce Motion.
 

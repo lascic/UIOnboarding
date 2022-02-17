@@ -1,12 +1,13 @@
 //
 //  ViewController.swift
-//  UIOnboarding Demo
+//  UIOnboarding Demo SPM
 //
 //  Created by Lukman Aščić on 17.02.22.
 //
 
 import UIKit
 import SwiftUI
+import UIOnboarding
 
 class ViewController: UIViewController {
     override func viewDidLoad() {
