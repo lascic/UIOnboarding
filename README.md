@@ -41,7 +41,7 @@ To install ```UIOnboarding``` as a package, add ```https://github.com/lascic/UIO
 
 ### Demo Project Download
 
-You can download the demo project as a .zip file to run it on a physical device or simulator in Xcode. <br>
+There is a demo project with and without SPM in the ```Demo``` directory: ```Demo/UIOnboarding Demo``` and ```Demo/UIOnboarding Demo SPM```. You can download them as a .zip file to run it on a physical device or simulator in Xcode. <br>
 Before building and running the project, make sure to set it up with your own provisioning profile.
 
 ## Usage 
