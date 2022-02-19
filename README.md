@@ -39,7 +39,11 @@ Configurable animated onboarding screen written programmatically in Swift for UI
 
 ### Swift Package Manager
 
-To install ```UIOnboarding``` as a package, add ```https://github.com/lascic/UIOnboarding.git``` in the package manager in Xcode (under File/Add Packages...) and select the ```main``` branch.
+To install ```UIOnboarding``` as a package, add ```https://github.com/lascic/UIOnboarding.git``` in the package manager in Xcode (under File/Add Packages...). Select the version from ```1.0.0``` or the ```main``` branch.
+
+```swift
+.package(url: "https://github.com/lascic/UIOnboarding.git", from: "1.0.0")
+```
 
 ### Demo Project Download
 
