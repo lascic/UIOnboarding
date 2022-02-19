@@ -14,6 +14,8 @@ Configurable animated onboarding screen written programmatically in Swift for UI
     - [Swift Package Manager](#swift-package-manager)
     - [Demo Project Download](#demo-project-download)
 - [Usage](#usage)
+    - [UIKit](#uikit)
+    - [SwiftUI](#swiftui)
 - [Configuration](#configuration-example)
 - [Moodboard](#moodboard)
 - [License](#license)
@@ -41,17 +43,22 @@ To install ```UIOnboarding``` as a package, add ```https://github.com/lascic/UIO
 
 ### Demo Project Download
 
-There is a demo project with and without SPM in the ```Demo``` directory: ```Demo/UIOnboarding Demo``` and ```Demo/UIOnboarding Demo SPM```. You can download them as a .zip file to run it on a physical device or simulator in Xcode. <br>
+There is a demo project with and without SPM in the ```Demo``` directory: ```Demo/UIOnboarding Demo``` and ```Demo/UIOnboarding Demo SPM```. This folder also provides an example for using it in a SwiftUI app: ```Demo/UIOnboarding SwiftUI```. 
+
+You can download them as a .zip file to run it on a physical device or simulator in Xcode.
+
 Before building and running the project, make sure to set it up with your own provisioning profile.
 
 ## Usage 
-
-Make sure the view controller you're presenting from is embedded in a ```UINavigationController```. ```OnboardingViewController``` is presented as a full screen view. 
 
 Setting up the
 ```UIOnboardingViewController```
 takes a [```UIOnboardingViewConfiguration```](#configuration)
 as the parameter.
+
+### UIKit
+
+Make sure the view controller you're presenting from is embedded in a ```UINavigationController```. ```OnboardingViewController``` is presented as a full screen view. 
 
 ``` swift
 //In the view controller you're presenting
@@ -71,6 +78,53 @@ extension ViewController: UIOnboardingViewControllerDelegate {
         onboardingViewController.dismiss(animated: true, completion: nil)
     }
 }
+```
+
+### SwiftUI
+
+As ```UIOnboardingViewController``` is a UIKit view controller, we rely on SwiftUI's ```UIViewControllerRepresentable``` protocol to make it behave as a ```View```.
+
+Create a ```UIOnboardingView``` struct which implements this protocol and use the ```.fullScreenCover()``` modifier introduced in iOS 14 to show it in your SwiftUI view you're presenting from.
+
+Note that we assign SwiftUI's coordinator as the delegate object for our onboarding view controller.
+``` swift
+onboardingController.delegate = context.coordinator
+```
+
+``` swift 
+// In OnboardingView.swift
+import SwiftUI
+import UIOnboarding
+
+struct UIOnboardingView: UIViewControllerRepresentable {
+    typealias UIViewControllerType = UIOnboardingViewController
+
+    func makeUIViewController(context: Context) -> UIOnboardingViewController {
+        let onboardingController: UIOnboardingViewController = .init(withConfiguration: .setUp())
+        onboardingController.delegate = context.coordinator
+        return onboardingController
+    }
+    
+    func updateUIViewController(_ uiViewController: UIOnboardingViewController, context: Context) {}
+    
+    class Coordinator: NSObject, UIOnboardingViewControllerDelegate {
+        func didFinishOnboarding(onboardingViewController: UIOnboardingViewController) {
+            onboardingViewController.dismiss(animated: true, completion: nil)
+        }
+    }
+
+    func makeCoordinator() -> Coordinator {
+        return .init()
+    }
+}
+```
+
+```swift 
+// In ContentView.swift
+.fullScreenCover(isPresented: $showingOnboarding, content: {
+    UIOnboardingView()
+        .edgesIgnoringSafeArea(.all)
+})
 ```
 
 ## Configuration
@@ -160,10 +214,6 @@ extension UIOnboardingViewConfiguration {
 <img src="readme-resources/140222 UIOnboarding Moodboard-1.png" img>
 <img src="readme-resources/140222 UIOnboarding Moodboard-2.png" img>
 
-## Links
-
-Swiss Armed Forces Insignia from the App Store: https://apps.apple.com/ch/app/abzeichen/id1551002238.
-
 ## License
 
 MIT
@@ -173,6 +223,12 @@ MIT
 Some in-app assets provided for this demo project are part of [Insignia](https://apps.apple.com/ch/app/abzeichen/id1551002238).
 
 © 2021 Copyright Lukman Aščić. All rights reserved.
+
+## Links
+
+Swiss Armed Forces Insignia from the App Store: https://apps.apple.com/ch/app/abzeichen/id1551002238 <br>
+Author Twitter: [@lascic](https://twitter.com/lascic) <br>
+Author Website: https://lukmanascic.ch
 
 ## Contributions
 
