@@ -2,6 +2,12 @@
 
 ![UIOnboarding Title Page](https://raw.githubusercontent.com/lascic/UIOnboarding/main/readme-resources/140222%20UIOnboarding%20Result.png)
 
+[![](https://img.shields.io/endpoint?url=https%3A%2F%2Fswiftpackageindex.com%2Fapi%2Fpackages%2Flascic%2FUIOnboarding%2Fbadge%3Ftype%3Dswift-versions)](https://swiftpackageindex.com/lascic/UIOnboarding)
+[![](https://img.shields.io/endpoint?url=https%3A%2F%2Fswiftpackageindex.com%2Fapi%2Fpackages%2Flascic%2FUIOnboarding%2Fbadge%3Ftype%3Dplatforms)](https://swiftpackageindex.com/lascic/UIOnboarding)
+[![GitHub license](https://img.shields.io/github/license/lascic/UIOnboarding?color=A79E7E&label=License)](https://github.com/lascic/UIOnboarding/blob/main/LICENSE)
+[![Twitter: @lascic](https://img.shields.io/twitter/url?label=%40lascic&style=social&url=https%3A%2F%2Ftwitter.com%2Flascic)](https://twitter.com/lascic)
+
+
 Configurable animated onboarding screen written programmatically in Swift for UIKit – [inspired](#moodboard) by many Apple-designed user interfaces in iOS – with [Insignia](https://apps.apple.com/ch/app/abzeichen/id1551002238) as an example.
 
  Designed for iPhone and iPod touch running iOS 13 or higher. Portrait mode only. Supports Dynamic Type, VoiceOver and Reduce Motion.
@@ -233,7 +239,6 @@ Some in-app assets provided for this demo project are part of [Insignia](https:/
 ## Links
 
 Swiss Armed Forces Insignia from the App Store: https://apps.apple.com/ch/app/abzeichen/id1551002238 <br>
-Author Twitter: [@lascic](https://twitter.com/lascic) <br>
 Author Website: https://lukmanascic.ch
 
 ## Contributions
