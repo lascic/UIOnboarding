@@ -43,6 +43,8 @@ To install ```UIOnboarding``` as a package, add ```https://github.com/lascic/UIO
 
 ```swift
 .package(url: "https://github.com/lascic/UIOnboarding.git", from: "1.0.0")
+// or
+.package(url: "https://github.com/lascic/UIOnboarding.git", branch: "main")
 ```
 
 ### Demo Project Download
