@@ -1,6 +1,6 @@
 # UIOnboarding
 
-<img src="readme-resources/140222 UIOnboarding Result.png" img>
+![UIOnboarding Title Page](https://raw.githubusercontent.com/lascic/UIOnboarding/main/readme-resources/140222%20UIOnboarding%20Result.png)
 
 Configurable animated onboarding screen written programmatically in Swift for UIKit – [inspired](#moodboard) by many Apple-designed user interfaces in iOS – with [Insignia](https://apps.apple.com/ch/app/abzeichen/id1551002238) as an example.
 
@@ -27,13 +27,13 @@ Configurable animated onboarding screen written programmatically in Swift for UI
 
 | Default 6.5" | Default 4" |
 |-|-|
-| <img src='readme-resources/170222 UIOnboarding Example 6.5".gif' img> | <img src='readme-resources/170222 UIOnboarding Example 4".gif' img width = 240> |
+| ![UIOnboarding Preview 6.5 inch](https://raw.githubusercontent.com/lascic/UIOnboarding/main/readme-resources/170222%20UIOnboarding%20Example%206.5%22.gif) | <img src='https://raw.githubusercontent.com/lascic/UIOnboarding/main/readme-resources/170222%20UIOnboarding%20Example%204%22.gif' img width = 240> |
 
 ### Accessibility
 
 | Dynamic Type | VoiceOver | Reduce Motion |
 |-|-|-|
-|<img src="readme-resources/170222 UIOnboarding Example Dynamic Type.gif" img>|<img src="readme-resources/140222 UIOnboarding Example VoiceOver.gif" img>|<img src="readme-resources/170222 UIOnboarding Example Reduce Motion.gif" img>|
+|![UIOnboarding Preview Dynamic Type](https://raw.githubusercontent.com/lascic/UIOnboarding/main/readme-resources/170222%20UIOnboarding%20Example%20Dynamic%20Type.gif)|![UIOnboarding Preview VoiceOver](https://raw.githubusercontent.com/lascic/UIOnboarding/main/readme-resources/140222%20UIOnboarding%20Example%20VoiceOver.gif)|![UIOnboarding Preview Redcue Motion](https://raw.githubusercontent.com/lascic/UIOnboarding/main/readme-resources/170222%20UIOnboarding%20Example%20Reduce%20Motion.gif)|
 
 ## Installation
 
@@ -215,12 +215,12 @@ extension UIOnboardingViewConfiguration {
 
 ## Moodboard
 
-<img src="readme-resources/140222 UIOnboarding Moodboard-1.png" img>
-<img src="readme-resources/140222 UIOnboarding Moodboard-2.png" img>
+![UIOnboarding First Moodboard](https://raw.githubusercontent.com/lascic/UIOnboarding/main/readme-resources/140222%20UIOnboarding%20Moodboard-1.png)
+![UIOnboarding Second Moodboard](https://raw.githubusercontent.com/lascic/UIOnboarding/main/readme-resources/140222%20UIOnboarding%20Moodboard-2.png)
 
 ## License
 
-MIT
+This project is [MIT](https://github.com/lascic/UIOnboarding/blob/main/LICENSE) licensed.
 
 ## Icon Usage Rights
 
