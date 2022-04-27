@@ -22,7 +22,10 @@ final class UIOnboardingViewController: UIViewController {
 
     private var enoughSpaceToShowFullList: Bool {
         let onboardingStackHeight: CGFloat = onboardingStackView.frame.height
-        let availableSpace: CGFloat = (view.frame.height - bottomOverlayView.frame.height - (device.hasNotch ? 120 : 70))
+        let availableSpace: CGFloat = (view.frame.height -
+                                       bottomOverlayView.frame.height -
+//                                       (device.userInterfaceIdiom == .pad ? (device.hasNotch ? 120 : 70) : getStatusBarHeight()) -
+                                       onboardingScrollView.contentInset.top)
         return onboardingStackHeight > availableSpace
     }
     
@@ -67,16 +70,9 @@ final class UIOnboardingViewController: UIViewController {
     
     /// Because the regular mode on plus sized iPhones only happens in landscape – and landscape is not supported – we don't have to check that. Only regular size classes of iPad are affected.
     override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
+        print("TRAITCOLLECTION UPDATED: ")
+        dump(traitCollection)
         //mer müend au vertical size class luege
-        if traitCollection.horizontalSizeClass == .regular && device.userInterfaceIdiom == .pad {
-            onboardingStackViewWidth.constant = view.frame.width * 0.6
-            print("it's an ipad in big mode. not designed yet")
-        } else if traitCollection.verticalSizeClass == .regular && device.userInterfaceIdiom == .pad {
-            onboardingStackViewWidth.constant = view.frame.width * 0.6
-        } else {
-            print("it's in the design of the iphone. compact. side by side zum bispil on ipad")
-        }
-        view.layoutIfNeeded()
     }
 }
 
@@ -193,6 +189,17 @@ extension UIOnboardingViewController {
         onboardingScrollView.isScrollEnabled = enoughSpaceToShowFullList
         onboardingScrollView.showsVerticalScrollIndicator = enoughSpaceToShowFullList
         
+        if traitCollection.horizontalSizeClass == .regular && device.userInterfaceIdiom == .pad {
+            onboardingStackViewWidth.constant = view.frame.width * 0.6
+            continueButtonWidth.constant = (view.frame.width - UIScreenType.setUpPadding() * 2) * 0.5
+            print("iPad version regular on both landscape portrait")
+        } else {
+            print("iPhone version compact")
+        }
+
+        continueButton.layoutIfNeeded()
+        view.layoutIfNeeded()
+
         continueButton.sizeToFit()
     }
 }
