@@ -71,6 +71,8 @@ final class UIOnboardingViewController: UIViewController {
         if traitCollection.horizontalSizeClass == .regular && device.userInterfaceIdiom == .pad {
             onboardingStackViewWidth.constant = view.frame.width * 0.6
             print("it's an ipad in big mode. not designed yet")
+        } else if traitCollection.verticalSizeClass == .regular && device.userInterfaceIdiom == .pad {
+            onboardingStackViewWidth.constant = view.frame.width * 0.6
         } else {
             print("it's in the design of the iphone. compact. side by side zum bispil on ipad")
         }
