@@ -10,9 +10,12 @@ import UIKit
 final class UIOnboardingViewController: UIViewController {
     private var onboardingScrollView: UIScrollView!
     private var onboardingStackView: UIOnboardingStack!
+    private var onboardingStackViewWidth: NSLayoutConstraint!
+    
     private var topOverlayView: UIOnboardingOverlay!
     private var bottomOverlayView: UIOnboardingOverlay!
     private var continueButton: UIOnboardingButton!
+    private var continueButtonWidth: NSLayoutConstraint!
     private var onboardingTextView: UIOnboardingTextView!
 
     private lazy var statusBarHeight: CGFloat = getStatusBarHeight()
@@ -62,12 +65,16 @@ final class UIOnboardingViewController: UIViewController {
         updateUI()
     }
     
+    /// Because the regular mode on plus sized iPhones only happens in landscape – and landscape is not supported – we don't have to check that. Only regular size classes of iPad are affected.
     override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
-        if traitCollection.horizontalSizeClass == .regular {
+        //mer müend au vertical size class luege
+        if traitCollection.horizontalSizeClass == .regular && device.userInterfaceIdiom == .pad {
+            onboardingStackViewWidth.constant = view.frame.width * 0.6
             print("it's an ipad in big mode. not designed yet")
         } else {
             print("it's in the design of the iphone. compact. side by side zum bispil on ipad")
         }
+        view.layoutIfNeeded()
     }
 }
 
@@ -105,8 +112,11 @@ extension UIOnboardingViewController {
         
         onboardingStackView.topAnchor.constraint(equalTo: onboardingScrollView.topAnchor).isActive = true
         onboardingStackView.bottomAnchor.constraint(equalTo: onboardingScrollView.bottomAnchor).isActive = true
-        onboardingStackView.leadingAnchor.constraint(equalTo: onboardingScrollView.leadingAnchor, constant: UIScreenType.setUpPadding()).isActive = true
-        onboardingStackView.trailingAnchor.constraint(equalTo: onboardingScrollView.trailingAnchor, constant: UIScreenType.setUpPadding()).isActive = true
+//        onboardingStackView.leadingAnchor.constraint(equalTo: onboardingScrollView.leadingAnchor, constant: UIScreenType.setUpPadding()).isActive = true
+//        onboardingStackView.trailingAnchor.constraint(equalTo: onboardingScrollView.trailingAnchor, constant: UIScreenType.setUpPadding()).isActive = true
+        onboardingStackViewWidth = onboardingStackView.widthAnchor.constraint(equalToConstant: view.frame.width - UIScreenType.setUpPadding() * 2)
+        onboardingStackViewWidth.isActive = true
+        onboardingStackView.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
     }
 
     func setUpTopOverlay() {
@@ -137,8 +147,11 @@ extension UIOnboardingViewController {
         bottomOverlayView.addSubview(continueButton)
         
         continueButton.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -40).isActive = true
-        continueButton.leadingAnchor.constraint(equalTo: bottomOverlayView.leadingAnchor, constant: UIScreenType.setUpButtonPadding()).isActive = true
-        continueButton.trailingAnchor.constraint(equalTo: bottomOverlayView.trailingAnchor, constant: -UIScreenType.setUpButtonPadding()).isActive = true
+//        continueButton.leadingAnchor.constraint(equalTo: bottomOverlayView.leadingAnchor, constant: UIScreenType.setUpButtonPadding()).isActive = true
+//        continueButton.trailingAnchor.constraint(equalTo: bottomOverlayView.trailingAnchor, constant: -UIScreenType.setUpButtonPadding()).isActive = true
+        continueButtonWidth = continueButton.widthAnchor.constraint(equalToConstant: (view.frame.width - UIScreenType.setUpPadding() * 2) * 0.5)
+        continueButtonWidth.isActive = true
+        continueButton.centerXAnchor.constraint(equalTo: onboardingStackView.centerXAnchor).isActive = true
         continueButton.heightAnchor.constraint(greaterThanOrEqualToConstant: UIScreenType.isiPhoneSE ? 46 : 52).isActive = true
     }
     
