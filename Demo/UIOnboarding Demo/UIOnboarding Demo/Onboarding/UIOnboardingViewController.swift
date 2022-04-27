@@ -176,7 +176,7 @@ extension UIOnboardingViewController {
     }
     
     func updateUI() {
-        onboardingScrollView.contentInset = .init(top: UIScreenType.setUpTopSpacing(),
+        onboardingScrollView.contentInset = .init(top: traitCollection.horizontalSizeClass == .regular && device.userInterfaceIdiom == .pad ? 200 : UIScreenType.setUpTopSpacing(),
                                                   left: 0,
                                                   bottom: bottomOverlayView.frame.height + 16,
                                                   right: 0)
