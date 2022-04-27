@@ -61,6 +61,14 @@ final class UIOnboardingViewController: UIViewController {
         super.viewDidLayoutSubviews()
         updateUI()
     }
+    
+    override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
+        if traitCollection.horizontalSizeClass == .regular {
+            print("it's an ipad in big mode. not designed yet")
+        } else {
+            print("it's in the design of the iphone. compact. side by side zum bispil on ipad")
+        }
+    }
 }
 
 extension UIOnboardingViewController: UIScrollViewDelegate {
