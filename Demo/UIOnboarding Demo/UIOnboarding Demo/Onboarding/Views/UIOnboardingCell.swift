@@ -15,8 +15,8 @@ final class UIOnboardingCell: UITableViewCell {
         featureGlyph.tintColor = .label
         featureGlyph.contentMode = .scaleAspectFit
         
-        featureGlyph.heightAnchor.constraint(equalToConstant: 44).isActive = true
-        featureGlyph.widthAnchor.constraint(equalToConstant: 44).isActive = true
+        featureGlyph.heightAnchor.constraint(equalToConstant: traitCollection.horizontalSizeClass == .regular && UIDevice.current.userInterfaceIdiom == .pad ? 78 : 44).isActive = true
+        featureGlyph.widthAnchor.constraint(equalTo: featureGlyph.heightAnchor).isActive = true
         
         featureGlyph.translatesAutoresizingMaskIntoConstraints = false
         return featureGlyph
@@ -59,8 +59,8 @@ final class UIOnboardingCell: UITableViewCell {
         
         featureGlyph.leadingAnchor.constraint(equalTo: contentView.leadingAnchor).isActive = true
         titleLabel.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 12).isActive = true
-        titleLabel.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -12).isActive = true
-        titleLabel.leadingAnchor.constraint(equalTo: featureGlyph.trailingAnchor, constant: 18).isActive = true
+        titleLabel.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: traitCollection.horizontalSizeClass == .regular && UIDevice.current.userInterfaceIdiom == .pad ? -74 : -12).isActive = true
+        titleLabel.leadingAnchor.constraint(equalTo: featureGlyph.trailingAnchor, constant: traitCollection.horizontalSizeClass == .regular && UIDevice.current.userInterfaceIdiom == .pad ? 28 : 18).isActive = true
         titleLabel.trailingAnchor.constraint(equalTo: contentView.trailingAnchor).isActive = true
         featureGlyph.topAnchor.constraint(equalTo: titleLabel.topAnchor, constant: 4).isActive = true
         contentView.heightAnchor.constraint(greaterThanOrEqualToConstant: 44).isActive = true
@@ -73,9 +73,9 @@ final class UIOnboardingCell: UITableViewCell {
         let paraph: NSMutableParagraphStyle = .init()
         paraph.lineSpacing = 0.8
         let text: NSMutableAttributedString = .init(string: "\(feature.title)\n",
-                                                    attributes: [.font: UIFontMetrics.default.scaledFont(for: .systemFont(ofSize: 17, weight: .semibold)), .paragraphStyle: paraph])
+                                                    attributes: [.font: UIFontMetrics.default.scaledFont(for: .systemFont(ofSize: traitCollection.horizontalSizeClass == .regular && UIDevice.current.userInterfaceIdiom == .pad ? 27 : 17, weight: .semibold)), .paragraphStyle: paraph])
         text.append(.init(string: feature.description,
-                          attributes: [.font: UIFontMetrics.default.scaledFont(for: .systemFont(ofSize: 15, weight: .light)), .foregroundColor: UIColor.label]))
+                          attributes: [.font: UIFontMetrics.default.scaledFont(for: .systemFont(ofSize: traitCollection.horizontalSizeClass == .regular && UIDevice.current.userInterfaceIdiom == .pad ? 25 : 15, weight: .light)), .foregroundColor: UIColor.label]))
         
         titleLabel.attributedText = text
         titleLabel.accessibilityLabel = "\(feature.title). \(feature.description)"

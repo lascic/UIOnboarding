@@ -74,6 +74,22 @@ final class UIOnboardingViewController: UIViewController {
         dump(traitCollection)
         //mer müend au vertical size class luege
     }
+    
+    private var windowInterfaceOrientation: UIInterfaceOrientation? {
+        return UIApplication.shared.windows.first?.windowScene?.interfaceOrientation
+    }
+    
+    override func willTransition(to newCollection: UITraitCollection, with coordinator: UIViewControllerTransitionCoordinator) {
+        coordinator.animate(alongsideTransition: { context in
+            guard let windowInterfaceOrientation = self.windowInterfaceOrientation, self.traitCollection.horizontalSizeClass == .regular, self.device.userInterfaceIdiom == .pad else { return }
+            
+            if windowInterfaceOrientation.isLandscape {
+                print("landscape.")
+            } else {
+                print("portrait.")
+            }
+        })
+    }
 }
 
 extension UIOnboardingViewController: UIScrollViewDelegate {
@@ -176,7 +192,8 @@ extension UIOnboardingViewController {
     }
     
     func updateUI() {
-        onboardingScrollView.contentInset = .init(top: traitCollection.horizontalSizeClass == .regular && device.userInterfaceIdiom == .pad ? 200 : UIScreenType.setUpTopSpacing(),
+//        device.orientation.isPortrait ? print("in portrait") : print("in landscape")
+        onboardingScrollView.contentInset = .init(top: traitCollection.horizontalSizeClass == .regular && device.userInterfaceIdiom == .pad ? (device.orientation.isPortrait ? 200 : 50) : UIScreenType.setUpTopSpacing(),
                                                   left: 0,
                                                   bottom: bottomOverlayView.frame.height + 16,
                                                   right: 0)

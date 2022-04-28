@@ -68,7 +68,7 @@ final class UIOnboardingStack: UIStackView {
         setCustomSpacing(26, after: onboardingIcon)
         
         addArrangedSubview(onboardingTitleLabel)
-        setCustomSpacing(UIScreenType.setUpTitleSpacing(), after: onboardingTitleLabel)
+        setCustomSpacing(traitCollection.horizontalSizeClass == .regular && UIDevice.current.userInterfaceIdiom == .pad ? 60 : UIScreenType.setUpTitleSpacing(), after: onboardingTitleLabel)
         
         addArrangedSubview(featuresList)
     }
