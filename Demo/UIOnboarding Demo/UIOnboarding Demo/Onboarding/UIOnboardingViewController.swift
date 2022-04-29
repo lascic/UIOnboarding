@@ -24,7 +24,7 @@ final class UIOnboardingViewController: UIViewController {
 
     private lazy var statusBarHeight: CGFloat = getStatusBarHeight()
         
-    private func enoughSpaceToShowFullList() -> Bool {
+    private var enoughSpaceToShowFullList: Bool {
         let onboardingStackHeight: CGFloat = onboardingStackView.frame.height
         let availableSpace: CGFloat = (view.frame.height -
                                        bottomOverlayView.frame.height -
@@ -222,18 +222,18 @@ extension UIOnboardingViewController {
                                                            bottom: bottomOverlayView.frame.height - view.safeAreaInsets.bottom,
                                                            right: 0)
         
-        let isIpadPro: Bool = max(UIScreen.main.bounds.size.width, UIScreen.main.bounds.size.height) > 1024
+        let isiPadPro: Bool = max(UIScreen.main.bounds.size.width, UIScreen.main.bounds.size.height) > 1024
                     
-        onboardingStackViewWidth.constant = traitCollection.horizontalSizeClass == .regular ? 480 : (traitCollection.horizontalSizeClass == .compact && view.frame.width == 320 ? view.frame.width - 60 : (isIpadPro && traitCollection.horizontalSizeClass == .compact && view.frame.width == 639 ? 340 : view.frame.width - (UIScreenType.setUpPadding() * 2)))
+        onboardingStackViewWidth.constant = traitCollection.horizontalSizeClass == .regular ? 480 : (traitCollection.horizontalSizeClass == .compact && view.frame.width == 320 ? view.frame.width - 60 : (isiPadPro && traitCollection.horizontalSizeClass == .compact && view.frame.width == 639 ? 340 : view.frame.width - (UIScreenType.setUpPadding() * 2)))
         
-        continueButtonBottom.constant = traitCollection.horizontalSizeClass == .regular || (isIpadPro && traitCollection.horizontalSizeClass == .compact && view.frame.width == 639) ? -60 : -40
+        continueButtonBottom.constant = traitCollection.horizontalSizeClass == .regular || (isiPadPro && traitCollection.horizontalSizeClass == .compact && view.frame.width == 639) ? -60 : -40
         
-        continueButtonWidth.constant = traitCollection.horizontalSizeClass == .regular ? 340 : (traitCollection.horizontalSizeClass == .compact && view.frame.width == 320 ? view.frame.width - 60 : (isIpadPro && traitCollection.horizontalSizeClass == .compact && view.frame.width == 639 ? 300 : view.frame.width - (UIScreenType.setUpPadding() * 2)))
+        continueButtonWidth.constant = traitCollection.horizontalSizeClass == .regular ? 340 : (traitCollection.horizontalSizeClass == .compact && view.frame.width == 320 ? view.frame.width - 60 : (isiPadPro && traitCollection.horizontalSizeClass == .compact && view.frame.width == 639 ? 300 : view.frame.width - (UIScreenType.setUpPadding() * 2)))
                 
         view.layoutIfNeeded()
-        bottomOverlayView.subviews.first?.alpha = enoughSpaceToShowFullList() ? 1 : 0
-        onboardingScrollView.isScrollEnabled = enoughSpaceToShowFullList()
-        onboardingScrollView.showsVerticalScrollIndicator = enoughSpaceToShowFullList()
+        bottomOverlayView.subviews.first?.alpha = enoughSpaceToShowFullList ? 1 : 0
+        onboardingScrollView.isScrollEnabled = enoughSpaceToShowFullList
+        onboardingScrollView.showsVerticalScrollIndicator = enoughSpaceToShowFullList
         
         continueButton.layoutIfNeeded()
         continueButton.sizeToFit()
@@ -248,7 +248,7 @@ extension UIOnboardingViewController {
         if !overlayIsHidden {
             DispatchQueue.main.async {
                 UIView.animate(withDuration: 0.21) {
-                    self.bottomOverlayView.blurEffectView.effect = self.enoughSpaceToShowFullList() ? UIBlurEffect.init(style: .regular) : nil
+                    self.bottomOverlayView.blurEffectView.effect = self.enoughSpaceToShowFullList ? UIBlurEffect.init(style: .regular) : nil
                 }
             }
         }

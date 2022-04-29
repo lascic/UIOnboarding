@@ -91,7 +91,6 @@ final class UIOnboardingStack: UIStackView {
                     if let completion = completion {
                         completion()
                     }
-
                 }
             })
         }
