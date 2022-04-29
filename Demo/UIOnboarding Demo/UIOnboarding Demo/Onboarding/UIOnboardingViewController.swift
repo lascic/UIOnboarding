@@ -111,12 +111,13 @@ extension UIOnboardingViewController: UIScrollViewDelegate {
         var hasReachedBottom: Bool {
             return scrollOffset + scrollViewHeight >= scrollContentSizeHeight + bottomOverlayView.frame.height + view.safeAreaInsets.bottom
         }
-
         DispatchQueue.main.async {
-            UIView.animate(withDuration: 0.21) {
+            UIView.animate(withDuration: 0.21, animations: {
                 self.bottomOverlayView.blurEffectView.effect = hasReachedBottom ? nil : UIBlurEffect.init(style: .regular)
-                self.overlayIsHidden = hasReachedBottom
-            }
+                if self.enoughSpaceToShowFullList {
+                    self.overlayIsHidden = true
+                }
+            })
         }
     }
 }
@@ -244,14 +245,15 @@ extension UIOnboardingViewController {
         }
         onboardingStackView.layoutIfNeeded()
         onboardingStackView.onboardingTitleLabel.setLineHeight(lineHeight: 0.9)
-
-        if !overlayIsHidden {
+        
+        if overlayIsHidden == false {
             DispatchQueue.main.async {
                 UIView.animate(withDuration: 0.21) {
                     self.bottomOverlayView.blurEffectView.effect = self.enoughSpaceToShowFullList ? UIBlurEffect.init(style: .regular) : nil
                 }
             }
         }
+
     }
 }
 
