@@ -8,6 +8,8 @@
 import UIKit
 
 final class UIOnboardingOverlay: UIView {
+    var blurEffectView: UIVisualEffectView!
+    
     override init(frame: CGRect) {
         super.init(frame: frame)
         prepareForOnboarding()
@@ -21,9 +23,9 @@ final class UIOnboardingOverlay: UIView {
         translatesAutoresizingMaskIntoConstraints = false
 
         let blurEffect: UIBlurEffect = .init(style: .regular)
-        let blurEffectView: UIVisualEffectView = .init(effect: blurEffect)
+        blurEffectView = .init(effect: blurEffect)
         blurEffectView.frame = bounds
-        blurEffectView.backgroundColor = .clear
+        blurEffectView.backgroundColor = UIAccessibility.isReduceTransparencyEnabled ? .systemBackground : nil
         blurEffectView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
         addSubview(blurEffectView)
         alpha = 0

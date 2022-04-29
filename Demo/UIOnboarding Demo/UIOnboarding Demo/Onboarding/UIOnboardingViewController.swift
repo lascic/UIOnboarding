@@ -14,25 +14,30 @@ final class UIOnboardingViewController: UIViewController {
     
     private var topOverlayView: UIOnboardingOverlay!
     private var bottomOverlayView: UIOnboardingOverlay!
+    
     private var continueButton: UIOnboardingButton!
     private var continueButtonWidth: NSLayoutConstraint!
+    private var continueButtonHeight: NSLayoutConstraint!
+    private var continueButtonBottom: NSLayoutConstraint!
+    
     private var onboardingTextView: UIOnboardingTextView!
 
     private lazy var statusBarHeight: CGFloat = getStatusBarHeight()
-
-    private var enoughSpaceToShowFullList: Bool {
+        
+    private func enoughSpaceToShowFullList() -> Bool {
         let onboardingStackHeight: CGFloat = onboardingStackView.frame.height
         let availableSpace: CGFloat = (view.frame.height -
                                        bottomOverlayView.frame.height -
-//                                       (device.userInterfaceIdiom == .pad ? (device.hasNotch ? 120 : 70) : getStatusBarHeight()) -
-                                       onboardingScrollView.contentInset.top)
+                                       view.safeAreaInsets.bottom -
+                                       onboardingScrollView.contentInset.top +
+                                       (traitCollection.horizontalSizeClass == .regular ? 48 : 12))
         return onboardingStackHeight > availableSpace
     }
+    private var overlayIsHidden: Bool = false
     
     override var supportedInterfaceOrientations: UIInterfaceOrientationMask {
         return .portrait
     }
-    
     private let configuration: UIOnboardingViewConfiguration
     private let device: UIDevice
     weak var delegate: UIOnboardingViewControllerDelegate?
@@ -51,6 +56,11 @@ final class UIOnboardingViewController: UIViewController {
     deinit {
         debugPrint("UIOnboardingViewController: deinit {}")
     }
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        view.isUserInteractionEnabled = false
+    }
         
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
@@ -68,37 +78,45 @@ final class UIOnboardingViewController: UIViewController {
         updateUI()
     }
     
-    /// Because the regular mode on plus sized iPhones only happens in landscape – and landscape is not supported – we don't have to check that. Only regular size classes of iPad are affected.
     override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
-        print("TRAITCOLLECTION UPDATED: ")
-        dump(traitCollection)
-        //mer müend au vertical size class luege
-    }
-    
-    private var windowInterfaceOrientation: UIInterfaceOrientation? {
-        return UIApplication.shared.windows.first?.windowScene?.interfaceOrientation
-    }
-    
-    override func willTransition(to newCollection: UITraitCollection, with coordinator: UIViewControllerTransitionCoordinator) {
-        coordinator.animate(alongsideTransition: { context in
-            guard let windowInterfaceOrientation = self.windowInterfaceOrientation, self.traitCollection.horizontalSizeClass == .regular, self.device.userInterfaceIdiom == .pad else { return }
-            
-            if windowInterfaceOrientation.isLandscape {
-                print("landscape.")
-            } else {
-                print("portrait.")
-            }
-        })
+        onboardingStackView.onboardingTitleLabel.font = .systemFont(ofSize: traitCollection.horizontalSizeClass == .regular ? 80 : (UIScreenType.isiPhoneSE || UIScreenType.isiPhone6s ? 41 : 44), weight: .heavy)
+
+        continueButtonHeight.constant = UIFontMetrics.default.scaledValue(for: traitCollection.horizontalSizeClass == .regular ? 50 : (UIScreenType.isiPhoneSE ? 48 : 52))
+        continueButton.titleLabel?.font = UIFontMetrics.default.scaledFont(for: .systemFont(ofSize: traitCollection.horizontalSizeClass == .regular ? 19 : 17, weight: .bold))
+        
+        if #available(iOS 15.0, *) {
+            onboardingTextView.font =  UIFontMetrics.default.scaledFont(for: .systemFont(ofSize: traitCollection.horizontalSizeClass == .regular ? 15 : 13))
+            onboardingTextView.maximumContentSizeCategory = .accessibilityMedium
+        } else {
+            onboardingTextView.font = UIFontMetrics.default.scaledFont(for: .systemFont(ofSize: traitCollection.horizontalSizeClass == .regular ? 15 : 13), maximumPointSize: traitCollection.horizontalSizeClass == .regular ? 21 : 19)
+        }
+        onboardingTextView.layoutIfNeeded()
+        continueButton.layoutIfNeeded()
     }
 }
 
 extension UIOnboardingViewController: UIScrollViewDelegate {
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        let scrollViewHeight = scrollView.frame.size.height
+        let scrollContentSizeHeight = scrollView.contentSize.height
+        let scrollOffset = scrollView.contentOffset.y
+
         var viewOverlapsWithOverlay: Bool {
-            return scrollView.contentOffset.y >= -(self.statusBarHeight / 1.5)
+            return scrollOffset >= -(self.statusBarHeight / 1.5)
         }
         UIView.animate(withDuration: 0.21) {
             self.topOverlayView.alpha = viewOverlapsWithOverlay ? 1 : 0
+        }
+
+        var hasReachedBottom: Bool {
+            return scrollOffset + scrollViewHeight >= scrollContentSizeHeight + bottomOverlayView.frame.height + view.safeAreaInsets.bottom
+        }
+
+        DispatchQueue.main.async {
+            UIView.animate(withDuration: 0.21) {
+                self.bottomOverlayView.blurEffectView.effect = hasReachedBottom ? nil : UIBlurEffect.init(style: .regular)
+                self.overlayIsHidden = hasReachedBottom
+            }
         }
     }
 }
@@ -126,9 +144,8 @@ extension UIOnboardingViewController {
         
         onboardingStackView.topAnchor.constraint(equalTo: onboardingScrollView.topAnchor).isActive = true
         onboardingStackView.bottomAnchor.constraint(equalTo: onboardingScrollView.bottomAnchor).isActive = true
-//        onboardingStackView.leadingAnchor.constraint(equalTo: onboardingScrollView.leadingAnchor, constant: UIScreenType.setUpPadding()).isActive = true
-//        onboardingStackView.trailingAnchor.constraint(equalTo: onboardingScrollView.trailingAnchor, constant: UIScreenType.setUpPadding()).isActive = true
-        onboardingStackViewWidth = onboardingStackView.widthAnchor.constraint(equalToConstant: view.frame.width - UIScreenType.setUpPadding() * 2)
+        
+        onboardingStackViewWidth = onboardingStackView.widthAnchor.constraint(equalToConstant: traitCollection.horizontalSizeClass == .regular ? 480 : view.frame.width - (UIScreenType.setUpPadding() * 2))
         onboardingStackViewWidth.isActive = true
         onboardingStackView.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
     }
@@ -160,13 +177,16 @@ extension UIOnboardingViewController {
         continueButton.delegate = self
         bottomOverlayView.addSubview(continueButton)
         
-        continueButton.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -40).isActive = true
-//        continueButton.leadingAnchor.constraint(equalTo: bottomOverlayView.leadingAnchor, constant: UIScreenType.setUpButtonPadding()).isActive = true
-//        continueButton.trailingAnchor.constraint(equalTo: bottomOverlayView.trailingAnchor, constant: -UIScreenType.setUpButtonPadding()).isActive = true
-        continueButtonWidth = continueButton.widthAnchor.constraint(equalToConstant: (view.frame.width - UIScreenType.setUpPadding() * 2) * 0.5)
+        continueButtonBottom = continueButton.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: traitCollection.horizontalSizeClass == .regular ? -60 : -40)
+        continueButtonBottom.isActive = true
+        
+        continueButtonWidth = continueButton.widthAnchor.constraint(equalToConstant: traitCollection.horizontalSizeClass == .regular ? 340 : view.frame.width - (UIScreenType.setUpPadding() * 2))
         continueButtonWidth.isActive = true
+        
         continueButton.centerXAnchor.constraint(equalTo: onboardingStackView.centerXAnchor).isActive = true
-        continueButton.heightAnchor.constraint(greaterThanOrEqualToConstant: UIScreenType.isiPhoneSE ? 46 : 52).isActive = true
+        
+        continueButtonHeight = continueButton.heightAnchor.constraint(equalToConstant: UIFontMetrics.default.scaledValue(for: traitCollection.horizontalSizeClass == .regular ? 50 : UIScreenType.isiPhoneSE ? 48 : 52))
+        continueButtonHeight.isActive = true
     }
     
     func setUpOnboardingTextView() {
@@ -187,37 +207,51 @@ extension UIOnboardingViewController {
             self.onboardingStackView.animate {
                 self.bottomOverlayView.alpha = 1
                 self.onboardingScrollView.isScrollEnabled = true
+                self.view.isUserInteractionEnabled = true
             }
         }
     }
     
     func updateUI() {
-//        device.orientation.isPortrait ? print("in portrait") : print("in landscape")
-        onboardingScrollView.contentInset = .init(top: traitCollection.horizontalSizeClass == .regular && device.userInterfaceIdiom == .pad ? (device.orientation.isPortrait ? 200 : 50) : UIScreenType.setUpTopSpacing(),
+        onboardingScrollView.contentInset = .init(top: traitCollection.horizontalSizeClass == .regular ? 140 - getStatusBarHeight() : UIScreenType.setUpTopSpacing(),
                                                   left: 0,
-                                                  bottom: bottomOverlayView.frame.height + 16,
+                                                  bottom: bottomOverlayView.frame.height + view.safeAreaInsets.bottom,
                                                   right: 0)
         onboardingScrollView.scrollIndicatorInsets = .init(top: 0,
                                                            left: 0,
-                                                           bottom: bottomOverlayView.frame.height,
+                                                           bottom: bottomOverlayView.frame.height - view.safeAreaInsets.bottom,
                                                            right: 0)
-        bottomOverlayView.subviews.first?.alpha = enoughSpaceToShowFullList ? 1 : 0
         
-        onboardingScrollView.isScrollEnabled = enoughSpaceToShowFullList
-        onboardingScrollView.showsVerticalScrollIndicator = enoughSpaceToShowFullList
+        let isIpadPro: Bool = max(UIScreen.main.bounds.size.width, UIScreen.main.bounds.size.height) > 1024
+                    
+        onboardingStackViewWidth.constant = traitCollection.horizontalSizeClass == .regular ? 480 : (traitCollection.horizontalSizeClass == .compact && view.frame.width == 320 ? view.frame.width - 60 : (isIpadPro && traitCollection.horizontalSizeClass == .compact && view.frame.width == 639 ? 340 : view.frame.width - (UIScreenType.setUpPadding() * 2)))
         
-        if traitCollection.horizontalSizeClass == .regular && device.userInterfaceIdiom == .pad {
-            onboardingStackViewWidth.constant = view.frame.width * 0.6
-            continueButtonWidth.constant = (view.frame.width - UIScreenType.setUpPadding() * 2) * 0.5
-            print("iPad version regular on both landscape portrait")
-        } else {
-            print("iPhone version compact")
-        }
-
-        continueButton.layoutIfNeeded()
+        continueButtonBottom.constant = traitCollection.horizontalSizeClass == .regular || (isIpadPro && traitCollection.horizontalSizeClass == .compact && view.frame.width == 639) ? -60 : -40
+        
+        continueButtonWidth.constant = traitCollection.horizontalSizeClass == .regular ? 340 : (traitCollection.horizontalSizeClass == .compact && view.frame.width == 320 ? view.frame.width - 60 : (isIpadPro && traitCollection.horizontalSizeClass == .compact && view.frame.width == 639 ? 300 : view.frame.width - (UIScreenType.setUpPadding() * 2)))
+                
         view.layoutIfNeeded()
-
+        bottomOverlayView.subviews.first?.alpha = enoughSpaceToShowFullList() ? 1 : 0
+        onboardingScrollView.isScrollEnabled = enoughSpaceToShowFullList()
+        onboardingScrollView.showsVerticalScrollIndicator = enoughSpaceToShowFullList()
+        
+        continueButton.layoutIfNeeded()
         continueButton.sizeToFit()
+        
+        UIView.performWithoutAnimation {
+            onboardingStackView.featuresList.beginUpdates()
+            onboardingStackView.featuresList.endUpdates()
+        }
+        onboardingStackView.layoutIfNeeded()
+        onboardingStackView.onboardingTitleLabel.setLineHeight(lineHeight: 0.9)
+
+        if !overlayIsHidden {
+            DispatchQueue.main.async {
+                UIView.animate(withDuration: 0.21) {
+                    self.bottomOverlayView.blurEffectView.effect = self.enoughSpaceToShowFullList() ? UIBlurEffect.init(style: .regular) : nil
+                }
+            }
+        }
     }
 }
 

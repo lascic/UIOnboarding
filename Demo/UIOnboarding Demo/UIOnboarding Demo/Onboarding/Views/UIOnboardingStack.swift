@@ -8,12 +8,12 @@
 import UIKit
 
 final class UIOnboardingStack: UIStackView {
-    private let spacerView: UIView = .init(frame: .zero)
-    private var onboardingIcon: OnboardingIcon!
-    private var onboardingTitleLabel: UIOnboardingTitle!
+    private var spacerView: UIView!
+    private(set) var onboardingIcon: OnboardingIcon!
+    private(set) var onboardingTitleLabel: UIOnboardingTitle!
     private let screen: UIScreen
 
-    private lazy var featuresList: UIIntrinsicTableView = {
+    private(set) lazy var featuresList: UIIntrinsicTableView = {
         let featuresTableView: UIIntrinsicTableView = .init(frame: .zero, style: .plain)
         
         featuresTableView.register(UIOnboardingCell.self, forCellReuseIdentifier: UIOnboardingCell.reuseIdentifier)
@@ -61,6 +61,7 @@ final class UIOnboardingStack: UIStackView {
         
         translatesAutoresizingMaskIntoConstraints = false
         
+        spacerView = .init(frame: .zero)
         addArrangedSubview(spacerView)
         setCustomSpacing(screen.bounds.height * (UIScreenType.setUpTopStackMultiplier()), after: spacerView)
                 
@@ -68,7 +69,7 @@ final class UIOnboardingStack: UIStackView {
         setCustomSpacing(26, after: onboardingIcon)
         
         addArrangedSubview(onboardingTitleLabel)
-        setCustomSpacing(traitCollection.horizontalSizeClass == .regular && UIDevice.current.userInterfaceIdiom == .pad ? 60 : UIScreenType.setUpTitleSpacing(), after: onboardingTitleLabel)
+        setCustomSpacing(traitCollection.horizontalSizeClass == .regular ? 40 : UIScreenType.setUpTitleSpacing(), after: onboardingTitleLabel)
         
         addArrangedSubview(featuresList)
     }
@@ -90,6 +91,7 @@ final class UIOnboardingStack: UIStackView {
                     if let completion = completion {
                         completion()
                     }
+
                 }
             })
         }
@@ -113,7 +115,6 @@ extension UIOnboardingStack: UITableViewDelegate {
         let animation = UIAccessibility.isReduceMotionEnabled ?
         UIOnboardingAnimation.fadeIn(duration: 0.466, delayFactor: 0.13) :
         UIOnboardingAnimation.slideIn(rowHeight: cell.frame.height, duration: 0.466, delayFactor: 0.13)
-        
         let animator: UIOnboardingAnimator = .init(animation: animation)
         animator.animate(cell: cell, at: indexPath, in: tableView)
     }
