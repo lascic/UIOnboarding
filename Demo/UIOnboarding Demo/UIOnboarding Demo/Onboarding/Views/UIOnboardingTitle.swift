@@ -49,7 +49,7 @@ extension UIOnboardingTitle {
             attrString.append(attributedText!)
         } else {
             attrString.append(.init(string: text!))
-            attrString.addAttribute(.font, value: font, range: .init(location: 0, length: attrString.length))
+            attrString.addAttribute(.font, value: font as Any, range: .init(location: 0, length: attrString.length))
         }
         attrString.addAttribute(.paragraphStyle, value: paragraphStyle, range: .init(location: 0, length: attrString.length))
         attributedText = attrString
