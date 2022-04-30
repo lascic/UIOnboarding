@@ -1,6 +1,12 @@
 # UIOnboarding
 
-<img src="readme-resources/140222 UIOnboarding Result.png" img>
+![UIOnboarding Title Page](https://raw.githubusercontent.com/lascic/UIOnboarding/main/readme-resources/140222%20UIOnboarding%20Result.png)
+
+[![](https://img.shields.io/endpoint?url=https%3A%2F%2Fswiftpackageindex.com%2Fapi%2Fpackages%2Flascic%2FUIOnboarding%2Fbadge%3Ftype%3Dswift-versions)](https://swiftpackageindex.com/lascic/UIOnboarding)
+[![](https://img.shields.io/endpoint?url=https%3A%2F%2Fswiftpackageindex.com%2Fapi%2Fpackages%2Flascic%2FUIOnboarding%2Fbadge%3Ftype%3Dplatforms)](https://swiftpackageindex.com/lascic/UIOnboarding)
+[![GitHub license](https://img.shields.io/github/license/lascic/UIOnboarding?color=A79E7E&label=License)](https://github.com/lascic/UIOnboarding/blob/main/LICENSE)
+[![Twitter: @lascic](https://img.shields.io/twitter/url?label=%40lascic&style=social&url=https%3A%2F%2Ftwitter.com%2Flascic)](https://twitter.com/lascic)
+
 
 Configurable animated onboarding screen written programmatically in Swift for UIKit – [inspired](#moodboard) by many Apple-designed user interfaces in iOS – with [Insignia](https://apps.apple.com/ch/app/abzeichen/id1551002238) as an example.
 
@@ -27,13 +33,13 @@ Configurable animated onboarding screen written programmatically in Swift for UI
 
 | Default 6.5" | Default 4" |
 |-|-|
-| <img src='readme-resources/170222 UIOnboarding Example 6.5".gif' img> | <img src='readme-resources/170222 UIOnboarding Example 4".gif' img width = 240> |
+| ![UIOnboarding Preview 6.5 inch](https://raw.githubusercontent.com/lascic/UIOnboarding/main/readme-resources/170222%20UIOnboarding%20Example%206.5%22.gif) | <img src='https://raw.githubusercontent.com/lascic/UIOnboarding/main/readme-resources/170222%20UIOnboarding%20Example%204%22.gif' img width = 240> |
 
 ### Accessibility
 
 | Dynamic Type | VoiceOver | Reduce Motion |
 |-|-|-|
-|<img src="readme-resources/170222 UIOnboarding Example Dynamic Type.gif" img>|<img src="readme-resources/140222 UIOnboarding Example VoiceOver.gif" img>|<img src="readme-resources/170222 UIOnboarding Example Reduce Motion.gif" img>|
+|![UIOnboarding Preview Dynamic Type](https://raw.githubusercontent.com/lascic/UIOnboarding/main/readme-resources/170222%20UIOnboarding%20Example%20Dynamic%20Type.gif)|![UIOnboarding Preview VoiceOver](https://raw.githubusercontent.com/lascic/UIOnboarding/main/readme-resources/140222%20UIOnboarding%20Example%20VoiceOver.gif)|![UIOnboarding Preview Redcue Motion](https://raw.githubusercontent.com/lascic/UIOnboarding/main/readme-resources/170222%20UIOnboarding%20Example%20Reduce%20Motion.gif)|
 
 ## Installation
 
@@ -43,6 +49,8 @@ To install ```UIOnboarding``` as a package, add ```https://github.com/lascic/UIO
 
 ```swift
 .package(url: "https://github.com/lascic/UIOnboarding.git", from: "1.0.0")
+// or
+.package(url: "https://github.com/lascic/UIOnboarding.git", branch: "main")
 ```
 
 ### Demo Project Download
@@ -215,12 +223,12 @@ extension UIOnboardingViewConfiguration {
 
 ## Moodboard
 
-<img src="readme-resources/140222 UIOnboarding Moodboard-1.png" img>
-<img src="readme-resources/140222 UIOnboarding Moodboard-2.png" img>
+![UIOnboarding First Moodboard](https://raw.githubusercontent.com/lascic/UIOnboarding/main/readme-resources/140222%20UIOnboarding%20Moodboard-1.png)
+![UIOnboarding Second Moodboard](https://raw.githubusercontent.com/lascic/UIOnboarding/main/readme-resources/140222%20UIOnboarding%20Moodboard-2.png)
 
 ## License
 
-MIT
+This project is [MIT](https://github.com/lascic/UIOnboarding/blob/main/LICENSE) licensed.
 
 ## Icon Usage Rights
 
@@ -231,7 +239,6 @@ Some in-app assets provided for this demo project are part of [Insignia](https:/
 ## Links
 
 Swiss Armed Forces Insignia from the App Store: https://apps.apple.com/ch/app/abzeichen/id1551002238 <br>
-Author Twitter: [@lascic](https://twitter.com/lascic) <br>
 Author Website: https://lukmanascic.ch
 
 ## Contributions
