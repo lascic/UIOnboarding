@@ -8,7 +8,7 @@
 import SwiftUI
 import UIOnboarding
 
-struct UIOnboardingView: UIViewControllerRepresentable {
+struct OnboardingView: UIViewControllerRepresentable {
     typealias UIViewControllerType = UIOnboardingViewController
 
     class Coordinator: NSObject, UIOnboardingViewControllerDelegate {

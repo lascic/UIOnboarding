@@ -21,7 +21,7 @@ struct ContentView: View {
                     }
                 }
                 .fullScreenCover(isPresented: $showingOnboarding, content: {
-                    UIOnboardingView()
+                    OnboardingView()
                         .edgesIgnoringSafeArea(.all)
                 })
                 .preferredColorScheme(.dark)

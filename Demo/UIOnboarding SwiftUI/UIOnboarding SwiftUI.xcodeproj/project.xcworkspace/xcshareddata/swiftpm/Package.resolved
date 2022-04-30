@@ -1,16 +1,14 @@
 {
-  "object": {
-    "pins": [
-      {
-        "package": "UIOnboarding",
-        "repositoryURL": "https://github.com/lascic/UIOnboarding.git",
-        "state": {
-          "branch": "main",
-          "revision": "aed1825c192f14fa685532e5ced06345b1b911b6",
-          "version": null
-        }
+  "pins" : [
+    {
+      "identity" : "uionboarding",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/lascic/UIOnboarding.git",
+      "state" : {
+        "branch" : "main",
+        "revision" : "1dfd7a7aae9caf5b6a020cd62440b37ca1e023f4"
       }
-    ]
-  },
-  "version": 1
+    }
+  ],
+  "version" : 2
 }
