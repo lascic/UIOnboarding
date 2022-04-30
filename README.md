@@ -70,10 +70,10 @@ UIOnboarding supports iPhone, iPad and iPod touch running iOS and iPadOS 13 or h
 
 ### Swift Package Manager
 
-To install ```UIOnboarding``` as a package, add ```https://github.com/lascic/UIOnboarding.git``` in the package manager in Xcode (under File/Add Packages...). Select the version from ```1.1.0``` or the ```main``` branch.
+To install ```UIOnboarding``` as a package, add ```https://github.com/lascic/UIOnboarding.git``` in the package manager in Xcode (under File/Add Packages...). Select the version from ```1.1.1``` or the ```main``` branch.
 
 ```swift
-.package(url: "https://github.com/lascic/UIOnboarding.git", from: "1.1.0")
+.package(url: "https://github.com/lascic/UIOnboarding.git", from: "1.1.1")
 // or
 .package(url: "https://github.com/lascic/UIOnboarding.git", branch: "main")
 ```
