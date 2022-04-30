@@ -112,7 +112,7 @@ final class UIOnboardingCell: UITableViewCell {
     
     override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
         titleLabel.font = UIFontMetrics.default.scaledFont(for: .systemFont(ofSize: traitCollection.horizontalSizeClass == .regular ? 20 : 17, weight: .semibold))
-        descriptionLabel.font = UIFontMetrics.default.scaledFont(for: .systemFont(ofSize: traitCollection.horizontalSizeClass == .regular ? 18 : 15, weight: .light))
+        descriptionLabel.font = UIFontMetrics.default.scaledFont(for: .systemFont(ofSize: traitCollection.horizontalSizeClass == .regular ? 20 : 17, weight: .light))
         
         stackBottom.constant = traitCollection.horizontalSizeClass == .regular ? -48 : -12
         featureGlyphWidth.constant = traitCollection.horizontalSizeClass == .regular ? 60 : 44
