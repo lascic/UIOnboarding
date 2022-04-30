@@ -37,7 +37,7 @@ final class UIOnboardingViewController: UIViewController {
     private var hasScrolledToBottom: Bool = false
     
     override var supportedInterfaceOrientations: UIInterfaceOrientationMask {
-        return .portrait
+        return device.userInterfaceIdiom == .pad ? .all : .portrait
     }
     private let configuration: UIOnboardingViewConfiguration
     private let device: UIDevice
