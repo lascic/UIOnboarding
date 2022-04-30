@@ -41,12 +41,14 @@ final class UIOnboardingButton: UIButton {
         translatesAutoresizingMaskIntoConstraints = false
         isAccessibilityElement = true
         
-        isPointerInteractionEnabled = true
+        if #available(iOS 13.4, *) {
+            isPointerInteractionEnabled = true
+        }
         
         
         if #available(iOS 15.0, *) {
             titleLabel?.font = UIFontMetrics.default.scaledFont(for: .systemFont(ofSize: traitCollection.horizontalSizeClass == .regular ? 19 : 17, weight: .bold))
-//            titleLabel?.maximumContentSizeCategory = UIScreenType.isiPhone6s || UIScreenType.isiPhoneSE ? .extraLarge : .accessibilityExtraLarge
+            //            titleLabel?.maximumContentSizeCategory = UIScreenType.isiPhone6s || UIScreenType.isiPhoneSE ? .extraLarge : .accessibilityExtraLarge
         } else {
             titleLabel?.font = UIFontMetrics.default.scaledFont(for: .preferredFont(forTextStyle: .headline), maximumPointSize: 21)
         }
