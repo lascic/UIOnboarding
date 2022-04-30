@@ -34,6 +34,7 @@ final class UIOnboardingViewController: UIViewController {
         return onboardingStackHeight > availableSpace
     }
     private var overlayIsHidden: Bool = false
+    private var hasScrolledToBottom: Bool = false
     
     override var supportedInterfaceOrientations: UIInterfaceOrientationMask {
         return .portrait
@@ -108,12 +109,11 @@ extension UIOnboardingViewController: UIScrollViewDelegate {
             self.topOverlayView.alpha = viewOverlapsWithOverlay ? 1 : 0
         }
 
-        var hasReachedBottom: Bool {
-            return scrollOffset + scrollViewHeight >= scrollContentSizeHeight + bottomOverlayView.frame.height + view.safeAreaInsets.bottom
-        }
+        hasScrolledToBottom = scrollOffset + scrollViewHeight >= scrollContentSizeHeight + bottomOverlayView.frame.height + view.safeAreaInsets.bottom
+
         DispatchQueue.main.async {
             UIView.animate(withDuration: 0.21, animations: {
-                self.bottomOverlayView.blurEffectView.effect = hasReachedBottom ? nil : UIBlurEffect.init(style: .regular)
+                self.bottomOverlayView.blurEffectView.effect = self.hasScrolledToBottom ? nil : UIBlurEffect.init(style: .regular)
                 if self.enoughSpaceToShowFullList {
                     self.overlayIsHidden = true
                 }
@@ -214,6 +214,7 @@ extension UIOnboardingViewController {
     }
     
     func updateUI() {
+        hasScrolledToBottom = false
         onboardingScrollView.contentInset = .init(top: traitCollection.horizontalSizeClass == .regular ? 140 - getStatusBarHeight() : UIScreenType.setUpTopSpacing(),
                                                   left: 0,
                                                   bottom: bottomOverlayView.frame.height + view.safeAreaInsets.bottom,
@@ -246,14 +247,13 @@ extension UIOnboardingViewController {
         onboardingStackView.layoutIfNeeded()
         onboardingStackView.onboardingTitleLabel.setLineHeight(lineHeight: 0.9)
         
-        if overlayIsHidden == false {
+        if !overlayIsHidden {
             DispatchQueue.main.async {
                 UIView.animate(withDuration: 0.21) {
                     self.bottomOverlayView.blurEffectView.effect = self.enoughSpaceToShowFullList ? UIBlurEffect.init(style: .regular) : nil
                 }
             }
         }
-
     }
 }
 
