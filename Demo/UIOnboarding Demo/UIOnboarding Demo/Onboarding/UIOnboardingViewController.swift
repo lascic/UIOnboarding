@@ -41,11 +41,13 @@ final class UIOnboardingViewController: UIViewController {
     }
     private let configuration: UIOnboardingViewConfiguration
     private let device: UIDevice
+    private let screen: UIScreen
     weak var delegate: UIOnboardingViewControllerDelegate?
     
-    init(withConfiguration configuration: UIOnboardingViewConfiguration, device: UIDevice = .current) {
+    init(withConfiguration configuration: UIOnboardingViewConfiguration, device: UIDevice = .current, screen: UIScreen = .main) {
         self.configuration = configuration
         self.device = device
+        self.screen = screen
         super.init(nibName: nil, bundle: nil)
         modalPresentationStyle = .fullScreen
     }
@@ -224,7 +226,7 @@ extension UIOnboardingViewController {
                                                            bottom: bottomOverlayView.frame.height - view.safeAreaInsets.bottom,
                                                            right: 0)
         
-        let isiPadPro: Bool = max(UIScreen.main.bounds.size.width, UIScreen.main.bounds.size.height) > 1024
+        let isiPadPro: Bool = max(screen.bounds.size.width, screen.bounds.size.height) > 1024
                     
         onboardingStackViewWidth.constant = traitCollection.horizontalSizeClass == .regular ? 480 : (traitCollection.horizontalSizeClass == .compact && view.frame.width == 320 ? view.frame.width - 60 : (isiPadPro && traitCollection.horizontalSizeClass == .compact && view.frame.width == 639 ? 340 : view.frame.width - (UIScreenType.setUpPadding() * 2)))
         
