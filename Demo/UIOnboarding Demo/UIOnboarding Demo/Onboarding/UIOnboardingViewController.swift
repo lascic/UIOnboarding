@@ -124,7 +124,7 @@ extension UIOnboardingViewController: UIScrollViewDelegate {
     }
 }
 
-extension UIOnboardingViewController {
+private extension UIOnboardingViewController {
     func configureScrollView() {
         onboardingScrollView = .init(frame: .zero)
         onboardingScrollView.delegate = self
