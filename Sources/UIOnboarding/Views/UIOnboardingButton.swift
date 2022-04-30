@@ -27,6 +27,7 @@ final class UIOnboardingButton: UIButton {
     
     private func configure() {
         layer.cornerRadius = UIScreenType.isiPhoneSE ? 13 : 15
+        layer.cornerCurve = .continuous
         titleLabel?.numberOfLines = 0
         
         setTitleColor(.white, for: .normal)
