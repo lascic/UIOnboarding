@@ -13,7 +13,9 @@ final class UIOnboardingButton: UIButton {
     convenience init(withConfiguration configuration: UIOnboardingButtonConfiguration) {
         self.init(type: .system)
         setTitle(configuration.title, for: .normal)
+#if !targetEnvironment(macCatalyst)
         backgroundColor = configuration.backgroundColor
+#endif
         configure()
     }
     
@@ -30,12 +32,17 @@ final class UIOnboardingButton: UIButton {
         layer.cornerCurve = .continuous
         titleLabel?.numberOfLines = 0
         
+#if !targetEnvironment(macCatalyst)
         setTitleColor(.white, for: .normal)
+#endif
         accessibilityTraits = .button
         
         titleLabel?.adjustsFontForContentSizeCategory = true
         translatesAutoresizingMaskIntoConstraints = false
         isAccessibilityElement = true
+        
+        isPointerInteractionEnabled = true
+        
         
         if #available(iOS 15.0, *) {
             titleLabel?.font = UIFontMetrics.default.scaledFont(for: .systemFont(ofSize: traitCollection.horizontalSizeClass == .regular ? 19 : 17, weight: .bold))
