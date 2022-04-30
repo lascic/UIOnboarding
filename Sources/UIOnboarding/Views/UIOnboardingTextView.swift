@@ -71,10 +71,10 @@ final class UIOnboardingTextView: UITextView {
         translatesAutoresizingMaskIntoConstraints = false
         
         if #available(iOS 15.0, *) {
-            font =  UIFontMetrics.default.scaledFont(for: .systemFont(ofSize: 13))
+            font =  UIFontMetrics.default.scaledFont(for: .systemFont(ofSize: traitCollection.horizontalSizeClass == .regular ? 15 : 13))
             maximumContentSizeCategory = .accessibilityMedium
         } else {
-            font = UIFontMetrics.default.scaledFont(for: .systemFont(ofSize: 13), maximumPointSize: 19)
+            font = UIFontMetrics.default.scaledFont(for: .systemFont(ofSize: traitCollection.horizontalSizeClass == .regular ? 15 : 13), maximumPointSize: traitCollection.horizontalSizeClass == .regular ? 21 : 19)
         }
     }
     

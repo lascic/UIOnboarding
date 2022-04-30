@@ -9,7 +9,7 @@ import UIKit
 
 final class UIOnboardingStack: UIStackView {
     private var spacerView: UIView!
-    private(set) var onboardingIcon: OnboardingIcon!
+    private var onboardingIcon: OnboardingIcon!
     private(set) var onboardingTitleLabel: UIOnboardingTitle!
     private let screen: UIScreen
 
