@@ -45,13 +45,7 @@ final class UIOnboardingButton: UIButton {
             isPointerInteractionEnabled = true
         }
         
-        
-        if #available(iOS 15.0, *) {
-            titleLabel?.font = UIFontMetrics.default.scaledFont(for: .systemFont(ofSize: traitCollection.horizontalSizeClass == .regular ? 19 : 17, weight: .bold))
-            //            titleLabel?.maximumContentSizeCategory = UIScreenType.isiPhone6s || UIScreenType.isiPhoneSE ? .extraLarge : .accessibilityExtraLarge
-        } else {
-            titleLabel?.font = UIFontMetrics.default.scaledFont(for: .preferredFont(forTextStyle: .headline), maximumPointSize: 21)
-        }
+        titleLabel?.font = UIFontMetrics.default.scaledFont(for: .systemFont(ofSize: traitCollection.horizontalSizeClass == .regular ? 19 : 17, weight: .bold))
         addTarget(self, action: #selector(handleCallToActionButton), for: .touchUpInside)
     }
         

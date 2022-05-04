@@ -13,7 +13,9 @@ final class UIOnboardingButton: UIButton {
     convenience init(withConfiguration configuration: UIOnboardingButtonConfiguration) {
         self.init(type: .system)
         setTitle(configuration.title, for: .normal)
+#if !targetEnvironment(macCatalyst)
         backgroundColor = configuration.backgroundColor
+#endif
         configure()
     }
     
@@ -30,19 +32,20 @@ final class UIOnboardingButton: UIButton {
         layer.cornerCurve = .continuous
         titleLabel?.numberOfLines = 0
         
+#if !targetEnvironment(macCatalyst)
         setTitleColor(.white, for: .normal)
+#endif
         accessibilityTraits = .button
         
         titleLabel?.adjustsFontForContentSizeCategory = true
         translatesAutoresizingMaskIntoConstraints = false
         isAccessibilityElement = true
         
-        if #available(iOS 15.0, *) {
-            titleLabel?.font = UIFontMetrics.default.scaledFont(for: .systemFont(ofSize: traitCollection.horizontalSizeClass == .regular ? 19 : 17, weight: .bold))
-//            titleLabel?.maximumContentSizeCategory = UIScreenType.isiPhone6s || UIScreenType.isiPhoneSE ? .extraLarge : .accessibilityExtraLarge
-        } else {
-            titleLabel?.font = UIFontMetrics.default.scaledFont(for: .preferredFont(forTextStyle: .headline), maximumPointSize: 21)
+        if #available(iOS 13.4, *) {
+            isPointerInteractionEnabled = true
         }
+        
+        titleLabel?.font = UIFontMetrics.default.scaledFont(for: .systemFont(ofSize: traitCollection.horizontalSizeClass == .regular ? 19 : 17, weight: .bold))
         addTarget(self, action: #selector(handleCallToActionButton), for: .touchUpInside)
     }
         
