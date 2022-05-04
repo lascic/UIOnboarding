@@ -21,6 +21,7 @@ final class OnboardingIcon: UIImageView {
     private func configure() {
         let iconSize: CGFloat = traitCollection.horizontalSizeClass == .regular ? 140 : UIScreenType.isiPhoneSE ? 72 : 78
         layer.cornerRadius = iconSize * 0.2237
+        layer.cornerCurve = .continuous
         
         heightAnchor.constraint(equalToConstant: iconSize).isActive = true
         widthAnchor.constraint(equalTo: heightAnchor).isActive = true
