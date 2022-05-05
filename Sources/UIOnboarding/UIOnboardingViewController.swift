@@ -35,6 +35,7 @@ public final class UIOnboardingViewController: UIViewController {
     }
     private var overlayIsHidden: Bool = false
     private var hasScrolledToBottom: Bool = false
+    private var needsUIRefresh: Bool = true
     
     public override var supportedInterfaceOrientations: UIInterfaceOrientationMask {
         return device.userInterfaceIdiom == .pad ? .all : .portrait
@@ -78,7 +79,11 @@ public final class UIOnboardingViewController: UIViewController {
     
     public override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
-        updateUI()
+
+        if needsUIRefresh {
+            updateUI()
+            needsUIRefresh = false
+        }
     }
     
     public override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
