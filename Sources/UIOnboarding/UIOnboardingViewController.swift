@@ -98,6 +98,8 @@ public final class UIOnboardingViewController: UIViewController {
         } else {
             onboardingTextView.font = UIFontMetrics.default.scaledFont(for: .systemFont(ofSize: traitCollection.horizontalSizeClass == .regular ? 15 : 13), maximumPointSize: traitCollection.horizontalSizeClass == .regular ? 21 : 19)
         }
+
+        needsUIRefresh = true
         onboardingTextView.layoutIfNeeded()
         continueButton.layoutIfNeeded()
     }
