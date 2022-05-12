@@ -85,6 +85,11 @@ public final class UIOnboardingViewController: UIViewController {
             needsUIRefresh = false
         }
     }
+
+    public override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
+        super.viewWillTransition(to: size, with: coordinator)
+        needsUIRefresh = true
+    }
     
     public override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
         onboardingStackView.onboardingTitleLabel.font = .systemFont(ofSize: traitCollection.horizontalSizeClass == .regular ? 80 : (UIScreenType.isiPhoneSE || UIScreenType.isiPhone6s ? 41 : 44), weight: .heavy)
