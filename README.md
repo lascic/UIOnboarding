@@ -70,10 +70,10 @@ UIOnboarding supports iPhone, iPad and iPod touch running iOS and iPadOS 13 or h
 
 ### Swift Package Manager
 
-To install ```UIOnboarding``` as a package, add ```https://github.com/lascic/UIOnboarding.git``` in the package manager in Xcode (under File/Add Packages...). Select the version from ```1.1.1``` or the ```main``` branch.
+To install ```UIOnboarding``` as a package, add ```https://github.com/lascic/UIOnboarding.git``` in the package manager in Xcode (under File/Add Packages...). Select the version from ```1.1.3``` or the ```main``` branch.
 
 ```swift
-.package(url: "https://github.com/lascic/UIOnboarding.git", from: "1.1.1")
+.package(url: "https://github.com/lascic/UIOnboarding.git", from: "1.1.3")
 // or
 .package(url: "https://github.com/lascic/UIOnboarding.git", branch: "main")
 ```
@@ -299,12 +299,14 @@ func didFinishOnboarding(onboardingViewController: OnboardingViewController) {
 ```
 
 ## Further Readings
+- [Developing Accessible iOS Apps](https://link.springer.com/book/10.1007/978-1-4842-5308-3) by [Daniel Devesa Derksen-Staats](https://twitter.com/dadederk?s=21)
 - [Dynamic Type](https://developer.apple.com/videos/play/wwdc2017/245/#:~:text=The%20Dynamic%20Type%20settings%20can,enable%20five%20even%20larger%20sizes.) in UIKit
-- [Typography](https://developer.apple.com/design/human-interface-guidelines/ios/visual-design/typography/) in [Apple Human Interface Guidelines](https://developer.apple.com/design/human-interface-guidelines/ios/overview/themes/)
-- [Text Size and Weight](https://developer.apple.com/design/human-interface-guidelines/accessibility/overview/text-size-and-weight/) in [Apple Human Interface Guidelines](https://developer.apple.com/design/human-interface-guidelines/ios/overview/themes/)
+- [Typography](https://developer.apple.com/design/human-interface-guidelines/ios/visual-design/typography/) in [Apple's Human Interface Guidelines](https://developer.apple.com/design/human-interface-guidelines/ios/overview/themes/)
+- [Text Size and Weight](https://developer.apple.com/design/human-interface-guidelines/accessibility/overview/text-size-and-weight/) in [Apple's Human Interface Guidelines](https://developer.apple.com/design/human-interface-guidelines/ios/overview/themes/)
 - [VoiceOver](https://developer.apple.com/documentation/accessibility/supporting_voiceover_in_your_app) in UIKit
 - [```isReduceMotionEnabled```](https://developer.apple.com/documentation/uikit/uiaccessibility/1615133-isreducemotionenabled) in UIKit
 - [```traitCollectionDidChange(_:)```](https://developer.apple.com/documentation/uikit/uitraitenvironment/1623516-traitcollectiondidchange) in UIKit
+- [```viewWillTransition(to:with:)```](https://developer.apple.com/documentation/uikit/uicontentcontainer/1621466-viewwilltransition) in UIKit
 - [```UIViewControllerRepresentable```](https://developer.apple.com/documentation/swiftui/uiviewcontrollerrepresentable) in SwiftUI
 - [```makeCoordinator()```](https://developer.apple.com/documentation/swiftui/uiviewcontrollerrepresentable/makecoordinator()-32trb) in SwiftUI
 - [```UserDefaults```](https://developer.apple.com/documentation/foundation/userdefaults) in Foundation
