@@ -35,6 +35,7 @@ final class UIOnboardingViewController: UIViewController {
     }
     private var overlayIsHidden: Bool = false
     private var hasScrolledToBottom: Bool = false
+    private var needsUIRefresh: Bool = true
     
     override var supportedInterfaceOrientations: UIInterfaceOrientationMask {
         return device.userInterfaceIdiom == .pad ? .all : .portrait
@@ -78,7 +79,15 @@ final class UIOnboardingViewController: UIViewController {
     
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
-        updateUI()
+        if needsUIRefresh {
+            updateUI()
+            needsUIRefresh = false
+        }
+    }
+    
+    override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
+        super.viewWillTransition(to: size, with: coordinator)
+        needsUIRefresh = true
     }
     
     override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
@@ -93,6 +102,7 @@ final class UIOnboardingViewController: UIViewController {
         } else {
             onboardingTextView.font = UIFontMetrics.default.scaledFont(for: .systemFont(ofSize: traitCollection.horizontalSizeClass == .regular ? 15 : 13), maximumPointSize: traitCollection.horizontalSizeClass == .regular ? 21 : 19)
         }
+        needsUIRefresh = true
         onboardingTextView.layoutIfNeeded()
         continueButton.layoutIfNeeded()
     }
