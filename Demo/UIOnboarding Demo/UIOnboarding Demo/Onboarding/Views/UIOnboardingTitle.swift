@@ -33,6 +33,7 @@ final class UIOnboardingTitle: UILabel {
 
         isAccessibilityElement = true
         adjustsFontSizeToFitWidth = true
+        minimumScaleFactor = 0.5
         widthAnchor.constraint(equalToConstant: UIScreen.main.bounds.width - (UIScreenType.setUpPadding() * 2)).isActive = true
     }
 }
