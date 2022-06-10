@@ -12,13 +12,14 @@ struct UIOnboardingHelper {
         return Bundle.main.appIcon ?? .init(named: "onboarding-icon")!
     }
     
-    static func setUpTitle() -> NSMutableAttributedString {
-        let welcomeText: NSMutableAttributedString = .init(string: "Welcome to \n",
-                                                           attributes: [.foregroundColor: UIColor.label]),
-            appNameText: NSMutableAttributedString = .init(string: Bundle.main.displayName ?? "Insignia",
-                                                           attributes: [.foregroundColor: UIColor.init(named: "camou")!])
-        welcomeText.append(appNameText)
-        return welcomeText
+    static func setUpWelcomeTitle() -> NSMutableAttributedString {
+        .init(string: "Welcome to \n", attributes: [.foregroundColor: UIColor.label])
+    }
+    
+    static func setUpAppTitle() -> NSMutableAttributedString {
+        .init(string: Bundle.main.displayName ?? "Insignia", attributes: [
+            .foregroundColor: UIColor.init(named: "camou")!
+        ])
     }
     
     static func setUpFeatures() -> Array<UIOnboardingFeature> {
@@ -52,7 +53,8 @@ struct UIOnboardingHelper {
 extension UIOnboardingViewConfiguration {
     static func setUp() -> UIOnboardingViewConfiguration {
         return .init(appIcon: UIOnboardingHelper.setUpIcon(),
-                     welcomeTitle: UIOnboardingHelper.setUpTitle(),
+                     welcomeTitle: UIOnboardingHelper.setUpWelcomeTitle(),
+                     appTitle: UIOnboardingHelper.setUpAppTitle(),
                      features: UIOnboardingHelper.setUpFeatures(),
                      textViewConfiguration: UIOnboardingHelper.setUpNotice(),
                      buttonConfiguration: UIOnboardingHelper.setUpButton())

@@ -1,5 +1,5 @@
 //
-//  UIOnboardingTitle.swift
+//  UIOnboardingTitleLabel.swift
 //  UIOnboarding Demo
 //
 //  Created by Lukman Aščić on 14.02.22.
@@ -7,14 +7,12 @@
 
 import UIKit
 
-final class UIOnboardingTitle: UILabel {
-    private let configuration: UIOnboardingViewConfiguration
+final class UIOnboardingTitleLabel: UILabel {
     private lazy var fontSize: CGFloat = traitCollection.horizontalSizeClass == .regular ? 80 : (UIScreenType.isiPhoneSE || UIScreenType.isiPhone6s ? 41 : 44)
 
-    init(withConfiguration configuration: UIOnboardingViewConfiguration) {
-        self.configuration = configuration
+    init(attributedText: NSAttributedString) {
         super.init(frame: .zero)
-        attributedText = self.configuration.welcomeTitle
+        self.attributedText = attributedText
         configure()
     }
     
@@ -23,7 +21,7 @@ final class UIOnboardingTitle: UILabel {
     }
     
     private func configure() {
-        numberOfLines = 2
+        numberOfLines = 1
         lineBreakMode = .byWordWrapping
         
         font = .systemFont(ofSize: fontSize, weight: .heavy)
@@ -38,7 +36,7 @@ final class UIOnboardingTitle: UILabel {
     }
 }
 
-extension UIOnboardingTitle {
+extension UIOnboardingTitleLabel {
     func setLineHeight(lineHeight: CGFloat) {
         let paragraphStyle: NSMutableParagraphStyle = .init()
         paragraphStyle.lineSpacing = 1.0
