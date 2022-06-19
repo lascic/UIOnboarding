@@ -1,5 +1,5 @@
 //
-//  UIOnboardingTitleView.swift
+//  UIOnboardingTitleLabelStack.swift
 //  UIOnboarding Demo
 //
 //  Created by Felix Lisczyk on 10.06.22.
@@ -7,7 +7,7 @@
 
 import UIKit
 
-final class UIOnboardingTitleView: UIStackView {
+final class UIOnboardingTitleLabelStack: UIStackView {
     private let configuration: UIOnboardingViewConfiguration
     private let welcomeLabel: UIOnboardingTitleLabel
     private let titleLabel: UIOnboardingTitleLabel
@@ -29,7 +29,7 @@ final class UIOnboardingTitleView: UIStackView {
     }
 }
 
-extension UIOnboardingTitleView {
+extension UIOnboardingTitleLabelStack {
     func setLineHeight(lineHeight: CGFloat) {
         welcomeLabel.setLineHeight(lineHeight: lineHeight)
         titleLabel.setLineHeight(lineHeight: lineHeight)

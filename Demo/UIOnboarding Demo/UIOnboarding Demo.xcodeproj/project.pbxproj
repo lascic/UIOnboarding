@@ -34,7 +34,7 @@
 		0BD28DF627BEDE9B00D768E6 /* UIOnboardingOverlay.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BD28DE127BEDE9B00D768E6 /* UIOnboardingOverlay.swift */; };
 		0BD28DF727BEDE9B00D768E6 /* UIOnboardingTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BD28DE227BEDE9B00D768E6 /* UIOnboardingTextView.swift */; };
 		0BD28DF927BEDF7D00D768E6 /* UIOnboardingHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BD28DF827BEDF7D00D768E6 /* UIOnboardingHelper.swift */; };
-		DCB303DC2853517B002AC325 /* UIOnboardingTitleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCB303DB2853517B002AC325 /* UIOnboardingTitleView.swift */; };
+		DCB303DC2853517B002AC325 /* UIOnboardingTitleLabelStack.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCB303DB2853517B002AC325 /* UIOnboardingTitleLabelStack.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -67,7 +67,7 @@
 		0BD28DE127BEDE9B00D768E6 /* UIOnboardingOverlay.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIOnboardingOverlay.swift; sourceTree = "<group>"; };
 		0BD28DE227BEDE9B00D768E6 /* UIOnboardingTextView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIOnboardingTextView.swift; sourceTree = "<group>"; };
 		0BD28DF827BEDF7D00D768E6 /* UIOnboardingHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIOnboardingHelper.swift; sourceTree = "<group>"; };
-		DCB303DB2853517B002AC325 /* UIOnboardingTitleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIOnboardingTitleView.swift; sourceTree = "<group>"; };
+		DCB303DB2853517B002AC325 /* UIOnboardingTitleLabelStack.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIOnboardingTitleLabelStack.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -168,7 +168,7 @@
 				0BD28DDB27BEDE9B00D768E6 /* UIOnboardingStack.swift */,
 				0BD28DE227BEDE9B00D768E6 /* UIOnboardingTextView.swift */,
 				0BD28DDF27BEDE9B00D768E6 /* UIOnboardingTitleLabel.swift */,
-				DCB303DB2853517B002AC325 /* UIOnboardingTitleView.swift */,
+				DCB303DB2853517B002AC325 /* UIOnboardingTitleLabelStack.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -267,7 +267,7 @@
 				0BD28DEF27BEDE9B00D768E6 /* UIOnboardingViewControllerDelegate.swift in Sources */,
 				0BD28DF927BEDF7D00D768E6 /* UIOnboardingHelper.swift in Sources */,
 				0BD28DE927BEDE9B00D768E6 /* UIOnboardingAnimation.swift in Sources */,
-				DCB303DC2853517B002AC325 /* UIOnboardingTitleView.swift in Sources */,
+				DCB303DC2853517B002AC325 /* UIOnboardingTitleLabelStack.swift in Sources */,
 				0BD28DF327BEDE9B00D768E6 /* UIOnboardingIcon.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

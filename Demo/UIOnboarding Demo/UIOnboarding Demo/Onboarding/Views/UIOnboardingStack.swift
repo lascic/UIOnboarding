@@ -10,7 +10,7 @@ import UIKit
 final class UIOnboardingStack: UIStackView {
     private var spacerView: UIView!
     private var onboardingIcon: OnboardingIcon!
-    private(set) var onboardingTitleView: UIOnboardingTitleView!
+    private(set) var onboardingTitleLabelStack: UIOnboardingTitleLabelStack!
     private let screen: UIScreen
 
     private(set) lazy var featuresList: UIIntrinsicTableView = {
@@ -40,7 +40,7 @@ final class UIOnboardingStack: UIStackView {
         self.configuration = configuration
         self.screen = screen
         
-        onboardingTitleView = .init(withConfiguration: configuration)
+        onboardingTitleLabelStack = .init(withConfiguration: configuration)
         onboardingIcon = .init(withConfiguration: configuration)
         
         super.init(frame: .zero)
@@ -68,8 +68,8 @@ final class UIOnboardingStack: UIStackView {
         addArrangedSubview(onboardingIcon)
         setCustomSpacing(26, after: onboardingIcon)
         
-        addArrangedSubview(onboardingTitleView)
-        setCustomSpacing(traitCollection.horizontalSizeClass == .regular ? 40 : UIScreenType.setUpTitleSpacing(), after: onboardingTitleView)
+        addArrangedSubview(onboardingTitleLabelStack)
+        setCustomSpacing(traitCollection.horizontalSizeClass == .regular ? 40 : UIScreenType.setUpTitleSpacing(), after: onboardingTitleLabelStack)
         
         addArrangedSubview(featuresList)
     }

@@ -13,11 +13,11 @@ struct UIOnboardingHelper {
     }
     
     static func setUpWelcomeTitle() -> NSMutableAttributedString {
-        .init(string: "Welcome to \n", attributes: [.foregroundColor: UIColor.label])
+        .init(string: "Willkommen bei \n", attributes: [.foregroundColor: UIColor.label])
     }
     
     static func setUpAppTitle() -> NSMutableAttributedString {
-        .init(string: Bundle.main.displayName ?? "Insignia", attributes: [
+        .init(string: Bundle.main.displayName ?? "Abzeichen", attributes: [
             .foregroundColor: UIColor.init(named: "camou")!
         ])
     }
