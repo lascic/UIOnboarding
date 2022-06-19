@@ -53,10 +53,10 @@ struct UIOnboardingHelper {
 extension UIOnboardingViewConfiguration {
     static func setUp() -> UIOnboardingViewConfiguration {
         .init(appIcon: UIOnboardingHelper.setUpIcon(),
-                     welcomeTitle: UIOnboardingHelper.setUpWelcomeTitle(),
-                     appTitle: UIOnboardingHelper.setUpAppTitle(),
-                     features: UIOnboardingHelper.setUpFeatures(),
-                     textViewConfiguration: UIOnboardingHelper.setUpNotice(),
-                     buttonConfiguration: UIOnboardingHelper.setUpButton())
+              welcomeTitle: UIOnboardingHelper.setUpWelcomeTitle(),
+              appTitle: UIOnboardingHelper.setUpAppTitle(),
+              features: UIOnboardingHelper.setUpFeatures(),
+              textViewConfiguration: UIOnboardingHelper.setUpNotice(),
+              buttonConfiguration: UIOnboardingHelper.setUpButton())
     }
 }
