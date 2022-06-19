@@ -91,7 +91,7 @@ final class UIOnboardingViewController: UIViewController {
     }
     
     override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
-        onboardingStackView.onboardingTitleView.setFont(font: .systemFont(ofSize: traitCollection.horizontalSizeClass == .regular ? 80 : (UIScreenType.isiPhoneSE || UIScreenType.isiPhone6s ? 41 : 44), weight: .heavy))
+        onboardingStackView.onboardingTitleLabelStack.setFont(font: .systemFont(ofSize: traitCollection.horizontalSizeClass == .regular ? 80 : (UIScreenType.isiPhoneSE || UIScreenType.isiPhone6s ? 41 : 44), weight: .heavy))
 
         continueButtonHeight.constant = UIFontMetrics.default.scaledValue(for: traitCollection.horizontalSizeClass == .regular ? 50 : (UIScreenType.isiPhoneSE ? 48 : 52))
         continueButton.titleLabel?.font = UIFontMetrics.default.scaledFont(for: .systemFont(ofSize: traitCollection.horizontalSizeClass == .regular ? 19 : 17, weight: .bold))
@@ -257,7 +257,7 @@ private extension UIOnboardingViewController {
             onboardingStackView.featuresList.endUpdates()
         }
         onboardingStackView.layoutIfNeeded()
-        onboardingStackView.onboardingTitleView.setLineHeight(lineHeight: 0.9)
+        onboardingStackView.onboardingTitleLabelStack.setLineHeight(lineHeight: 0.9)
         
         if !overlayIsHidden {
             DispatchQueue.main.async {
