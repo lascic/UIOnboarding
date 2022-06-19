@@ -53,4 +53,17 @@ extension UIOnboardingTitleLabel {
         attrString.addAttribute(.paragraphStyle, value: paragraphStyle, range: .init(location: 0, length: attrString.length))
         attributedText = attrString
     }
+        
+    func calculateActualFontSize() -> CGFloat {
+        let maximumSizedLabel: UILabel = .init()
+        maximumSizedLabel.font = font
+        maximumSizedLabel.text = text
+        maximumSizedLabel.sizeToFit()
+        
+        var actualFontSize: CGFloat = font.pointSize * (bounds.size.width / maximumSizedLabel.bounds.size.width);
+        
+        actualFontSize = actualFontSize < font.pointSize ? actualFontSize : self.font.pointSize; // Set the actual font size if default is not given
+        
+        return actualFontSize
+    }
 }
