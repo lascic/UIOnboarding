@@ -9,19 +9,18 @@ import UIKit
 
 final class UIOnboardingTitleLabelStack: UIStackView {
     private let configuration: UIOnboardingViewConfiguration
-    private let welcomeLabel: UIOnboardingTitleLabel
-    private let appNameLabel: UIOnboardingTitleLabel
+    private let firstTitleLineLabel: UIOnboardingTitleLabel, secondTitleLineLabel: UIOnboardingTitleLabel
     
     init(withConfiguration configuration: UIOnboardingViewConfiguration) {
         self.configuration = configuration
-        self.welcomeLabel = .init(attributedText: configuration.welcomeTitle)
-        self.appNameLabel = .init(attributedText: configuration.appTitle)
+        firstTitleLineLabel = .init(attributedText: configuration.firstTitleLine)
+        secondTitleLineLabel = .init(attributedText: configuration.secondTitleLine)
         
         super.init(frame: .zero)
         axis = .vertical
         
-        addArrangedSubview(welcomeLabel)
-        addArrangedSubview(appNameLabel)
+        addArrangedSubview(firstTitleLineLabel)
+        addArrangedSubview(secondTitleLineLabel)
     }
     
     required init(coder: NSCoder) {
@@ -36,13 +35,13 @@ final class UIOnboardingTitleLabelStack: UIStackView {
 
 extension UIOnboardingTitleLabelStack {
     func setLineHeight(lineHeight: CGFloat) {
-        welcomeLabel.setLineHeight(lineHeight: lineHeight)
-        appNameLabel.setLineHeight(lineHeight: lineHeight)
+        firstTitleLineLabel.setLineHeight(lineHeight: lineHeight)
+        secondTitleLineLabel.setLineHeight(lineHeight: lineHeight)
     }
     
     func setFont(font: UIFont) {
-        welcomeLabel.font = font
-        appNameLabel.font = font
+        firstTitleLineLabel.font = font
+        secondTitleLineLabel.font = font
     }
 }
 
@@ -55,13 +54,13 @@ private extension UIOnboardingTitleLabelStack {
     ///
     /// This is usually the case for longer  welcome title label texts. It is not best practice to use long app names. If that would be the case, the method also checks whether the app name is longer than the welcome text and adjusts the font sizes accordingly.
     func determineFontSize() {
-        let welcomeLabelFontSize: CGFloat = welcomeLabel.calculateActualFontSize()
-        let appNameLabelFontSize: CGFloat = appNameLabel.calculateActualFontSize()
+        let welcomeLabelFontSize: CGFloat = firstTitleLineLabel.calculateActualFontSize()
+        let appNameLabelFontSize: CGFloat = secondTitleLineLabel.calculateActualFontSize()
         
         if welcomeLabelFontSize < appNameLabelFontSize {
-            appNameLabel.font = welcomeLabel.font.withSize(welcomeLabelFontSize)
+            secondTitleLineLabel.font = firstTitleLineLabel.font.withSize(welcomeLabelFontSize)
         } else if appNameLabelFontSize < welcomeLabelFontSize {
-            welcomeLabel.font = appNameLabel.font.withSize(appNameLabelFontSize)
+            firstTitleLineLabel.font = secondTitleLineLabel.font.withSize(appNameLabelFontSize)
         }
     }
 }

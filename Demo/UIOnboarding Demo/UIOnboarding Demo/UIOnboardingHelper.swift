@@ -12,11 +12,13 @@ struct UIOnboardingHelper {
         Bundle.main.appIcon ?? .init(named: "onboarding-icon")!
     }
     
-    static func setUpWelcomeTitle() -> NSMutableAttributedString {
+    // Welcome Title
+    static func setUpFirstTitleLine() -> NSMutableAttributedString {
         .init(string: "Welcome to", attributes: [.foregroundColor: UIColor.label])
     }
     
-    static func setUpAppTitle() -> NSMutableAttributedString {
+    // App Name Title
+    static func setUpSecondTitleLine() -> NSMutableAttributedString {
         .init(string: Bundle.main.displayName ?? "Insignia", attributes: [
             .foregroundColor: UIColor.init(named: "camou") ?? UIColor.init(red: 0.654, green: 0.618, blue: 0.494, alpha: 1.0)
         ])
@@ -53,8 +55,8 @@ struct UIOnboardingHelper {
 extension UIOnboardingViewConfiguration {
     static func setUp() -> UIOnboardingViewConfiguration {
         .init(appIcon: UIOnboardingHelper.setUpIcon(),
-              welcomeTitle: UIOnboardingHelper.setUpWelcomeTitle(),
-              appTitle: UIOnboardingHelper.setUpAppTitle(),
+              firstTitleLine: UIOnboardingHelper.setUpFirstTitleLine(),
+              secondTitleLine: UIOnboardingHelper.setUpSecondTitleLine(),
               features: UIOnboardingHelper.setUpFeatures(),
               textViewConfiguration: UIOnboardingHelper.setUpNotice(),
               buttonConfiguration: UIOnboardingHelper.setUpButton())
