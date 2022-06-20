@@ -58,7 +58,7 @@ final class UIOnboardingViewController: UIViewController {
     }
     
     deinit {
-        debugPrint("UIOnboardingViewController: deinit {}")
+        print("UIOnboardingViewController: deinit {}")
     }
     
     override func viewDidLoad() {
@@ -74,7 +74,9 @@ final class UIOnboardingViewController: UIViewController {
         
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        startOnboardingAnimation()
+        startOnboardingAnimation(completion: {
+            self.needsUIRefresh = true
+        })
     }
     
     override func viewDidLayoutSubviews() {
@@ -212,7 +214,7 @@ private extension UIOnboardingViewController {
         onboardingTextView.topAnchor.constraint(equalTo: bottomOverlayView.topAnchor, constant: 16).isActive = true
     }
     
-    func startOnboardingAnimation() {
+    func startOnboardingAnimation(completion: (() -> Void)?) {
         UIView.animate(withDuration: UIAccessibility.isReduceMotionEnabled ? 0.8 : 1.533, delay: 0.0, usingSpringWithDamping: 1.0, initialSpringVelocity: 0.6, options: .curveEaseInOut) {
             self.onboardingStackView.transform = .identity
             self.onboardingStackView.alpha = 1
@@ -221,6 +223,9 @@ private extension UIOnboardingViewController {
                 self.bottomOverlayView.alpha = 1
                 self.onboardingScrollView.isScrollEnabled = true
                 self.view.isUserInteractionEnabled = true
+                if let completion = completion {
+                    completion()
+                }
             }
         }
     }
