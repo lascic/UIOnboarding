@@ -9,11 +9,14 @@ import UIKit
 
 struct UIOnboardingButtonConfiguration {
     var title: String
+    var titleColor: UIColor
     var backgroundColor: UIColor
 
     init(title: String,
+         titleColor: UIColor = .white,
          backgroundColor: UIColor) {
         self.title = title
+        self.titleColor = titleColor
         self.backgroundColor = backgroundColor
     }
 }

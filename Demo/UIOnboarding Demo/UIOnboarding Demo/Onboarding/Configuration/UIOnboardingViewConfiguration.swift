@@ -9,18 +9,21 @@ import UIKit
 
 struct UIOnboardingViewConfiguration {
     var appIcon: UIImage
-    var welcomeTitle: NSMutableAttributedString
+    var firstTitleLine: NSMutableAttributedString
+    var secondTitleLine: NSMutableAttributedString
     var features: Array<UIOnboardingFeature>
     var textViewConfiguration: UIOnboardingTextViewConfiguration
     var buttonConfiguration: UIOnboardingButtonConfiguration
     
     init(appIcon: UIImage,
-         welcomeTitle: NSMutableAttributedString,
+         firstTitleLine: NSMutableAttributedString,
+         secondTitleLine: NSMutableAttributedString,
          features: Array<UIOnboardingFeature>,
          textViewConfiguration: UIOnboardingTextViewConfiguration,
          buttonConfiguration: UIOnboardingButtonConfiguration) {
         self.appIcon = appIcon
-        self.welcomeTitle = welcomeTitle
+        self.firstTitleLine = firstTitleLine
+        self.secondTitleLine = secondTitleLine
         self.features = features
         self.textViewConfiguration = textViewConfiguration
         self.buttonConfiguration = buttonConfiguration
