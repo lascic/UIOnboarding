@@ -20,7 +20,8 @@ final class UIOnboardingViewController: UIViewController {
     private var continueButtonHeight: NSLayoutConstraint!
     private var continueButtonBottom: NSLayoutConstraint!
     
-    private var onboardingTextView: UIOnboardingTextView!
+    private var onboardingTextView: UIOnboardingTextView?
+    private var onboardingNoticeIcon: UIImageView!
 
     private lazy var statusBarHeight: CGFloat = getStatusBarHeight()
         
@@ -100,13 +101,13 @@ final class UIOnboardingViewController: UIViewController {
         continueButton.titleLabel?.font = UIFontMetrics.default.scaledFont(for: .systemFont(ofSize: traitCollection.horizontalSizeClass == .regular ? 19 : 17, weight: .bold))
         
         if #available(iOS 15.0, *) {
-            onboardingTextView.font =  UIFontMetrics.default.scaledFont(for: .systemFont(ofSize: traitCollection.horizontalSizeClass == .regular ? 15 : 13))
-            onboardingTextView.maximumContentSizeCategory = .accessibilityMedium
+            onboardingTextView?.font =  UIFontMetrics.default.scaledFont(for: .systemFont(ofSize: traitCollection.horizontalSizeClass == .regular ? 15 : 13))
+            onboardingTextView?.maximumContentSizeCategory = .accessibilityMedium
         } else {
-            onboardingTextView.font = UIFontMetrics.default.scaledFont(for: .systemFont(ofSize: traitCollection.horizontalSizeClass == .regular ? 15 : 13), maximumPointSize: traitCollection.horizontalSizeClass == .regular ? 21 : 19)
+            onboardingTextView?.font = UIFontMetrics.default.scaledFont(for: .systemFont(ofSize: traitCollection.horizontalSizeClass == .regular ? 15 : 13), maximumPointSize: traitCollection.horizontalSizeClass == .regular ? 21 : 19)
         }
         needsUIRefresh = true
-        onboardingTextView.layoutIfNeeded()
+        onboardingTextView?.layoutIfNeeded()
         continueButton.layoutIfNeeded()
     }
 }
@@ -206,13 +207,31 @@ private extension UIOnboardingViewController {
     }
     
     func setUpOnboardingTextView() {
-        onboardingTextView = .init(withConfiguration: configuration.textViewConfiguration)
-        bottomOverlayView.addSubview(onboardingTextView)
+        guard let textViewConfiguration: UIOnboardingTextViewConfiguration = configuration.textViewConfiguration else {
+            continueButton.topAnchor.constraint(equalTo: bottomOverlayView.topAnchor, constant: 32).isActive = true
+            return
+        }
         
-        onboardingTextView.bottomAnchor.constraint(equalTo: continueButton.topAnchor).isActive = true
-        onboardingTextView.leadingAnchor.constraint(equalTo: continueButton.leadingAnchor).isActive = true
-        onboardingTextView.trailingAnchor.constraint(equalTo: continueButton.trailingAnchor).isActive = true
-        onboardingTextView.topAnchor.constraint(equalTo: bottomOverlayView.topAnchor, constant: 16).isActive = true
+        if let icon = textViewConfiguration.icon {
+            onboardingNoticeIcon = .init(image: icon.withRenderingMode(.alwaysTemplate))
+            onboardingNoticeIcon.tintColor = .secondaryLabel
+            onboardingNoticeIcon.contentMode = .scaleAspectFit
+            onboardingNoticeIcon.translatesAutoresizingMaskIntoConstraints = false
+            
+            bottomOverlayView.addSubview(onboardingNoticeIcon)
+            onboardingNoticeIcon.topAnchor.constraint(equalTo: bottomOverlayView.topAnchor, constant: 16).isActive = true
+            onboardingNoticeIcon.centerXAnchor.constraint(equalTo: bottomOverlayView.centerXAnchor).isActive = true
+            onboardingNoticeIcon.heightAnchor.constraint(equalToConstant: 16).isActive = true
+            onboardingNoticeIcon.widthAnchor.constraint(equalToConstant: 16).isActive = true
+        }
+        
+        onboardingTextView = .init(withConfiguration: textViewConfiguration)
+        bottomOverlayView.addSubview(onboardingTextView!)
+            
+        onboardingTextView!.bottomAnchor.constraint(equalTo: continueButton.topAnchor).isActive = true
+        onboardingTextView!.leadingAnchor.constraint(equalTo: continueButton.leadingAnchor).isActive = true
+        onboardingTextView!.trailingAnchor.constraint(equalTo: continueButton.trailingAnchor).isActive = true
+        onboardingTextView!.topAnchor.constraint(equalTo: onboardingNoticeIcon != nil ? onboardingNoticeIcon.bottomAnchor : bottomOverlayView.topAnchor, constant: onboardingNoticeIcon != nil ? 16 : 32).isActive = true
     }
     
     func startOnboardingAnimation(completion: (() -> Void)?) {

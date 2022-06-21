@@ -1,6 +1,6 @@
 //
 //  UIViewController+Ext.swift
-//  UIOnboarding Example
+//  UIOnboarding
 //
 //  Created by Lukman Aščić on 14.02.22.
 //

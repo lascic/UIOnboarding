@@ -1,6 +1,6 @@
-# UIOnboarding
+<img src="https://github.com/lascic/UIOnboarding/blob/main/readme-resources/220709_uionboarding_icon-header-title.png?raw=true">
 
-![UIOnboarding Title Page](https://raw.githubusercontent.com/lascic/UIOnboarding/main/readme-resources/290422-iphone-ipad-1.1.0.png)
+# UIOnboarding
 
 [![](https://img.shields.io/endpoint?url=https%3A%2F%2Fswiftpackageindex.com%2Fapi%2Fpackages%2Flascic%2FUIOnboarding%2Fbadge%3Ftype%3Dswift-versions)](https://swiftpackageindex.com/lascic/UIOnboarding)
 [![](https://img.shields.io/endpoint?url=https%3A%2F%2Fswiftpackageindex.com%2Fapi%2Fpackages%2Flascic%2FUIOnboarding%2Fbadge%3Ftype%3Dplatforms)](https://swiftpackageindex.com/lascic/UIOnboarding)
@@ -9,7 +9,11 @@ UIOnboarding is an animated, configurable welcome screen in a Swift Package – 
 
 It supports iPhone, iPad and iPod touch running iOS and iPadOS 13 or higher, including core accessibility features such as Dynamic Type, Reduce Motion and VoiceOver for all devices – Split View and Slide Over for iPad.
 
-Developed and designed by [Lukman Aščić](https://twitter.com/lascic). <br>
+Developed and designed by [Lukman Aščić](https://twitter.com/lascic). 
+
+<br>
+
+<img src="https://github.com/lascic/UIOnboarding/blob/main/readme-resources/220627_uionboarding_new-preview_iphone-ipad.png?raw=true">
 
 ## Table of Contents
 
@@ -73,10 +77,10 @@ Developed and designed by [Lukman Aščić](https://twitter.com/lascic). <br>
 
 ### Swift Package Manager
 
-Add ```https://github.com/lascic/UIOnboarding.git``` in the package manager in Xcode (under File/Add Packages...). Select the version from ```1.2.0``` or the ```main``` branch.
+Add ```https://github.com/lascic/UIOnboarding.git``` in the package manager in Xcode under `File > Add Packages`. Select the version from ```2.0.0``` or the ```main``` branch.
 
 ```swift
-.package(url: "https://github.com/lascic/UIOnboarding.git", from: "1.2.0")
+.package(url: "https://github.com/lascic/UIOnboarding.git", from: "2.0.0")
 // or
 .package(url: "https://github.com/lascic/UIOnboarding.git", branch: "main")
 ```
