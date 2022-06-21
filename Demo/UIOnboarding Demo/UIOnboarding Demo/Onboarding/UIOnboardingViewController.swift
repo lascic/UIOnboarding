@@ -81,6 +81,7 @@ final class UIOnboardingViewController: UIViewController {
     
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
+        
         if needsUIRefresh {
             updateUI()
             needsUIRefresh = false

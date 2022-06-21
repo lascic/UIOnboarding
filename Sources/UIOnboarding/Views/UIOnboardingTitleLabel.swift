@@ -1,5 +1,5 @@
 //
-//  UIOnboardingTitle.swift
+//  UIOnboardingTitleLabel.swift
 //  UIOnboarding Example
 //
 //  Created by Lukman Aščić on 14.02.22.
@@ -7,23 +7,21 @@
 
 import UIKit
 
-final class UIOnboardingTitle: UILabel {
-    private let configuration: UIOnboardingViewConfiguration
+final class UIOnboardingTitleLabel: UILabel {
     private lazy var fontSize: CGFloat = traitCollection.horizontalSizeClass == .regular ? 80 : (UIScreenType.isiPhoneSE || UIScreenType.isiPhone6s ? 41 : 44)
 
-    init(withConfiguration configuration: UIOnboardingViewConfiguration) {
-        self.configuration = configuration
+    init(attributedText: NSAttributedString) {
         super.init(frame: .zero)
-        attributedText = self.configuration.welcomeTitle
+        self.attributedText = attributedText
         configure()
     }
-    
+
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
     
     private func configure() {
-        numberOfLines = 2
+        numberOfLines = 1
         lineBreakMode = .byWordWrapping
         
         font = .systemFont(ofSize: fontSize, weight: .heavy)
@@ -38,7 +36,7 @@ final class UIOnboardingTitle: UILabel {
     }
 }
 
-extension UIOnboardingTitle {
+extension UIOnboardingTitleLabel {
     func setLineHeight(lineHeight: CGFloat) {
         let paragraphStyle: NSMutableParagraphStyle = .init()
         paragraphStyle.lineSpacing = 1.0
@@ -54,5 +52,18 @@ extension UIOnboardingTitle {
         }
         attrString.addAttribute(.paragraphStyle, value: paragraphStyle, range: .init(location: 0, length: attrString.length))
         attributedText = attrString
+    }
+    
+    func calculateActualFontSize() -> CGFloat {
+        let maximumSizedLabel: UILabel = .init()
+        maximumSizedLabel.font = font
+        maximumSizedLabel.text = text
+        maximumSizedLabel.sizeToFit()
+        
+        var actualFontSize: CGFloat = font.pointSize * (bounds.size.width / maximumSizedLabel.bounds.size.width);
+        
+        actualFontSize = actualFontSize < font.pointSize ? actualFontSize : self.font.pointSize; // Set the actual font size if default is not given
+        
+        return actualFontSize
     }
 }

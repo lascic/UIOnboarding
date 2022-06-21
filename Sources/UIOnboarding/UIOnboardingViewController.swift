@@ -74,7 +74,9 @@ public final class UIOnboardingViewController: UIViewController {
         
     public override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        startOnboardingAnimation()
+        startOnboardingAnimation(completion: {
+            self.needsUIRefresh = true
+        })
     }
     
     public override func viewDidLayoutSubviews() {
@@ -92,7 +94,7 @@ public final class UIOnboardingViewController: UIViewController {
     }
     
     public override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
-        onboardingStackView.onboardingTitleLabel.font = .systemFont(ofSize: traitCollection.horizontalSizeClass == .regular ? 80 : (UIScreenType.isiPhoneSE || UIScreenType.isiPhone6s ? 41 : 44), weight: .heavy)
+        onboardingStackView.onboardingTitleLabelStack.setFont(font: .systemFont(ofSize: traitCollection.horizontalSizeClass == .regular ? 80 : (UIScreenType.isiPhoneSE || UIScreenType.isiPhone6s ? 41 : 44), weight: .heavy))
 
         continueButtonHeight.constant = UIFontMetrics.default.scaledValue(for: traitCollection.horizontalSizeClass == .regular ? 50 : (UIScreenType.isiPhoneSE ? 48 : 52))
         continueButton.titleLabel?.font = UIFontMetrics.default.scaledFont(for: .systemFont(ofSize: traitCollection.horizontalSizeClass == .regular ? 19 : 17, weight: .bold))
@@ -214,7 +216,7 @@ private extension UIOnboardingViewController {
         onboardingTextView.topAnchor.constraint(equalTo: bottomOverlayView.topAnchor, constant: 16).isActive = true
     }
     
-    func startOnboardingAnimation() {
+    func startOnboardingAnimation(completion: (() -> Void)?) {
         UIView.animate(withDuration: UIAccessibility.isReduceMotionEnabled ? 0.8 : 1.533, delay: 0.0, usingSpringWithDamping: 1.0, initialSpringVelocity: 0.6, options: .curveEaseInOut) {
             self.onboardingStackView.transform = .identity
             self.onboardingStackView.alpha = 1
@@ -223,6 +225,9 @@ private extension UIOnboardingViewController {
                 self.bottomOverlayView.alpha = 1
                 self.onboardingScrollView.isScrollEnabled = true
                 self.view.isUserInteractionEnabled = true
+                if let completion = completion {
+                    completion()
+                }
             }
         }
     }
@@ -259,7 +264,7 @@ private extension UIOnboardingViewController {
             onboardingStackView.featuresList.endUpdates()
         }
         onboardingStackView.layoutIfNeeded()
-        onboardingStackView.onboardingTitleLabel.setLineHeight(lineHeight: 0.9)
+        onboardingStackView.onboardingTitleLabelStack.setLineHeight(lineHeight: 0.9)
         
         if !overlayIsHidden {
             DispatchQueue.main.async {
