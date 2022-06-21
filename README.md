@@ -5,27 +5,30 @@
 [![](https://img.shields.io/endpoint?url=https%3A%2F%2Fswiftpackageindex.com%2Fapi%2Fpackages%2Flascic%2FUIOnboarding%2Fbadge%3Ftype%3Dswift-versions)](https://swiftpackageindex.com/lascic/UIOnboarding)
 [![](https://img.shields.io/endpoint?url=https%3A%2F%2Fswiftpackageindex.com%2Fapi%2Fpackages%2Flascic%2FUIOnboarding%2Fbadge%3Ftype%3Dplatforms)](https://swiftpackageindex.com/lascic/UIOnboarding)
 
-Configurable animated onboarding screen written programmatically in Swift for UIKit – inspired by the Apple Stocks app – with [Insignia](https://apps.apple.com/ch/app/abzeichen/id1551002238) as an example.
+UIOnboarding is an animated, configurable welcome screen in a Swift Package – inspired by Apple's [Stocks](https://apps.apple.com/us/app/stocks/id1069512882) app. 
 
-Developed and designed by [Lukman Aščić](https://twitter.com/lascic).
+It supports iPhone, iPad and iPod touch running iOS and iPadOS 13 or higher, including core accessibility features such as Dynamic Type, Reduce Motion and VoiceOver for all devices – Split View and Slide Over for iPad.
 
-UIOnboarding supports iPhone, iPad and iPod touch running iOS and iPadOS 13 or higher, including core accessibility features such as Dynamic Type, VoiceOver, Reduce Motion for all devices and Split View and Slide Over for iPad.
+Developed and designed by [Lukman Aščić](https://twitter.com/lascic). <br>
 
 ## Table of Contents
 
 - [Previews](#previews)
     - [iPhone and iPod touch](#iphone-and-ipod-touch)
     - [iPad](#ipad)
+        - [Split View](#split-view)
+        - [Slide Over](#slide-over)
     - [Accessibility](#accessibility)
-    - [Split View](#split-view)
-    - [Slide Over](#slide-over)
 - [Installation](#installation)
     - [Swift Package Manager](#swift-package-manager)
     - [Demo Project Download](#demo-project-download)
 - [Usage](#usage)
     - [UIKit](#uikit)
     - [SwiftUI](#swiftui)
+        - [Setup](#full-setup)
 - [Configuration](#configuration)
+    - [Localization (Welcome Title)](#welcome-title-localization)
+    - [Extension](#extension)
 - [Further Setup](#further-setup)
 - [Further Readings](#further-readings)
 - [Copyright](#copyright)
@@ -44,13 +47,7 @@ UIOnboarding supports iPhone, iPad and iPod touch running iOS and iPadOS 13 or h
 |-|-|
 | ![UIOnboarding Preview 12.9 inch Portrait](https://raw.githubusercontent.com/lascic/UIOnboarding/main/readme-resources/290422-ipad-1.1.0/290422-ipad-dark-portrait.gif) | ![UIOnboarding Preview 12.9 inch Landscape](https://raw.githubusercontent.com/lascic/UIOnboarding/main/readme-resources/290422-ipad-1.1.0/290422-ipad-dark-landscape.gif) |
 
-### Accessibility
-
-| Dynamic Type | VoiceOver | Reduce Motion |
-|-|-|-|
-|![UIOnboarding Preview Dynamic Type](https://raw.githubusercontent.com/lascic/UIOnboarding/main/readme-resources/290422-iphone-1.1.0/290422-iphone-dynamic-type.gif)|![UIOnboarding Preview VoiceOver](https://github.com/lascic/UIOnboarding/blob/main/readme-resources/290422-iphone-1.1.0/290422-iphone-voice-over.gif)|![UIOnboarding Preview Redcue Motion](https://raw.githubusercontent.com/lascic/UIOnboarding/main/readme-resources/290422-iphone-1.1.0/290422-reduce-motion.gif)|
-
-### Split View
+#### Split View
 
 | 1/3 iPad Landscape | 1/2 iPad Landscape | 2/3 iPad Landscape |
 |-|-|-|
@@ -60,31 +57,37 @@ UIOnboarding supports iPhone, iPad and iPod touch running iOS and iPadOS 13 or h
 |-|-|
 |![UIOnboarding Slit View 1/3 Portrait](https://github.com/lascic/UIOnboarding/blob/main/readme-resources/290422-ipad-1.1.0/290422-ipad-split-view-portrait-2.png?raw=true)|![UIOnboarding Slit View 2/3 Portrait](https://github.com/lascic/UIOnboarding/blob/main/readme-resources/290422-ipad-1.1.0/290422-ipad-split-view-portrait-1.png?raw=true)|
 
-### Slide Over
+#### Slide Over
 
 | iPad Portrait | iPad Landscape |
 |-|-|
 |![UIOnboarding Slide Over Portrait](https://github.com/lascic/UIOnboarding/blob/main/readme-resources/290422-ipad-1.1.0/290422-ipad-slide-over-portrait.png?raw=true)|![UIOnboarding Slide Over Landscape](https://github.com/lascic/UIOnboarding/blob/main/readme-resources/290422-ipad-1.1.0/290422-ipad-slide-over-landscape.png?raw=true)|
 
+### Accessibility
+
+| Dynamic Type | VoiceOver | Reduce Motion |
+|-|-|-|
+|![UIOnboarding Preview Dynamic Type](https://raw.githubusercontent.com/lascic/UIOnboarding/main/readme-resources/290422-iphone-1.1.0/290422-iphone-dynamic-type.gif)|![UIOnboarding Preview VoiceOver](https://github.com/lascic/UIOnboarding/blob/main/readme-resources/290422-iphone-1.1.0/290422-iphone-voice-over.gif)|![UIOnboarding Preview Redcue Motion](https://raw.githubusercontent.com/lascic/UIOnboarding/main/readme-resources/290422-iphone-1.1.0/290422-reduce-motion.gif)|
+
 ## Installation
 
 ### Swift Package Manager
 
-To install ```UIOnboarding``` as a package, add ```https://github.com/lascic/UIOnboarding.git``` in the package manager in Xcode (under File/Add Packages...). Select the version from ```1.1.3``` or the ```main``` branch.
+Add ```https://github.com/lascic/UIOnboarding.git``` in the package manager in Xcode (under File/Add Packages...). Select the version from ```1.2.0``` or the ```main``` branch.
 
 ```swift
-.package(url: "https://github.com/lascic/UIOnboarding.git", from: "1.1.3")
+.package(url: "https://github.com/lascic/UIOnboarding.git", from: "1.2.0")
 // or
 .package(url: "https://github.com/lascic/UIOnboarding.git", branch: "main")
 ```
 
-### Demo Project Download
+### Demo Project
 
-There is a demo project with and without SPM in the ```Demo``` directory: ```Demo/UIOnboarding Demo``` and ```Demo/UIOnboarding Demo SPM```. This folder also provides an example for using it in a SwiftUI app: ```Demo/UIOnboarding SwiftUI```. 
+Three demo projects can be found in the [```Demo```]("../Demo/") directory, including an example for utilizing UIOnboarding in a SwiftUI app.
 
-You can download them as a .zip file to run it on a physical device or simulator in Xcode.
+Clone the repo or download the demo projects as a .zip file to open and run them on a physical device or simulator in Xcode.
 
-Before building and running the project, make sure to set it up with your own provisioning profile.
+Before building and running the projects, make sure to set them up with your own provisioning profile.
 
 ## Usage 
 
@@ -118,9 +121,9 @@ extension ViewController: UIOnboardingViewControllerDelegate {
 
 ### SwiftUI
 
-We rely on SwiftUI's ```UIViewControllerRepresentable``` protocol to make the UIKit ```UIOnboardingViewController``` behave as a SwfitUI ```View```.
+SwiftUI's ```UIViewControllerRepresentable``` protocol makes the UIKit ```UIOnboardingViewController``` behave as a SwfitUI ```View```.
 
-Create an ```OnboardingView``` struct which implements the protocol and use the ```.fullScreenCover()``` modifier introduced in iOS and iPadOS 14 to show it in your SwiftUI view you're presenting from.
+Create an ```OnboardingView``` struct implementing the protocol and use the ```.fullScreenCover()``` modifier introduced in iOS and iPadOS 14 to show it in the SwiftUI view you're presenting from.
 
 ``` swift
 .fullScreenCover(isPresented: $showingOnboarding, content: {
@@ -133,6 +136,8 @@ Note that we assign SwiftUI's coordinator as the delegate object for our onboard
 ``` swift
 onboardingController.delegate = context.coordinator
 ```
+
+#### Full Setup
 
 ``` swift 
 // In OnboardingView.swift
@@ -196,14 +201,15 @@ struct ContentView_Previews: PreviewProvider {
 
 ## Configuration
 
-```UIOnboardingViewConfiguration``` consists of five components.
+```UIOnboardingViewConfiguration``` consists of six, non-optional component types.
 1. App Icon as ```UIImage```
-2. Welcome Title as ```NSMutableAttributedString```
-3. Core Features as ```Array<UIOnboardingFeature>```
-4. Notice Text as ```UIOnboardingTextViewConfiguration``` (e.g. Privacy Policy, Terms of Service, Portfolio Website)
-5. Continuation Title as ```UIOnboardingButtonConfiguration```
+2. First Welcome Title Line as ```NSMutableAttributedString```
+3. Second Welcome Title Line as ```NSMutableAttributedString```
+4. Core Features as ```Array<UIOnboardingFeature>```
+5. Notice Text as ```UIOnboardingTextViewConfiguration``` (e.g. Privacy Policy, Terms of Service, Portfolio, Website)
+6. Continuation Title as ```UIOnboardingButtonConfiguration```
 
-In a helper struct ```UIOnboardingHelper``` we define these components and combine them in an [extension](#extension) of ```UIOnboardingViewConfiguration```.
+Create a helper struct ```UIOnboardingHelper``` defining these components and combine them in an [extension](#extension) of ```UIOnboardingViewConfiguration```.
 
 ### Example
 
@@ -217,14 +223,18 @@ struct UIOnboardingHelper {
         return Bundle.main.appIcon ?? .init(named: "onboarding-icon")!
     }
 
-    // Welcome Title
-    static func setUpTitle() -> NSMutableAttributedString {
-        let welcomeText: NSMutableAttributedString = .init(string: "Welcome to \n",
-                                                           attributes: [.foregroundColor: UIColor.label]),
-            appNameText: NSMutableAttributedString = .init(string: Bundle.main.displayName ?? "Insignia",
-                                                           attributes: [.foregroundColor: UIColor.init(named: "camou")!])
-        welcomeText.append(appNameText)
-        return welcomeText
+    // First Title Line
+    // Welcome Text
+    static func setUpFirstTitleLine() -> NSMutableAttributedString {
+        .init(string: "Welcome to", attributes: [.foregroundColor: UIColor.label])
+    }
+    
+    // Second Title Line
+    // App Name
+    static func setUpSecondTitleLine() -> NSMutableAttributedString {
+        .init(string: Bundle.main.displayName ?? "Insignia", attributes: [
+            .foregroundColor: UIColor.init(named: "camou")!
+        ])
     }
 
     // Core Features
@@ -254,11 +264,32 @@ struct UIOnboardingHelper {
     // Continuation Title
     static func setUpButton() -> UIOnboardingButtonConfiguration {
         return .init(title: "Continue",
+                     titleColor: .white, // Optional, `.white` by default
                      backgroundColor: .init(named: "camou")!)
     }
 }
 ```
 
+### Welcome Title Localization
+
+If the welcome title only needs one line (in another language for example), simply provide an empty `NSMutableAttributedString` value for either parameter. `UIOnboardingTitleLabelStack` automatically resizes itself to the corresponding line count, with no additional changes needed.
+
+Below an example in Portuguese, leaving the second title line blank.
+```swift
+// First Title Line
+// App Name
+static func setUpFirstTitleLine() -> NSMutableAttributedString {
+    return .init(string: Bundle.main.displayName ?? "Distintivos", attributes: [
+            .foregroundColor: UIColor.init(named: "camou")!
+    ])
+}
+
+// Second Title Line
+// Empty
+static func setUpSecondTitleLine() -> NSMutableAttributedString {
+    return .init(string: "")
+}
+```
 
 ### Extension
 
@@ -269,7 +300,8 @@ extension UIOnboardingViewConfiguration {
     // UIOnboardingViewController init
     static func setUp() -> UIOnboardingViewConfiguration {
         return .init(appIcon: UIOnboardingHelper.setUpIcon(),
-                     welcomeTitle: UIOnboardingHelper.setUpTitle(),
+                     firstTitleLine: UIOnboardingHelper.setUpFirstTitleLine(),
+                     secondTitleLine: UIOnboardingHelper.setUpSecondTitleLine(),
                      features: UIOnboardingHelper.setUpFeatures(),
                      textViewConfiguration: UIOnboardingHelper.setUpNotice(),
                      buttonConfiguration: UIOnboardingHelper.setUpButton())
@@ -279,7 +311,7 @@ extension UIOnboardingViewConfiguration {
 
 ## Further Setup
 
-You may present the onboarding screen only once (on first app launch) with the help of a ```User Defaults``` flag. Note that an unspecified UserDefaults ```bool(forKey:)``` key is set to ```false``` by default.
+You may present the weclome screen only once (on first app launch) with the help of a ```User Defaults``` flag. Note that an unspecified UserDefaults ```bool(forKey:)``` key is set to ```false``` by default.
 
 ``` swift 
 if !UserDefaults.standard.bool(forKey: "hasCompletedOnboarding") {
@@ -315,4 +347,4 @@ func didFinishOnboarding(onboardingViewController: OnboardingViewController) {
 
 UIOnboarding is [MIT](https://github.com/lascic/UIOnboarding/blob/main/LICENSE) licensed.
 
-The Insignia app icon and Insignia feature cell assets are copyright Lukman Aščić. All rights reserved. None of these materials or parts of it may be reproduced or distributed by any means without prior written permission of the copyright owner.
+The [Insignia](https://apps.apple.com/ch/app/abzeichen/id1551002238) app icon and [Insignia](https://apps.apple.com/ch/app/abzeichen/id1551002238) feature cell assets are copyright Lukman Aščić. All rights reserved. None of these materials or parts of it may be reproduced or distributed by any means without prior written permission of the copyright owner.
