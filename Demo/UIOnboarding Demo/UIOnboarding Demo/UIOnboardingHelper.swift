@@ -12,12 +12,14 @@ struct UIOnboardingHelper {
         Bundle.main.appIcon ?? .init(named: "onboarding-icon")!
     }
     
-    // Welcome Title
+    // First Title Line
+    // Welcome Text
     static func setUpFirstTitleLine() -> NSMutableAttributedString {
         .init(string: "Welcome to", attributes: [.foregroundColor: UIColor.label])
     }
     
-    // App Name Title
+    // Second Title Line
+    // App Name
     static func setUpSecondTitleLine() -> NSMutableAttributedString {
         .init(string: Bundle.main.displayName ?? "Insignia", attributes: [
             .foregroundColor: UIColor.init(named: "camou") ?? UIColor.init(red: 0.654, green: 0.618, blue: 0.494, alpha: 1.0)
