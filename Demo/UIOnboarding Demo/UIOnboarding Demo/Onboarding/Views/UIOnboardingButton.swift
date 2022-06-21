@@ -13,9 +13,12 @@ final class UIOnboardingButton: UIButton {
     convenience init(withConfiguration configuration: UIOnboardingButtonConfiguration) {
         self.init(type: .system)
         setTitle(configuration.title, for: .normal)
-#if !targetEnvironment(macCatalyst)
-        backgroundColor = configuration.backgroundColor
-#endif
+        
+        #if !targetEnvironment(macCatalyst)
+            setTitleColor(configuration.titleColor, for: .normal)
+            backgroundColor = configuration.backgroundColor
+        #endif
+        
         configure()
     }
     
@@ -32,9 +35,6 @@ final class UIOnboardingButton: UIButton {
         layer.cornerCurve = .continuous
         titleLabel?.numberOfLines = 0
         
-#if !targetEnvironment(macCatalyst)
-        setTitleColor(.white, for: .normal)
-#endif
         accessibilityTraits = .button
         
         titleLabel?.adjustsFontForContentSizeCategory = true
