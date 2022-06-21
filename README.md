@@ -83,7 +83,7 @@ Add ```https://github.com/lascic/UIOnboarding.git``` in the package manager in X
 
 ### Demo Project
 
-Three demo projects can be found in the [```Demo```]("../Demo/") directory, including an example for utilizing UIOnboarding in a SwiftUI app.
+Three demo projects can be found in the [```/Demo```](https://github.com/lascic/UIOnboarding/tree/main/Demo) directory, including an example for utilizing UIOnboarding in a SwiftUI app.
 
 Clone the repo or download the demo projects as a .zip file to open and run them on a physical device or simulator in Xcode.
 
