@@ -73,10 +73,10 @@ Developed and designed by [Lukman Aščić](https://twitter.com/lascic). <br>
 
 ### Swift Package Manager
 
-Add ```https://github.com/lascic/UIOnboarding.git``` in the package manager in Xcode (under File/Add Packages...). Select the version from ```1.2.0``` or the ```main``` branch.
+Add ```https://github.com/lascic/UIOnboarding.git``` in the package manager in Xcode (under File/Add Packages...). Select the version from ```2.0.0``` or the ```main``` branch.
 
 ```swift
-.package(url: "https://github.com/lascic/UIOnboarding.git", from: "1.2.0")
+.package(url: "https://github.com/lascic/UIOnboarding.git", from: "2.0.0")
 // or
 .package(url: "https://github.com/lascic/UIOnboarding.git", branch: "main")
 ```
