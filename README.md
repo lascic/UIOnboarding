@@ -1,15 +1,19 @@
 # UIOnboarding
 
-![UIOnboarding Title Page](https://raw.githubusercontent.com/lascic/UIOnboarding/main/readme-resources/290422-iphone-ipad-1.1.0.png)
-
 [![](https://img.shields.io/endpoint?url=https%3A%2F%2Fswiftpackageindex.com%2Fapi%2Fpackages%2Flascic%2FUIOnboarding%2Fbadge%3Ftype%3Dswift-versions)](https://swiftpackageindex.com/lascic/UIOnboarding)
 [![](https://img.shields.io/endpoint?url=https%3A%2F%2Fswiftpackageindex.com%2Fapi%2Fpackages%2Flascic%2FUIOnboarding%2Fbadge%3Ftype%3Dplatforms)](https://swiftpackageindex.com/lascic/UIOnboarding)
+
+<img src="https://github.com/lascic/UIOnboarding/blob/main/readme-resources/220626_uionboarding_icon_kit-3.png?raw=true" width=160>
 
 UIOnboarding is an animated, configurable welcome screen in a Swift Package – inspired by Apple's [Stocks](https://apps.apple.com/us/app/stocks/id1069512882) app. 
 
 It supports iPhone, iPad and iPod touch running iOS and iPadOS 13 or higher, including core accessibility features such as Dynamic Type, Reduce Motion and VoiceOver for all devices – Split View and Slide Over for iPad.
 
-Developed and designed by [Lukman Aščić](https://twitter.com/lascic). <br>
+Developed and designed by [Lukman Aščić](https://twitter.com/lascic). 
+
+<br>
+
+<img src="https://raw.githubusercontent.com/lascic/UIOnboarding/main/readme-resources/290422-iphone-ipad-1.1.0.png">
 
 ## Table of Contents
 
