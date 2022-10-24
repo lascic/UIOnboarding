@@ -8,13 +8,13 @@
 import UIKit
 
 struct UIOnboardingTextViewConfiguration {
-    var icon: UIImage
+    var icon: UIImage?
     var text: String
     var linkTitle: String?
     var link: String?
     var tint: UIColor?
 
-    init(icon: UIImage,
+    init(icon: UIImage? = nil,
          text: String,
          linkTitle: String? = nil,
          link: String? = nil,

@@ -160,15 +160,15 @@
 		0BD28DDA27BEDE9B00D768E6 /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				0BD28DDC27BEDE9B00D768E6 /* UIIntrinsicTableView.swift */,
-				0BD28DE027BEDE9B00D768E6 /* UIOnboardingButton.swift */,
-				0BD28DDD27BEDE9B00D768E6 /* UIOnboardingCell.swift */,
 				0BD28DDE27BEDE9B00D768E6 /* UIOnboardingIcon.swift */,
-				0BD28DE127BEDE9B00D768E6 /* UIOnboardingOverlay.swift */,
-				0BD28DDB27BEDE9B00D768E6 /* UIOnboardingStack.swift */,
-				0BD28DE227BEDE9B00D768E6 /* UIOnboardingTextView.swift */,
 				0BD28DDF27BEDE9B00D768E6 /* UIOnboardingTitleLabel.swift */,
 				DCB303DB2853517B002AC325 /* UIOnboardingTitleLabelStack.swift */,
+				0BD28DDB27BEDE9B00D768E6 /* UIOnboardingStack.swift */,
+				0BD28DDC27BEDE9B00D768E6 /* UIIntrinsicTableView.swift */,
+				0BD28DDD27BEDE9B00D768E6 /* UIOnboardingCell.swift */,
+				0BD28DE127BEDE9B00D768E6 /* UIOnboardingOverlay.swift */,
+				0BD28DE227BEDE9B00D768E6 /* UIOnboardingTextView.swift */,
+				0BD28DE027BEDE9B00D768E6 /* UIOnboardingButton.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
