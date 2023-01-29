@@ -15,17 +15,10 @@ final class UIOnboardingTextView: UITextView {
         self.configuration = configuration
         super.init(frame: .zero, textContainer: nil)
         
-        let icon: NSTextAttachment = .init()
-        let symbol = configuration.icon
-        icon.image = symbol
-        icon.image = icon.image?.withTintColor(.secondaryLabel)
-        
-        let logoImageText: NSAttributedString = .init(attachment: icon)
         let text: NSMutableAttributedString = .init()
-        text.append(logoImageText)
         
         let noticeText = configuration.text
-        text.append(.init(string: "\n\n\(noticeText)"))
+        text.append(.init(string: "\(noticeText)"))
         
         if let noticeLink = configuration.link, let noticeLinkTitle = configuration.linkTitle {
             text.append(.init(string: " \(noticeLinkTitle)"))

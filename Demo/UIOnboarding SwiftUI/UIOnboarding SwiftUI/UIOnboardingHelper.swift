@@ -42,7 +42,7 @@ struct UIOnboardingHelper {
     }
     
     static func setUpNotice() -> UIOnboardingTextViewConfiguration {
-        return .init(icon: .init(named: "onboarding-notice-icon")!,
+        return .init(icon: .init(named: "onboarding-notice-icon"),
                      text: "Developed and designed for members of the Swiss Armed Forces.",
                      linkTitle: "Learn more...",
                      link: "https://www.lukmanascic.ch/portfolio/insignia",
