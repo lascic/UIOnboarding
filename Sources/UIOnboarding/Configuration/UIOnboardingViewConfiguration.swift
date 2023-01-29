@@ -12,14 +12,14 @@ public struct UIOnboardingViewConfiguration {
     public var firstTitleLine: NSMutableAttributedString
     public var secondTitleLine: NSMutableAttributedString
     public var features: Array<UIOnboardingFeature>
-    public var textViewConfiguration: UIOnboardingTextViewConfiguration
+    public var textViewConfiguration: UIOnboardingTextViewConfiguration? = nil
     public var buttonConfiguration: UIOnboardingButtonConfiguration
     
     public init(appIcon: UIImage,
                 firstTitleLine: NSMutableAttributedString,
                 secondTitleLine: NSMutableAttributedString,
                 features: Array<UIOnboardingFeature>,
-                textViewConfiguration: UIOnboardingTextViewConfiguration,
+                textViewConfiguration: UIOnboardingTextViewConfiguration? = nil,
                 buttonConfiguration: UIOnboardingButtonConfiguration) {
         self.appIcon = appIcon
         self.firstTitleLine = firstTitleLine
