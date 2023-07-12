@@ -7,18 +7,24 @@
 
 import UIKit
 
-struct UIOnboardingViewConfiguration {
+public struct UIOnboardingViewConfiguration {
+    // MARK: - Feature
+    public enum Feature {
+        case plain(UIOnboardingFeature)
+        case collection
+    }
+
     var appIcon: UIImage
     var firstTitleLine: NSMutableAttributedString
     var secondTitleLine: NSMutableAttributedString
-    var features: Array<UIOnboardingFeature>
+    var features: [Feature]
     var textViewConfiguration: UIOnboardingTextViewConfiguration? = nil
     var buttonConfiguration: UIOnboardingButtonConfiguration
-    
+
     init(appIcon: UIImage,
          firstTitleLine: NSMutableAttributedString,
          secondTitleLine: NSMutableAttributedString,
-         features: Array<UIOnboardingFeature>,
+         features: [Feature],
          textViewConfiguration: UIOnboardingTextViewConfiguration? = nil,
          buttonConfiguration: UIOnboardingButtonConfiguration) {
         self.appIcon = appIcon

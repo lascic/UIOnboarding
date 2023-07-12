@@ -103,8 +103,16 @@ extension UIOnboardingStack: UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = featuresList.dequeueReusableCell(withIdentifier: UIOnboardingCell.reuseIdentifier, for: indexPath) as! UIOnboardingCell
-        cell.set(configuration.features[indexPath.row])
+        let featureItem = configuration.features[indexPath.row]
+        guard
+            let cell = featuresList.dequeueReusableCell(withIdentifier: UIOnboardingCell.reuseIdentifier, for: indexPath) as? UIOnboardingCell,
+            case .plain(let item) = featureItem
+        else {
+            preconditionFailure()
+        }
+
+        cell.set(item)
+
         return cell
     }
 }
