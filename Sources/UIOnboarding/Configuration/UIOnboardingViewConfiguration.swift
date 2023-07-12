@@ -2,18 +2,20 @@
 //  UIOnboardingViewConfiguration.swift
 //  UIOnboarding Demo
 //
-//  Created by Lukman Aščić on 14.02.22.
+//  Created by Vyacheslav on 12.07.2023.
 //
 
 import UIKit
 
+// MARK: - UIOnboardingViewConfiguration
 public struct UIOnboardingViewConfiguration {
     // MARK: - Feature
     public enum Feature {
         case plain(UIOnboardingFeature)
-        case collection
+        case checkBox(UIOnboardingFeatureCheckBox)
     }
 
+    // MARK: - Properties
     var appIcon: UIImage
     var firstTitleLine: NSMutableAttributedString
     var secondTitleLine: NSMutableAttributedString
@@ -21,12 +23,15 @@ public struct UIOnboardingViewConfiguration {
     var textViewConfiguration: UIOnboardingTextViewConfiguration? = nil
     var buttonConfiguration: UIOnboardingButtonConfiguration
 
-    init(appIcon: UIImage,
-         firstTitleLine: NSMutableAttributedString,
-         secondTitleLine: NSMutableAttributedString,
-         features: [Feature],
-         textViewConfiguration: UIOnboardingTextViewConfiguration? = nil,
-         buttonConfiguration: UIOnboardingButtonConfiguration) {
+    // MARK: - Init
+    init(
+        appIcon: UIImage,
+        firstTitleLine: NSMutableAttributedString,
+        secondTitleLine: NSMutableAttributedString,
+        features: [Feature],
+        textViewConfiguration: UIOnboardingTextViewConfiguration? = nil,
+        buttonConfiguration: UIOnboardingButtonConfiguration
+    ) {
         self.appIcon = appIcon
         self.firstTitleLine = firstTitleLine
         self.secondTitleLine = secondTitleLine

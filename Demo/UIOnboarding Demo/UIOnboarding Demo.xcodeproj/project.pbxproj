@@ -27,13 +27,16 @@
 		0BD28DEF27BEDE9B00D768E6 /* UIOnboardingViewControllerDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BD28DD927BEDE9B00D768E6 /* UIOnboardingViewControllerDelegate.swift */; };
 		0BD28DF027BEDE9B00D768E6 /* UIOnboardingStack.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BD28DDB27BEDE9B00D768E6 /* UIOnboardingStack.swift */; };
 		0BD28DF127BEDE9B00D768E6 /* UIIntrinsicTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BD28DDC27BEDE9B00D768E6 /* UIIntrinsicTableView.swift */; };
-		0BD28DF227BEDE9B00D768E6 /* UIOnboardingCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BD28DDD27BEDE9B00D768E6 /* UIOnboardingCell.swift */; };
+		0BD28DF227BEDE9B00D768E6 /* UIOnboardingPlainCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BD28DDD27BEDE9B00D768E6 /* UIOnboardingPlainCell.swift */; };
 		0BD28DF327BEDE9B00D768E6 /* UIOnboardingIcon.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BD28DDE27BEDE9B00D768E6 /* UIOnboardingIcon.swift */; };
 		0BD28DF427BEDE9B00D768E6 /* UIOnboardingTitleLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BD28DDF27BEDE9B00D768E6 /* UIOnboardingTitleLabel.swift */; };
 		0BD28DF527BEDE9B00D768E6 /* UIOnboardingButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BD28DE027BEDE9B00D768E6 /* UIOnboardingButton.swift */; };
 		0BD28DF627BEDE9B00D768E6 /* UIOnboardingOverlay.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BD28DE127BEDE9B00D768E6 /* UIOnboardingOverlay.swift */; };
 		0BD28DF727BEDE9B00D768E6 /* UIOnboardingTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BD28DE227BEDE9B00D768E6 /* UIOnboardingTextView.swift */; };
 		0BD28DF927BEDF7D00D768E6 /* UIOnboardingHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BD28DF827BEDF7D00D768E6 /* UIOnboardingHelper.swift */; };
+		7874597A2A5F5DEF0076AC98 /* UIImageView+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 787459792A5F5DEF0076AC98 /* UIImageView+Extension.swift */; };
+		78AF35262A5F50F3008D0014 /* UIOnboardingCheckBoxCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78AF35252A5F50F3008D0014 /* UIOnboardingCheckBoxCell.swift */; };
+		78AF35282A5F5713008D0014 /* UIOnboardingFeatureCheckBox.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78AF35272A5F5713008D0014 /* UIOnboardingFeatureCheckBox.swift */; };
 		DCB303DC2853517B002AC325 /* UIOnboardingTitleLabelStack.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCB303DB2853517B002AC325 /* UIOnboardingTitleLabelStack.swift */; };
 /* End PBXBuildFile section */
 
@@ -60,13 +63,16 @@
 		0BD28DD927BEDE9B00D768E6 /* UIOnboardingViewControllerDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIOnboardingViewControllerDelegate.swift; sourceTree = "<group>"; };
 		0BD28DDB27BEDE9B00D768E6 /* UIOnboardingStack.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIOnboardingStack.swift; sourceTree = "<group>"; };
 		0BD28DDC27BEDE9B00D768E6 /* UIIntrinsicTableView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIIntrinsicTableView.swift; sourceTree = "<group>"; };
-		0BD28DDD27BEDE9B00D768E6 /* UIOnboardingCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIOnboardingCell.swift; sourceTree = "<group>"; };
+		0BD28DDD27BEDE9B00D768E6 /* UIOnboardingPlainCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIOnboardingPlainCell.swift; sourceTree = "<group>"; };
 		0BD28DDE27BEDE9B00D768E6 /* UIOnboardingIcon.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIOnboardingIcon.swift; sourceTree = "<group>"; };
 		0BD28DDF27BEDE9B00D768E6 /* UIOnboardingTitleLabel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIOnboardingTitleLabel.swift; sourceTree = "<group>"; };
 		0BD28DE027BEDE9B00D768E6 /* UIOnboardingButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIOnboardingButton.swift; sourceTree = "<group>"; };
 		0BD28DE127BEDE9B00D768E6 /* UIOnboardingOverlay.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIOnboardingOverlay.swift; sourceTree = "<group>"; };
 		0BD28DE227BEDE9B00D768E6 /* UIOnboardingTextView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIOnboardingTextView.swift; sourceTree = "<group>"; };
 		0BD28DF827BEDF7D00D768E6 /* UIOnboardingHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIOnboardingHelper.swift; sourceTree = "<group>"; };
+		787459792A5F5DEF0076AC98 /* UIImageView+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImageView+Extension.swift"; sourceTree = "<group>"; };
+		78AF35252A5F50F3008D0014 /* UIOnboardingCheckBoxCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIOnboardingCheckBoxCell.swift; sourceTree = "<group>"; };
+		78AF35272A5F5713008D0014 /* UIOnboardingFeatureCheckBox.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIOnboardingFeatureCheckBox.swift; sourceTree = "<group>"; };
 		DCB303DB2853517B002AC325 /* UIOnboardingTitleLabelStack.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIOnboardingTitleLabelStack.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -130,6 +136,7 @@
 			children = (
 				0BD28DCB27BEDE9B00D768E6 /* UIOnboardingViewConfiguration.swift */,
 				0BD28DCC27BEDE9B00D768E6 /* UIOnboardingFeature.swift */,
+				78AF35272A5F5713008D0014 /* UIOnboardingFeatureCheckBox.swift */,
 				0BD28DCD27BEDE9B00D768E6 /* UIOnboardingTextViewConfiguration.swift */,
 				0BD28DCE27BEDE9B00D768E6 /* UIOnboardingButtonConfiguration.swift */,
 			);
@@ -153,6 +160,7 @@
 				0BD28DD627BEDE9B00D768E6 /* Bundle+Ext.swift */,
 				0BD28DD727BEDE9B00D768E6 /* UIDevice+Ext.swift */,
 				0BD28DD827BEDE9B00D768E6 /* UIViewController+Ext.swift */,
+				787459792A5F5DEF0076AC98 /* UIImageView+Extension.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -165,7 +173,8 @@
 				DCB303DB2853517B002AC325 /* UIOnboardingTitleLabelStack.swift */,
 				0BD28DDB27BEDE9B00D768E6 /* UIOnboardingStack.swift */,
 				0BD28DDC27BEDE9B00D768E6 /* UIIntrinsicTableView.swift */,
-				0BD28DDD27BEDE9B00D768E6 /* UIOnboardingCell.swift */,
+				0BD28DDD27BEDE9B00D768E6 /* UIOnboardingPlainCell.swift */,
+				78AF35252A5F50F3008D0014 /* UIOnboardingCheckBoxCell.swift */,
 				0BD28DE127BEDE9B00D768E6 /* UIOnboardingOverlay.swift */,
 				0BD28DE227BEDE9B00D768E6 /* UIOnboardingTextView.swift */,
 				0BD28DE027BEDE9B00D768E6 /* UIOnboardingButton.swift */,
@@ -243,18 +252,21 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				78AF35282A5F5713008D0014 /* UIOnboardingFeatureCheckBox.swift in Sources */,
 				0BD28DBA27BEDE6B00D768E6 /* ViewController.swift in Sources */,
 				0BD28DE427BEDE9B00D768E6 /* UIOnboardingFeature.swift in Sources */,
 				0BD28DF527BEDE9B00D768E6 /* UIOnboardingButton.swift in Sources */,
 				0BD28DEE27BEDE9B00D768E6 /* UIViewController+Ext.swift in Sources */,
 				0BD28DE827BEDE9B00D768E6 /* UIScreenType.swift in Sources */,
-				0BD28DF227BEDE9B00D768E6 /* UIOnboardingCell.swift in Sources */,
+				0BD28DF227BEDE9B00D768E6 /* UIOnboardingPlainCell.swift in Sources */,
 				0BD28DF727BEDE9B00D768E6 /* UIOnboardingTextView.swift in Sources */,
 				0BD28DF627BEDE9B00D768E6 /* UIOnboardingOverlay.swift in Sources */,
 				0BD28DB627BEDE6B00D768E6 /* AppDelegate.swift in Sources */,
 				0BD28DEC27BEDE9B00D768E6 /* Bundle+Ext.swift in Sources */,
+				78AF35262A5F50F3008D0014 /* UIOnboardingCheckBoxCell.swift in Sources */,
 				0BD28DED27BEDE9B00D768E6 /* UIDevice+Ext.swift in Sources */,
 				0BD28DE527BEDE9B00D768E6 /* UIOnboardingTextViewConfiguration.swift in Sources */,
+				7874597A2A5F5DEF0076AC98 /* UIImageView+Extension.swift in Sources */,
 				0BD28DEA27BEDE9B00D768E6 /* UIOnboardingAnimator.swift in Sources */,
 				0BD28DF127BEDE9B00D768E6 /* UIIntrinsicTableView.swift in Sources */,
 				0BD28DF427BEDE9B00D768E6 /* UIOnboardingTitleLabel.swift in Sources */,

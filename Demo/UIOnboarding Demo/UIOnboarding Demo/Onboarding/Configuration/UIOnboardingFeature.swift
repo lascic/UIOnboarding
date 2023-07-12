@@ -7,7 +7,7 @@
 
 import UIKit
 
-struct UIOnboardingFeature {
+public struct UIOnboardingFeature {
     var icon: UIImage!
     var iconTint: UIColor
     var title: String

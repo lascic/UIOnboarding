@@ -13,10 +13,24 @@ final class UIOnboardingStack: UIStackView {
     private(set) var onboardingTitleLabelStack: UIOnboardingTitleLabelStack!
     private let screen: UIScreen
 
+    private var selectedCells: Set<IndexPath> = .init() {
+        didSet {
+            featuresList.reloadData()
+            featuresList.reloadRows(at: Array(self.selectedCells), with: .none)
+        }
+    }
+
     private(set) lazy var featuresList: UIIntrinsicTableView = {
         let featuresTableView: UIIntrinsicTableView = .init(frame: .zero, style: .plain)
 
-        featuresTableView.register(UIOnboardingCell.self, forCellReuseIdentifier: UIOnboardingCell.reuseIdentifier)
+        featuresTableView.register(
+            UIOnboardingPlainCell.self,
+            forCellReuseIdentifier: UIOnboardingPlainCell.reuseIdentifier
+        )
+        featuresTableView.register(
+            UIOnboardingCheckBoxCell.self,
+            forCellReuseIdentifier: UIOnboardingCheckBoxCell.reuseIdentifier
+        )
 
         featuresTableView.rowHeight = UITableView.automaticDimension
         featuresTableView.estimatedRowHeight = 44
@@ -104,14 +118,45 @@ extension UIOnboardingStack: UITableViewDataSource {
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let featureItem = configuration.features[indexPath.row]
+        switch featureItem {
+            case .plain(let item):
+                return buildPlainCell(tableView, item: item, indexPath: indexPath)
+            case .checkBox(let item):
+                return buildCheckBoxCell(tableView, item: item, indexPath: indexPath)
+        }
+    }
+
+    func buildPlainCell(_ tableView: UITableView, item: UIOnboardingFeature, indexPath: IndexPath) -> UITableViewCell {
         guard
-            let cell = featuresList.dequeueReusableCell(withIdentifier: UIOnboardingCell.reuseIdentifier, for: indexPath) as? UIOnboardingCell,
-            case .plain(let item) = featureItem
+            let cell = tableView.dequeueReusableCell(
+                withIdentifier: UIOnboardingPlainCell.reuseIdentifier,
+                for: indexPath
+            ) as? UIOnboardingPlainCell
         else {
             preconditionFailure()
         }
 
         cell.set(item)
+
+        return cell
+    }
+
+    func buildCheckBoxCell(_ tableView: UITableView, item: UIOnboardingFeatureCheckBox, indexPath: IndexPath) -> UITableViewCell {
+        guard
+            let cell = tableView.dequeueReusableCell(
+                withIdentifier: UIOnboardingCheckBoxCell.reuseIdentifier,
+                for: indexPath
+            ) as? UIOnboardingCheckBoxCell
+        else {
+            preconditionFailure()
+        }
+
+        cell.set(item)
+        if selectedCells.contains(indexPath) {
+            cell.accessoryType = .checkmark
+        } else {
+            cell.accessoryType = .none
+        }
 
         return cell
     }
@@ -124,5 +169,19 @@ extension UIOnboardingStack: UITableViewDelegate {
         UIOnboardingAnimation.slideIn(rowHeight: cell.frame.height, duration: 0.466, delayFactor: 0.13)
         let animator: UIOnboardingAnimator = .init(animation: animation)
         animator.animate(cell: cell, at: indexPath, in: tableView)
+    }
+
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        if case .plain = configuration.features[indexPath.row] {
+            return
+        }
+
+        if selectedCells.contains(indexPath) {
+            selectedCells.remove(indexPath)
+            return
+        }
+
+        selectedCells.insert(indexPath)
+        debugPrint("didSelectRowAt: \(indexPath)")
     }
 }
