@@ -13,7 +13,7 @@ public struct UIOnboardingFeature {
     var title: String
     var description: String
     
-    init(icon: UIImage!, iconTint: UIColor = .label, title: String, description: String) {
+    public init(icon: UIImage!, iconTint: UIColor = .label, title: String, description: String) {
         self.icon = icon
         self.iconTint = iconTint
         self.title = title
