@@ -24,7 +24,7 @@ public struct UIOnboardingViewConfiguration {
     var buttonConfiguration: UIOnboardingButtonConfiguration
 
     // MARK: - Init
-    init(
+    public init(
         appIcon: UIImage,
         firstTitleLine: NSMutableAttributedString,
         secondTitleLine: NSMutableAttributedString,

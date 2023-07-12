@@ -14,7 +14,7 @@ public struct UIOnboardingFeatureCheckBox {
     var description: String?
     var accessoryIcon: UIImage?
 
-    init(
+    public init(
         icon: UIImage? = nil,
         iconTint: UIColor? = .label,
         title: String,
