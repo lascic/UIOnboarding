@@ -7,7 +7,7 @@
 
 import UIKit
 
-final class UIOnboardingViewController: UIViewController {
+public class UIOnboardingViewController: UIViewController {
     private var onboardingScrollView: UIScrollView!
     private var onboardingStackView: UIOnboardingStack!
     private var onboardingStackViewWidth: NSLayoutConstraint!
@@ -27,26 +27,32 @@ final class UIOnboardingViewController: UIViewController {
 
     private var enoughSpaceToShowFullList: Bool {
         let onboardingStackHeight: CGFloat = onboardingStackView.frame.height
-        let availableSpace: CGFloat = (view.frame.height -
-                                       bottomOverlayView.frame.height -
-                                       view.safeAreaInsets.bottom -
-                                       onboardingScrollView.contentInset.top +
-                                       (traitCollection.horizontalSizeClass == .regular ? 48 : 12))
+        let availableSpace: CGFloat = (
+            view.frame.height -
+            bottomOverlayView.frame.height -
+            view.safeAreaInsets.bottom -
+            onboardingScrollView.contentInset.top +
+            (traitCollection.horizontalSizeClass == .regular ? 48 : 12)
+        )
         return onboardingStackHeight > availableSpace
     }
     private var overlayIsHidden: Bool = false
     private var hasScrolledToBottom: Bool = false
     private var needsUIRefresh: Bool = true
 
-    override var supportedInterfaceOrientations: UIInterfaceOrientationMask {
+    public override var supportedInterfaceOrientations: UIInterfaceOrientationMask {
         return device.userInterfaceIdiom == .pad ? .all : .portrait
     }
     private let configuration: UIOnboardingViewConfiguration
     private let device: UIDevice
     private let screen: UIScreen
-    weak var delegate: UIOnboardingViewControllerDelegate?
+    public weak var delegate: UIOnboardingViewControllerDelegate?
 
-    init(withConfiguration configuration: UIOnboardingViewConfiguration, device: UIDevice = .current, screen: UIScreen = .main) {
+    public init(
+        withConfiguration configuration: UIOnboardingViewConfiguration,
+        device: UIDevice = .current,
+        screen: UIScreen = .main
+    ) {
         self.configuration = configuration
         self.device = device
         self.screen = screen
@@ -62,25 +68,25 @@ final class UIOnboardingViewController: UIViewController {
         print("UIOnboardingViewController: deinit {}")
     }
 
-    override func viewDidLoad() {
+    public override func viewDidLoad() {
         super.viewDidLoad()
         view.isUserInteractionEnabled = false
     }
 
-    override func viewWillAppear(_ animated: Bool) {
+    public override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         configureScrollView()
         setUpTopOverlay()
     }
 
-    override func viewDidAppear(_ animated: Bool) {
+    public override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         startOnboardingAnimation(completion: {
             self.needsUIRefresh = true
         })
     }
 
-    override func viewDidLayoutSubviews() {
+    public override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
 
         if needsUIRefresh {
@@ -89,12 +95,12 @@ final class UIOnboardingViewController: UIViewController {
         }
     }
 
-    override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
+    public override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
         super.viewWillTransition(to: size, with: coordinator)
         needsUIRefresh = true
     }
 
-    override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
+    public override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
         onboardingStackView.onboardingTitleLabelStack.setFont(font: .systemFont(ofSize: traitCollection.horizontalSizeClass == .regular ? 80 : (UIScreenType.isiPhoneSE || UIScreenType.isiPhone6s ? 41 : 44), weight: .heavy))
 
         continueButtonHeight.constant = UIFontMetrics.default.scaledValue(for: traitCollection.horizontalSizeClass == .regular ? 50 : (UIScreenType.isiPhoneSE ? 48 : 52))
@@ -113,7 +119,7 @@ final class UIOnboardingViewController: UIViewController {
 }
 
 extension UIOnboardingViewController: UIScrollViewDelegate {
-    func scrollViewDidScroll(_ scrollView: UIScrollView) {
+    public func scrollViewDidScroll(_ scrollView: UIScrollView) {
         let scrollViewHeight = scrollView.frame.size.height
         let scrollContentSizeHeight = scrollView.contentSize.height
         let scrollOffset = scrollView.contentOffset.y
