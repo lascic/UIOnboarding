@@ -7,6 +7,12 @@
 
 import UIKit
 
+// MARK: - UIOnboardingStackDelegate
+protocol UIOnboardingStackDelegate: AnyObject {
+    func didSelectRow(at indexPaths: Set<IndexPath>)
+}
+
+// MARK: - UIOnboardingStack
 final class UIOnboardingStack: UIStackView {
     private var spacerView: UIView!
     private var onboardingIcon: OnboardingIcon!
@@ -15,10 +21,11 @@ final class UIOnboardingStack: UIStackView {
 
     private var selectedCells: Set<IndexPath> = .init() {
         didSet {
+            delegate?.didSelectRow(at: selectedCells)
             featuresList.reloadData()
-            featuresList.reloadRows(at: Array(self.selectedCells), with: .none)
         }
     }
+    private var isCellsAnimated = true
 
     private(set) lazy var featuresList: UIIntrinsicTableView = {
         let featuresTableView: UIIntrinsicTableView = .init(frame: .zero, style: .plain)
@@ -50,6 +57,10 @@ final class UIOnboardingStack: UIStackView {
     
     private let configuration: UIOnboardingViewConfiguration
 
+    // MARK: - Dependencies
+    weak var delegate: UIOnboardingStackDelegate?
+
+    // MARK: - Inits
     init(withConfiguration configuration: UIOnboardingViewConfiguration, screen: UIScreen = .main) {
         self.configuration = configuration
         self.screen = screen
@@ -111,6 +122,7 @@ final class UIOnboardingStack: UIStackView {
     }
 }
 
+// MARK: - UITableViewDataSource
 extension UIOnboardingStack: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return configuration.features.count
@@ -162,8 +174,13 @@ extension UIOnboardingStack: UITableViewDataSource {
     }
 }
 
+// MARK: - UITableViewDelegate
 extension UIOnboardingStack: UITableViewDelegate {
     func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
+        if !isCellsAnimated {
+            return
+        }
+
         let animation = UIAccessibility.isReduceMotionEnabled ?
         UIOnboardingAnimation.fadeIn(duration: 0.466, delayFactor: 0.13) :
         UIOnboardingAnimation.slideIn(rowHeight: cell.frame.height, duration: 0.466, delayFactor: 0.13)
@@ -176,12 +193,12 @@ extension UIOnboardingStack: UITableViewDelegate {
             return
         }
 
+        isCellsAnimated = false
         if selectedCells.contains(indexPath) {
             selectedCells.remove(indexPath)
             return
         }
 
         selectedCells.insert(indexPath)
-        debugPrint("didSelectRowAt: \(indexPath)")
     }
 }

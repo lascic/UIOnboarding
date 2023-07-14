@@ -7,18 +7,20 @@
 
 import UIKit
 
-struct UIOnboardingTextViewConfiguration {
+public struct UIOnboardingTextViewConfiguration {
     var icon: UIImage?
     var text: String
     var linkTitle: String?
     var link: String?
     var tint: UIColor?
-
-    init(icon: UIImage? = nil,
-         text: String,
-         linkTitle: String? = nil,
-         link: String? = nil,
-         tint: UIColor? = nil) {
+    
+    public init(
+        icon: UIImage? = nil,
+        text: String,
+        linkTitle: String? = nil,
+        link: String? = nil,
+        tint: UIColor? = nil
+    ) {
         self.icon = icon
         self.text = text
         self.linkTitle = linkTitle

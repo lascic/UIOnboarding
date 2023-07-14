@@ -1,6 +1,6 @@
 //
 //  UIOnboardingViewConfiguration.swift
-//  UIOnboarding Demo
+//  UIOnboarding
 //
 //  Created by Vyacheslav on 12.07.2023.
 //

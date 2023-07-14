@@ -1,6 +1,6 @@
 //
 //  UIOnboardingFeatureCheckBox.swift
-//  UIOnboarding Demo
+//  UIOnboarding
 //
 //  Created by Vyacheslav on 13.07.2023.
 //

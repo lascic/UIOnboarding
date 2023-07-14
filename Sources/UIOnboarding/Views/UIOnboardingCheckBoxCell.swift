@@ -1,6 +1,6 @@
 //
 //  UIOnboardingCollectionCell.swift
-//  UIOnboarding Demo
+//  UIOnboarding
 //
 //  Created by Vyacheslav on 12.07.2023.
 //
@@ -89,6 +89,7 @@ extension Cell {
         featureGlyph.image = feature.icon
         if let iconTint = feature.iconTint {
             featureGlyph.tintColor = iconTint
+            tintColor = iconTint
         }
 
         titleLabel.text = feature.title
@@ -104,7 +105,6 @@ private extension Cell {
     func configure() {
         backgroundColor = .clear
         contentView.backgroundColor = .clear
-        tintColor = UIColor.white
 
         selectionStyle = .none
 

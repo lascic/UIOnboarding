@@ -9,4 +9,9 @@ import UIKit
 
 protocol UIOnboardingViewControllerDelegate: AnyObject {
     func didFinishOnboarding(onboardingViewController: UIOnboardingViewController)
+    func didSelectRow(at indexPaths: Set<IndexPath>)
+}
+
+extension UIOnboardingViewControllerDelegate {
+    func didSelectRow(at indexPaths: Set<IndexPath>) { }
 }

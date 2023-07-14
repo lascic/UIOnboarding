@@ -157,6 +157,7 @@ private extension UIOnboardingViewController {
     
     func setUpOnboardingStackView() {
         onboardingStackView = .init(withConfiguration: configuration)
+        onboardingStackView.delegate = self
         onboardingScrollView.addSubview(onboardingStackView)
         
         onboardingStackView.topAnchor.constraint(equalTo: onboardingScrollView.topAnchor).isActive = true
@@ -294,8 +295,17 @@ private extension UIOnboardingViewController {
     }
 }
 
+// MARK: - UIOnboardingButtonDelegate
 extension UIOnboardingViewController: UIOnboardingButtonDelegate {
     func didPressContinueButton() {
         delegate?.didFinishOnboarding(onboardingViewController: self)
+    }
+}
+
+// MARK: - UIOnboardingStackDelegate
+extension UIOnboardingViewController: UIOnboardingStackDelegate {
+    func didSelectRow(at indexPaths: Set<IndexPath>) {
+        debugPrint("didSelectRowAt: \(indexPaths)")
+        delegate?.didSelectRow(at: indexPaths)
     }
 }
