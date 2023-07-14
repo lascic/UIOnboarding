@@ -2,7 +2,7 @@
 //  UIOnboardingStack.swift
 //  UIOnboarding
 //
-//  Created by Vyacheslav on 13.07.2023.
+//  Created by Lukman Aščić on 14.02.22.
 //
 
 import UIKit
@@ -119,6 +119,13 @@ final class UIOnboardingStack: UIStackView {
                 }
             })
         }
+    }
+
+    func withoutAnimation() {
+        self.onboardingIcon.isHidden = true
+        self.spacerView.isHidden = true
+        self.featuresList.alpha = 1
+        self.featuresList.reloadData()
     }
 }
 

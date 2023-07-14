@@ -46,17 +46,24 @@ public class UIOnboardingViewController: UIViewController {
     private let configuration: UIOnboardingViewConfiguration
     private let device: UIDevice
     private let screen: UIScreen
+    private let withPresentAnimation: Bool
+
+    // MARK: - Dependencies
     public weak var delegate: UIOnboardingViewControllerDelegate?
 
+    // MARK: - Inits
     public init(
         withConfiguration configuration: UIOnboardingViewConfiguration,
         device: UIDevice = .current,
-        screen: UIScreen = .main
+        screen: UIScreen = .main,
+        withPresentAnimation: Bool = false
     ) {
         self.configuration = configuration
         self.device = device
         self.screen = screen
+        self.withPresentAnimation = withPresentAnimation
         super.init(nibName: nil, bundle: nil)
+
         modalPresentationStyle = .fullScreen
     }
 
@@ -68,6 +75,7 @@ public class UIOnboardingViewController: UIViewController {
         print("UIOnboardingViewController: deinit {}")
     }
 
+    // MARK: - Lifecycle
     public override func viewDidLoad() {
         super.viewDidLoad()
         view.isUserInteractionEnabled = false
@@ -75,15 +83,15 @@ public class UIOnboardingViewController: UIViewController {
 
     public override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+
         configureScrollView()
         setUpTopOverlay()
     }
 
     public override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        startOnboardingAnimation(completion: {
-            self.needsUIRefresh = true
-        })
+
+        startOnboardingAnimationIfNeeded()
     }
 
     public override func viewDidLayoutSubviews() {
@@ -241,6 +249,16 @@ private extension UIOnboardingViewController {
         onboardingTextView!.topAnchor.constraint(equalTo: onboardingNoticeIcon != nil ? onboardingNoticeIcon.bottomAnchor : bottomOverlayView.topAnchor, constant: onboardingNoticeIcon != nil ? 16 : 32).isActive = true
     }
 
+    func startOnboardingAnimationIfNeeded() {
+        if withPresentAnimation {
+            startOnboardingAnimation(completion: {
+                self.needsUIRefresh = true
+            })
+        } else {
+            startOnboardingWithoutAnimation()
+        }
+    }
+
     func startOnboardingAnimation(completion: (() -> Void)?) {
         UIView.animate(withDuration: UIAccessibility.isReduceMotionEnabled ? 0.8 : 1.533, delay: 0.0, usingSpringWithDamping: 1.0, initialSpringVelocity: 0.6, options: .curveEaseInOut) {
             self.onboardingStackView.transform = .identity
@@ -255,6 +273,16 @@ private extension UIOnboardingViewController {
                 }
             }
         }
+    }
+
+    func startOnboardingWithoutAnimation() {
+        self.onboardingStackView.withoutAnimation()
+
+        self.onboardingStackView.transform = .identity
+        self.onboardingStackView.alpha = 1
+        self.bottomOverlayView.alpha = 1
+        self.onboardingScrollView.isScrollEnabled = true
+        self.view.isUserInteractionEnabled = true
     }
 
     func updateUI() {
