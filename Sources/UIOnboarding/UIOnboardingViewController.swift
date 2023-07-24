@@ -79,10 +79,6 @@ public class UIOnboardingViewController: UIViewController {
     public override func viewDidLoad() {
         super.viewDidLoad()
         view.isUserInteractionEnabled = false
-    }
-
-    public override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
 
         configureScrollView()
         setUpTopOverlay()
