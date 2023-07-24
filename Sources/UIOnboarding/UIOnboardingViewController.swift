@@ -335,7 +335,6 @@ extension UIOnboardingViewController: UIOnboardingButtonDelegate {
 // MARK: - UIOnboardingStackDelegate
 extension UIOnboardingViewController: UIOnboardingStackDelegate {
     func didSelectRow(at indexPaths: Set<IndexPath>) {
-        debugPrint("didSelectRowAt: \(indexPaths)")
         delegate?.didSelectRow(at: indexPaths)
     }
 }
