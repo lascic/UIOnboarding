@@ -16,12 +16,12 @@ public struct UIOnboardingViewConfiguration {
     }
 
     // MARK: - Properties
-    var appIcon: UIImage
-    var firstTitleLine: NSMutableAttributedString
-    var secondTitleLine: NSMutableAttributedString
-    var features: [Feature]
-    var textViewConfiguration: UIOnboardingTextViewConfiguration? = nil
-    var buttonConfiguration: UIOnboardingButtonConfiguration
+    public var appIcon: UIImage
+    public var firstTitleLine: NSMutableAttributedString
+    public var secondTitleLine: NSMutableAttributedString
+    public var features: [Feature]
+    public var textViewConfiguration: UIOnboardingTextViewConfiguration? = nil
+    public var buttonConfiguration: UIOnboardingButtonConfiguration
 
     // MARK: - Init
     public init(
