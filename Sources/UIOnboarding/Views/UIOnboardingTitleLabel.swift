@@ -7,7 +7,7 @@
 
 import UIKit
 
-final class UIOnboardingTitleLabel: UILabel {
+final class UIOnboardingTitleLabel: UIIntrinsicLabel {
     private lazy var fontSize: CGFloat = traitCollection.horizontalSizeClass == .regular ? 80 : (UIScreenType.isiPhoneSE || UIScreenType.isiPhone6s ? 41 : 44)
 
     init(attributedText: NSAttributedString) {
@@ -15,7 +15,7 @@ final class UIOnboardingTitleLabel: UILabel {
         self.attributedText = attributedText
         configure()
     }
-
+    
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
@@ -24,15 +24,16 @@ final class UIOnboardingTitleLabel: UILabel {
         numberOfLines = 1
         lineBreakMode = .byWordWrapping
         
-        font = .systemFont(ofSize: fontSize, weight: .heavy)
-        
+        if font.familyName == ".AppleSystemUIFont", font.fontName == ".SFUI-Regular" {
+            font = .systemFont(ofSize: fontSize, weight: .heavy)
+        }
+
         accessibilityHint = "Headline"
         accessibilityTraits = .staticText
 
         isAccessibilityElement = true
         adjustsFontSizeToFitWidth = true
         minimumScaleFactor = 0.5
-        widthAnchor.constraint(equalToConstant: UIScreen.main.bounds.width - (UIScreenType.setUpPadding() * 2)).isActive = true
     }
 }
 
@@ -53,7 +54,7 @@ extension UIOnboardingTitleLabel {
         attrString.addAttribute(.paragraphStyle, value: paragraphStyle, range: .init(location: 0, length: attrString.length))
         attributedText = attrString
     }
-    
+        
     func calculateActualFontSize() -> CGFloat {
         let maximumSizedLabel: UILabel = .init()
         maximumSizedLabel.font = font
