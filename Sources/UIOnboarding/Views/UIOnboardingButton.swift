@@ -9,9 +9,12 @@ import UIKit
 
 final class UIOnboardingButton: UIButton {
     weak var delegate: UIOnboardingButtonDelegate?
+    private var fontName: String = ""
     
     convenience init(withConfiguration configuration: UIOnboardingButtonConfiguration) {
         self.init(type: .system)
+        fontName = configuration.fontName
+        configureFont()
         setTitle(configuration.title, for: .normal)
         
         #if !targetEnvironment(macCatalyst)
@@ -29,7 +32,7 @@ final class UIOnboardingButton: UIButton {
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-    
+
     private func configure() {
         layer.cornerRadius = UIScreenType.isiPhoneSE ? 13 : 15
         layer.cornerCurve = .continuous
@@ -45,7 +48,6 @@ final class UIOnboardingButton: UIButton {
             isPointerInteractionEnabled = true
         }
         
-        titleLabel?.font = UIFontMetrics.default.scaledFont(for: .systemFont(ofSize: traitCollection.horizontalSizeClass == .regular ? 19 : 17, weight: .bold))
         addTarget(self, action: #selector(handleCallToActionButton), for: .touchUpInside)
     }
         
@@ -56,4 +58,15 @@ final class UIOnboardingButton: UIButton {
 
 protocol UIOnboardingButtonDelegate: AnyObject {
     func didPressContinueButton()
+}
+
+extension UIOnboardingButton {
+    func configureFont() {
+        if let customFont = UIFont(name: fontName, size: traitCollection.horizontalSizeClass == .regular ? 19 : 17) {
+            let dynamicCustomFont = UIFontMetrics.default.scaledFont(for: customFont)
+            titleLabel?.font = dynamicCustomFont
+        } else {
+            titleLabel?.font = UIFontMetrics.default.scaledFont(for: .systemFont(ofSize: traitCollection.horizontalSizeClass == .regular ? 19 : 17, weight: .bold))
+        }
+    }
 }

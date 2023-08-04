@@ -20,3 +20,19 @@ public struct UIOnboardingFeature {
         self.description = description
     }
 }
+
+public struct UIOnboardingFeatureStyle {
+    public var titleFontName: String
+    public var titleFontSize: CGFloat
+    public var descriptionFontName: String
+    public var descriptionFontSize: CGFloat
+    public var spacing: CGFloat
+    
+    public init(titleFontName: String = "", titleFontSize: CGFloat = 17, descriptionFontName: String = "", descriptionFontSize: CGFloat = 17, spacing: CGFloat = 0.8) {
+        self.titleFontName = titleFontName
+        self.titleFontSize = titleFontSize
+        self.descriptionFontName = descriptionFontName
+        self.descriptionFontSize = descriptionFontSize
+        self.spacing = spacing
+    }
+}

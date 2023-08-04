@@ -11,6 +11,7 @@ final class UIOnboardingStack: UIStackView {
     private var spacerView: UIView!
     private var onboardingIcon: OnboardingIcon!
     private(set) var onboardingTitleLabelStack: UIOnboardingTitleLabelStack!
+    private let featureStyle: UIOnboardingFeatureStyle
     private let screen: UIScreen
 
     private(set) lazy var featuresList: UIIntrinsicTableView = {
@@ -24,8 +25,6 @@ final class UIOnboardingStack: UIStackView {
         featuresTableView.delegate = self
         featuresTableView.dataSource = self
         
-        featuresTableView.widthAnchor.constraint(equalToConstant: screen.bounds.width - (UIScreenType.setUpPadding() * 2)).isActive = true
-
         featuresTableView.isScrollEnabled = false
         featuresTableView.separatorStyle = .none
         featuresTableView.backgroundColor = .clear
@@ -38,6 +37,7 @@ final class UIOnboardingStack: UIStackView {
 
     init(withConfiguration configuration: UIOnboardingViewConfiguration, screen: UIScreen = .main) {
         self.configuration = configuration
+        self.featureStyle = configuration.featureStyle
         self.screen = screen
         
         onboardingTitleLabelStack = .init(withConfiguration: configuration)
@@ -70,8 +70,12 @@ final class UIOnboardingStack: UIStackView {
         
         addArrangedSubview(onboardingTitleLabelStack)
         setCustomSpacing(traitCollection.horizontalSizeClass == .regular ? 40 : UIScreenType.setUpTitleSpacing(), after: onboardingTitleLabelStack)
+        onboardingTitleLabelStack.leadingAnchor.constraint(equalTo: self.leadingAnchor).isActive = true
+        onboardingTitleLabelStack.trailingAnchor.constraint(equalTo: self.trailingAnchor).isActive = true
         
         addArrangedSubview(featuresList)
+        featuresList.leadingAnchor.constraint(equalTo: self.leadingAnchor).isActive = true
+        featuresList.trailingAnchor.constraint(equalTo: self.trailingAnchor).isActive = true
     }
     
     func animate(completion: (() -> Void)?) {
@@ -104,7 +108,8 @@ extension UIOnboardingStack: UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = featuresList.dequeueReusableCell(withIdentifier: UIOnboardingCell.reuseIdentifier, for: indexPath) as! UIOnboardingCell
-        cell.set(configuration.features[indexPath.row])
+        cell.configuration = featureStyle
+        cell.configure(feature: configuration.features[indexPath.row])
         return cell
     }
 }

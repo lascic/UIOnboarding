@@ -57,11 +57,7 @@ final class UIOnboardingViewController: UIViewController {
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-    
-    deinit {
-        print("UIOnboardingViewController: deinit {}")
-    }
-    
+        
     override func viewDidLoad() {
         super.viewDidLoad()
         view.isUserInteractionEnabled = false
@@ -95,17 +91,12 @@ final class UIOnboardingViewController: UIViewController {
     }
     
     override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
-        onboardingStackView.onboardingTitleLabelStack.setFont(font: .systemFont(ofSize: traitCollection.horizontalSizeClass == .regular ? 80 : (UIScreenType.isiPhoneSE || UIScreenType.isiPhone6s ? 41 : 44), weight: .heavy))
+        onboardingStackView.onboardingTitleLabelStack.configureFont(traitCollection.horizontalSizeClass == .regular ? 80 : (UIScreenType.isiPhoneSE || UIScreenType.isiPhone6s ? 41 : 44))
 
         continueButtonHeight.constant = UIFontMetrics.default.scaledValue(for: traitCollection.horizontalSizeClass == .regular ? 50 : (UIScreenType.isiPhoneSE ? 48 : 52))
-        continueButton.titleLabel?.font = UIFontMetrics.default.scaledFont(for: .systemFont(ofSize: traitCollection.horizontalSizeClass == .regular ? 19 : 17, weight: .bold))
+        continueButton.configureFont()
         
-        if #available(iOS 15.0, *) {
-            onboardingTextView?.font =  UIFontMetrics.default.scaledFont(for: .systemFont(ofSize: traitCollection.horizontalSizeClass == .regular ? 15 : 13))
-            onboardingTextView?.maximumContentSizeCategory = .accessibilityMedium
-        } else {
-            onboardingTextView?.font = UIFontMetrics.default.scaledFont(for: .systemFont(ofSize: traitCollection.horizontalSizeClass == .regular ? 15 : 13), maximumPointSize: traitCollection.horizontalSizeClass == .regular ? 21 : 19)
-        }
+        onboardingTextView?.configureFont()
         needsUIRefresh = true
         onboardingTextView?.layoutIfNeeded()
         continueButton.layoutIfNeeded()
@@ -162,7 +153,7 @@ private extension UIOnboardingViewController {
         onboardingStackView.topAnchor.constraint(equalTo: onboardingScrollView.topAnchor).isActive = true
         onboardingStackView.bottomAnchor.constraint(equalTo: onboardingScrollView.bottomAnchor).isActive = true
         
-        onboardingStackViewWidth = onboardingStackView.widthAnchor.constraint(equalToConstant: traitCollection.horizontalSizeClass == .regular ? 480 : view.frame.width - (UIScreenType.setUpPadding() * 2))
+        onboardingStackViewWidth = onboardingStackView.widthAnchor.constraint(equalToConstant: (traitCollection.horizontalSizeClass == .regular && traitCollection.userInterfaceIdiom == .pad) ? 480 : view.frame.width - (UIScreenType.setUpPadding() * 2))
         onboardingStackViewWidth.isActive = true
         onboardingStackView.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
     }

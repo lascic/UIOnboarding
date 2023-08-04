@@ -34,6 +34,7 @@
 		0BD28DF627BEDE9B00D768E6 /* UIOnboardingOverlay.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BD28DE127BEDE9B00D768E6 /* UIOnboardingOverlay.swift */; };
 		0BD28DF727BEDE9B00D768E6 /* UIOnboardingTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BD28DE227BEDE9B00D768E6 /* UIOnboardingTextView.swift */; };
 		0BD28DF927BEDF7D00D768E6 /* UIOnboardingHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BD28DF827BEDF7D00D768E6 /* UIOnboardingHelper.swift */; };
+		C6C5A8552A8180A900E71BF5 /* UIIntrinsicLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6C5A8542A8180A900E71BF5 /* UIIntrinsicLabel.swift */; };
 		DCB303DC2853517B002AC325 /* UIOnboardingTitleLabelStack.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCB303DB2853517B002AC325 /* UIOnboardingTitleLabelStack.swift */; };
 /* End PBXBuildFile section */
 
@@ -67,6 +68,7 @@
 		0BD28DE127BEDE9B00D768E6 /* UIOnboardingOverlay.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIOnboardingOverlay.swift; sourceTree = "<group>"; };
 		0BD28DE227BEDE9B00D768E6 /* UIOnboardingTextView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIOnboardingTextView.swift; sourceTree = "<group>"; };
 		0BD28DF827BEDF7D00D768E6 /* UIOnboardingHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIOnboardingHelper.swift; sourceTree = "<group>"; };
+		C6C5A8542A8180A900E71BF5 /* UIIntrinsicLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIIntrinsicLabel.swift; sourceTree = "<group>"; };
 		DCB303DB2853517B002AC325 /* UIOnboardingTitleLabelStack.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIOnboardingTitleLabelStack.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -162,6 +164,7 @@
 			children = (
 				0BD28DDE27BEDE9B00D768E6 /* UIOnboardingIcon.swift */,
 				0BD28DDF27BEDE9B00D768E6 /* UIOnboardingTitleLabel.swift */,
+				C6C5A8542A8180A900E71BF5 /* UIIntrinsicLabel.swift */,
 				DCB303DB2853517B002AC325 /* UIOnboardingTitleLabelStack.swift */,
 				0BD28DDB27BEDE9B00D768E6 /* UIOnboardingStack.swift */,
 				0BD28DDC27BEDE9B00D768E6 /* UIIntrinsicTableView.swift */,
@@ -248,6 +251,7 @@
 				0BD28DF527BEDE9B00D768E6 /* UIOnboardingButton.swift in Sources */,
 				0BD28DEE27BEDE9B00D768E6 /* UIViewController+Ext.swift in Sources */,
 				0BD28DE827BEDE9B00D768E6 /* UIScreenType.swift in Sources */,
+				C6C5A8552A8180A900E71BF5 /* UIIntrinsicLabel.swift in Sources */,
 				0BD28DF227BEDE9B00D768E6 /* UIOnboardingCell.swift in Sources */,
 				0BD28DF727BEDE9B00D768E6 /* UIOnboardingTextView.swift in Sources */,
 				0BD28DF627BEDE9B00D768E6 /* UIOnboardingOverlay.swift in Sources */,

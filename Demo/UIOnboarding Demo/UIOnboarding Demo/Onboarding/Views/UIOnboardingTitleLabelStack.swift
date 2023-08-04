@@ -8,6 +8,7 @@
 import UIKit
 
 final class UIOnboardingTitleLabelStack: UIStackView {
+    private lazy var fontSize: CGFloat = traitCollection.horizontalSizeClass == .regular ? 80 : (UIScreenType.isiPhoneSE || UIScreenType.isiPhone6s ? 41 : 44)
     private let configuration: UIOnboardingViewConfiguration
     private let firstTitleLineLabel: UIOnboardingTitleLabel, secondTitleLineLabel: UIOnboardingTitleLabel
     
@@ -21,6 +22,7 @@ final class UIOnboardingTitleLabelStack: UIStackView {
         
         addArrangedSubview(firstTitleLineLabel)
         addArrangedSubview(secondTitleLineLabel)
+        configureFont(fontSize)
     }
     
     required init(coder: NSCoder) {
@@ -39,9 +41,9 @@ extension UIOnboardingTitleLabelStack {
         secondTitleLineLabel.setLineHeight(lineHeight: lineHeight)
     }
     
-    func setFont(font: UIFont) {
-        firstTitleLineLabel.font = font
-        secondTitleLineLabel.font = font
+    func configureFont(_ fontSize: CGFloat) {
+        firstTitleLineLabel.font = firstTitleLineLabel.font.withSize(fontSize)
+        secondTitleLineLabel.font = secondTitleLineLabel.font.withSize(fontSize)
     }
 }
 

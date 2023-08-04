@@ -8,6 +8,7 @@
 import UIKit
 
 final class UIOnboardingTitleLabelStack: UIStackView {
+    private lazy var fontSize: CGFloat = traitCollection.horizontalSizeClass == .regular ? 80 : (UIScreenType.isiPhoneSE || UIScreenType.isiPhone6s ? 41 : 44)
     private let configuration: UIOnboardingViewConfiguration
     private let firstTitleLineLabel: UIOnboardingTitleLabel, secondTitleLineLabel: UIOnboardingTitleLabel
     
@@ -21,6 +22,7 @@ final class UIOnboardingTitleLabelStack: UIStackView {
         
         addArrangedSubview(firstTitleLineLabel)
         addArrangedSubview(secondTitleLineLabel)
+        configureFont(fontSize)
     }
     
     required init(coder: NSCoder) {
@@ -39,9 +41,9 @@ extension UIOnboardingTitleLabelStack {
         secondTitleLineLabel.setLineHeight(lineHeight: lineHeight)
     }
     
-    func setFont(font: UIFont) {
-        firstTitleLineLabel.font = font
-        secondTitleLineLabel.font = font
+    func configureFont(_ fontSize: CGFloat) {
+        firstTitleLineLabel.font = firstTitleLineLabel.font.withSize(fontSize)
+        secondTitleLineLabel.font = secondTitleLineLabel.font.withSize(fontSize)
     }
 }
 
@@ -50,7 +52,7 @@ private extension UIOnboardingTitleLabelStack {
     ///
     /// The UIOnboardingTitleLabel instances are designed to have the same fixed font size, regardless of Dynamic Text setting. This is because the titles should be kept short for the animation at the beginning and to give space for the listed features to fit.
     ///
-    /// However, if either the first or second title line text can not fit the font size it is being assigned to, the method determines the minimum font size and applies it for both in the title label stack.
+    /// However, if either the welcome text or app name text can not fit the font size it is being assigned to, the method determines the minimum font size and applies it for both in the title label stack.
     ///
     /// This is usually the case for longer welcome title label texts. It is not best practice to use long app names. If that would be the case, the method also checks whether the app name is longer than the welcome text and adjusts the font sizes accordingly.
     func determineFontSize() {

@@ -10,30 +10,11 @@ import UIKit
 final class UIOnboardingTextView: UITextView {
     private let configuration: UIOnboardingTextViewConfiguration
     private var onLinkPressed: ((URL) -> Bool)?
-    
+            
     init(withConfiguration configuration: UIOnboardingTextViewConfiguration) {
         self.configuration = configuration
         super.init(frame: .zero, textContainer: nil)
-        
-        let text: NSMutableAttributedString = .init()
-        
-        let noticeText = configuration.text
-        text.append(.init(string: "\(noticeText)"))
-        
-        if let noticeLink = configuration.link, let noticeLinkTitle = configuration.linkTitle {
-            text.append(.init(string: " \(noticeLinkTitle)"))
-            attributedText = text
-            
-            add(links: [
-                noticeLinkTitle: noticeLink,
-            ])
-            
-            onLinkPressed = { (url) in
-                return true
-            }
-        } else {
-            attributedText = text
-        }
+        configureTextContent(configuration: configuration)
         configure()
     }
     
@@ -63,27 +44,7 @@ final class UIOnboardingTextView: UITextView {
         adjustsFontForContentSizeCategory = true
         translatesAutoresizingMaskIntoConstraints = false
         
-        if #available(iOS 15.0, *) {
-            font =  UIFontMetrics.default.scaledFont(for: .systemFont(ofSize: traitCollection.horizontalSizeClass == .regular ? 15 : 13))
-            maximumContentSizeCategory = .accessibilityMedium
-        } else {
-            font = UIFontMetrics.default.scaledFont(for: .systemFont(ofSize: traitCollection.horizontalSizeClass == .regular ? 15 : 13), maximumPointSize: traitCollection.horizontalSizeClass == .regular ? 21 : 19)
-        }
-    }
-    
-    private func add(links: Dictionary<String, String>) {
-        guard attributedText.length > 0 else {
-            return
-        }
-        let text: NSMutableAttributedString = .init(attributedString: attributedText)
-        
-        for (linkText, urlString) in links {
-            if linkText.count > 0 {
-                let linkRange = text.mutableString.range(of: linkText)
-                text.addAttribute(.link, value: urlString, range: linkRange)
-            }
-        }
-        attributedText = text
+        configureFont()
     }
 }
 
@@ -105,5 +66,69 @@ extension UIOnboardingTextView: UITextViewDelegate {
         }
         let startIndex = offset(from: beginningOfDocument, to: range.start)
         return attributedText.attribute(.link, at: startIndex, effectiveRange: nil) != nil
+    }
+}
+
+private extension UIOnboardingTextView {
+    func addLinks(_ links: Dictionary<String, String>) {
+        guard attributedText.length > 0 else {
+            return
+        }
+        let text: NSMutableAttributedString = .init(attributedString: attributedText)
+        
+        for (linkText, urlString) in links {
+            if linkText.count > 0 {
+                let linkRange = text.mutableString.range(of: linkText)
+                text.addAttribute(.link, value: urlString, range: linkRange)
+            }
+        }
+        attributedText = text
+    }
+    
+    func configureTextContent(configuration: UIOnboardingTextViewConfiguration) {
+        let text: NSMutableAttributedString = .init()
+        
+        let noticeText = configuration.text
+        text.append(.init(string: "\(noticeText)"))
+        
+        if let noticeLink = configuration.link, let noticeLinkTitle = configuration.linkTitle {
+            text.append(.init(string: " \(noticeLinkTitle)"))
+            attributedText = text
+            
+            addLinks([
+                noticeLinkTitle: noticeLink,
+            ])
+            
+            onLinkPressed = { (url) in
+                return true
+            }
+        } else {
+            attributedText = text
+        }
+    }
+}
+
+extension UIOnboardingTextView {
+    func configureFont() {
+        let defaultFontSize: CGFloat = 13
+        let biggerFontSize: CGFloat = 15
+        let maximumDefaultFontSize: CGFloat = 19
+        let maximumBiggerFontSize: CGFloat = 21
+
+        if let customFont = UIFont(name: configuration.fontName, size: traitCollection.horizontalSizeClass == .regular ? biggerFontSize : defaultFontSize) {
+            if #available(iOS 15.0, *) {
+                font =  UIFontMetrics.default.scaledFont(for: customFont)
+                maximumContentSizeCategory = .accessibilityMedium
+            } else {
+                font = UIFontMetrics.default.scaledFont(for: customFont, maximumPointSize: traitCollection.horizontalSizeClass == .regular ? maximumBiggerFontSize : maximumDefaultFontSize)
+            }
+        } else {
+            if #available(iOS 15.0, *) {
+                font =  UIFontMetrics.default.scaledFont(for: .systemFont(ofSize: traitCollection.horizontalSizeClass == .regular ? biggerFontSize : defaultFontSize))
+                maximumContentSizeCategory = .accessibilityMedium
+            } else {
+                font = UIFontMetrics.default.scaledFont(for: .systemFont(ofSize: traitCollection.horizontalSizeClass == .regular ? biggerFontSize : defaultFontSize), maximumPointSize: traitCollection.horizontalSizeClass == .regular ? maximumBiggerFontSize : maximumDefaultFontSize)
+            }
+        }
     }
 }
