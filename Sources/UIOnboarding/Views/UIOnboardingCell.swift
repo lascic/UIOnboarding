@@ -56,6 +56,12 @@ final class UIOnboardingCell: UITableViewCell {
                 
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
+        
+        if #available(iOS 17.0, *) {
+            registerForTraitChanges([UITraitHorizontalSizeClass.self]) { (self: Self, _) in
+                self.handleHorizontalSizeClassChange()
+            }
+        }
     }
     
     required init?(coder: NSCoder) {
@@ -113,6 +119,16 @@ final class UIOnboardingCell: UITableViewCell {
     }
     
     override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
+        if #unavailable(iOS 17.0), traitCollection.horizontalSizeClass != previousTraitCollection?.horizontalSizeClass {
+            // iOS 17+ uses the trait registration API instead. (`registerForTraitChanges(_:handler:)`)
+            handleHorizontalSizeClassChange()
+        }
+    }
+    
+    private func handleHorizontalSizeClassChange() {
+        // Check if the view is visible and the properties are initialized.
+        guard window != nil else { return }
+        
         configureFonts()
         
         stackBottom.constant = traitCollection.horizontalSizeClass == .regular ? -48 : -12

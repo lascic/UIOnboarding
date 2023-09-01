@@ -52,6 +52,12 @@ public final class UIOnboardingViewController: UIViewController {
         self.screen = screen
         super.init(nibName: nil, bundle: nil)
         modalPresentationStyle = .fullScreen
+        
+        if #available(iOS 17.0, *) {
+            registerForTraitChanges([UITraitHorizontalSizeClass.self]) { (self: Self, _) in
+                self.handleHorizontalSizeClassChange()
+            }
+        }
     }
     
     required init?(coder: NSCoder) {
@@ -91,6 +97,16 @@ public final class UIOnboardingViewController: UIViewController {
     }
     
     public override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
+        if #unavailable(iOS 17.0), traitCollection.horizontalSizeClass != previousTraitCollection?.horizontalSizeClass {
+            // iOS 17+ uses the trait registration API instead. (`registerForTraitChanges(_:handler:)`)
+            handleHorizontalSizeClassChange()
+        }
+    }
+    
+    private func handleHorizontalSizeClassChange() {
+        // Check if the view is visible and the properties are initialized.
+        guard viewIfLoaded?.window != nil else { return }
+
         onboardingStackView.onboardingTitleLabelStack.configureFont(traitCollection.horizontalSizeClass == .regular ? 80 : (UIScreenType.isiPhoneSE || UIScreenType.isiPhone6s ? 41 : 44))
 
         continueButtonHeight.constant = UIFontMetrics.default.scaledValue(for: traitCollection.horizontalSizeClass == .regular ? 50 : (UIScreenType.isiPhoneSE ? 48 : 52))
