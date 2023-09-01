@@ -53,11 +53,13 @@ final class UIOnboardingViewController: UIViewController {
         super.init(nibName: nil, bundle: nil)
         modalPresentationStyle = .fullScreen
         
-        if #available(iOS 17.0, *) {
-            registerForTraitChanges([UITraitHorizontalSizeClass.self]) { (self: Self, _) in
-                self.handleHorizontalSizeClassChange()
+        #if swift(>=5.9)
+            if #available(iOS 17.0, *) {
+                registerForTraitChanges([UITraitHorizontalSizeClass.self]) { (self: Self, _) in
+                    self.handleHorizontalSizeClassChange()
+                }
             }
-        }
+        #endif
     }
     
     required init?(coder: NSCoder) {
