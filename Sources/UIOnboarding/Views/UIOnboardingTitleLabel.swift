@@ -38,6 +38,24 @@ final class UIOnboardingTitleLabel: UIIntrinsicLabel {
 }
 
 extension UIOnboardingTitleLabel {
+
+    func updateFontSize(_ fontSize: CGFloat) {
+        guard let attributedString = attributedText else { return }
+        let originalFont = font
+        let mutableAttributedString = NSMutableAttributedString(attributedString: attributedString)
+        mutableAttributedString.enumerateAttributes(in: NSRange(location: 0,
+                                                                length: mutableAttributedString.length),
+                                                    options: []) { attributes, range, _ in
+            if let font = attributes[.font] as? UIFont {
+                let multiplier = font.pointSize / (originalFont?.pointSize ?? font.pointSize)
+                let newFont = font.withSize(fontSize * multiplier)
+                mutableAttributedString.addAttribute(.font, value: newFont, range: range)
+            }
+        }
+
+        self.attributedText = mutableAttributedString
+    }
+
     func setLineHeight(lineHeight: CGFloat) {
         let paragraphStyle: NSMutableParagraphStyle = .init()
         paragraphStyle.lineSpacing = 1.0
