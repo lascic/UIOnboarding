@@ -42,8 +42,8 @@ extension UIOnboardingTitleLabelStack {
     }
     
     func configureFont(_ fontSize: CGFloat) {
-        firstTitleLineLabel.font = firstTitleLineLabel.font.withSize(fontSize)
-        secondTitleLineLabel.font = secondTitleLineLabel.font.withSize(fontSize)
+        firstTitleLineLabel.updateFontSize(fontSize)
+        secondTitleLineLabel.updateFontSize(fontSize)
     }
 }
 
@@ -60,9 +60,9 @@ private extension UIOnboardingTitleLabelStack {
         let secondTitleLineLabelFontSize: CGFloat = secondTitleLineLabel.calculateActualFontSize()
         
         if firstTitleLineLabelFontSize < secondTitleLineLabelFontSize {
-            secondTitleLineLabel.font = firstTitleLineLabel.font.withSize(firstTitleLineLabelFontSize)
+            secondTitleLineLabel.updateFontSize(firstTitleLineLabelFontSize)
         } else if secondTitleLineLabelFontSize < firstTitleLineLabelFontSize {
-            firstTitleLineLabel.font = secondTitleLineLabel.font.withSize(secondTitleLineLabelFontSize)
+            firstTitleLineLabel.updateFontSize(secondTitleLineLabelFontSize)
         }
     }
 }
