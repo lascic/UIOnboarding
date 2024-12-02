@@ -37,8 +37,8 @@ final class UIOnboardingTitleLabelStack: UIStackView {
 
 extension UIOnboardingTitleLabelStack {
     func setLineHeight(lineHeight: CGFloat) {
-        firstTitleLineLabel.setLineHeight(lineHeight: lineHeight)
-        secondTitleLineLabel.setLineHeight(lineHeight: lineHeight)
+        firstTitleLineLabel.updateFontSize(fontSize)
+        secondTitleLineLabel.updateFontSize(fontSize)
     }
     
     func configureFont(_ fontSize: CGFloat) {
@@ -60,9 +60,9 @@ private extension UIOnboardingTitleLabelStack {
         let secondTitleLineLabelFontSize: CGFloat = secondTitleLineLabel.calculateActualFontSize()
         
         if firstTitleLineLabelFontSize < secondTitleLineLabelFontSize {
-            secondTitleLineLabel.font = firstTitleLineLabel.font.withSize(firstTitleLineLabelFontSize)
+            secondTitleLineLabel.updateFontSize(firstTitleLineLabelFontSize)
         } else if secondTitleLineLabelFontSize < firstTitleLineLabelFontSize {
-            firstTitleLineLabel.font = secondTitleLineLabel.font.withSize(secondTitleLineLabelFontSize)
+            firstTitleLineLabel.updateFontSize(secondTitleLineLabelFontSize)
         }
     }
 }
