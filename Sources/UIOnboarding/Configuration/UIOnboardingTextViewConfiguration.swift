@@ -14,7 +14,14 @@ public struct UIOnboardingTextViewConfiguration {
     public var fontName: String
     public var fontWeight: UIFont.Weight?
     public var link: String?
-    public var tint: UIColor?
+    public var linkColor: UIColor?
+    public var iconColor: UIColor?
+
+    @available(*, deprecated, renamed: "linkColor", message: "'tint' has been renamed to 'linkColor'. Use 'linkColor' instead.")
+    public var tint: UIColor? {
+        get { linkColor }
+        set { linkColor = newValue }
+    }
 
     public init(icon: UIImage? = nil,
                 text: String,
@@ -22,13 +29,16 @@ public struct UIOnboardingTextViewConfiguration {
                 fontName: String = "",
                 fontWeight: UIFont.Weight? = nil,
                 link: String? = nil,
-                tint: UIColor? = nil) {
+                linkColor: UIColor? = nil,
+                iconColor: UIColor? = nil)
+    {
         self.icon = icon
         self.text = text
         self.linkTitle = linkTitle
         self.fontName = fontName
         self.fontWeight = fontWeight
         self.link = link
-        self.tint = tint
+        self.linkColor = linkColor
+        self.iconColor = iconColor
     }
 }

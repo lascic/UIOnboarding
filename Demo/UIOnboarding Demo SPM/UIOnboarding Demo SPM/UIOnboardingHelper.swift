@@ -46,7 +46,7 @@ struct UIOnboardingHelper {
                      text: "Developed and designed for members of the Swiss Armed Forces.",
                      linkTitle: "Learn more...",
                      link: "https://www.lukmanascic.ch/portfolio/insignia",
-                     tint: .init(named: "camou") ?? .init(red: 0.654, green: 0.618, blue: 0.494, alpha: 1.0))
+                     linkColor: .init(named: "camou") ?? .init(red: 0.654, green: 0.618, blue: 0.494, alpha: 1.0))
     }
     
     static func setUpButton() -> UIOnboardingButtonConfiguration {
