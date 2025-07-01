@@ -27,10 +27,10 @@ final class UIOnboardingTextView: UITextView {
         backgroundColor = .clear
         textContainerInset = .init(top: 0, left: 0, bottom: 30, right: 0)
         textColor = .secondaryLabel
-        if let tintColor = configuration.tint {
-            self.tintColor = tintColor
+        if let linkColor = configuration.linkColor {
+            tintColor = linkColor
         }
-        
+
         accessibilityHint = "Notice text and link"
         accessibilityTraits = .staticText
         accessibilityValue = "\(configuration.text) \(configuration.linkTitle ?? .init())"

@@ -262,7 +262,7 @@ struct UIOnboardingHelper {
                      text: "Developed and designed for members of the Swiss Armed Forces.",
                      linkTitle: "Learn more...",
                      link: "https://www.lukmanascic.ch/portfolio/insignia",
-                     tint: .init(named: "camou"))
+                     linkColor: .init(named: "camou"))
     }
 
     // Continuation Title

@@ -223,7 +223,7 @@ private extension UIOnboardingViewController {
         
         if let icon = textViewConfiguration.icon {
             onboardingNoticeIcon = .init(image: icon.withRenderingMode(.alwaysTemplate))
-            onboardingNoticeIcon.tintColor = .secondaryLabel
+            onboardingNoticeIcon.tintColor = configuration.textViewConfiguration?.iconColor ?? .secondaryLabel
             onboardingNoticeIcon.contentMode = .scaleAspectFit
             onboardingNoticeIcon.translatesAutoresizingMaskIntoConstraints = false
             
