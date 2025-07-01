@@ -123,11 +123,12 @@ extension UIOnboardingTextView {
                 font = UIFontMetrics.default.scaledFont(for: customFont, maximumPointSize: traitCollection.horizontalSizeClass == .regular ? maximumBiggerFontSize : maximumDefaultFontSize)
             }
         } else {
+            let weight = configuration.fontWeight ?? .regular
             if #available(iOS 15.0, *) {
-                font =  UIFontMetrics.default.scaledFont(for: .systemFont(ofSize: traitCollection.horizontalSizeClass == .regular ? biggerFontSize : defaultFontSize))
+                font = UIFontMetrics.default.scaledFont(for: .systemFont(ofSize: traitCollection.horizontalSizeClass == .regular ? biggerFontSize : defaultFontSize, weight: weight))
                 maximumContentSizeCategory = .accessibilityMedium
             } else {
-                font = UIFontMetrics.default.scaledFont(for: .systemFont(ofSize: traitCollection.horizontalSizeClass == .regular ? biggerFontSize : defaultFontSize), maximumPointSize: traitCollection.horizontalSizeClass == .regular ? maximumBiggerFontSize : maximumDefaultFontSize)
+                font = UIFontMetrics.default.scaledFont(for: .systemFont(ofSize: traitCollection.horizontalSizeClass == .regular ? biggerFontSize : defaultFontSize, weight: weight), maximumPointSize: traitCollection.horizontalSizeClass == .regular ? maximumBiggerFontSize : maximumDefaultFontSize)
             }
         }
     }

@@ -12,6 +12,7 @@ public struct UIOnboardingTextViewConfiguration {
     public var text: String
     public var linkTitle: String?
     public var fontName: String
+    public var fontWeight: UIFont.Weight?
     public var link: String?
     public var linkColor: UIColor?
     public var iconColor: UIColor?
@@ -26,6 +27,7 @@ public struct UIOnboardingTextViewConfiguration {
                 text: String,
                 linkTitle: String? = nil,
                 fontName: String = "",
+                fontWeight: UIFont.Weight? = nil,
                 link: String? = nil,
                 linkColor: UIColor? = nil,
                 iconColor: UIColor? = nil)
@@ -34,6 +36,7 @@ public struct UIOnboardingTextViewConfiguration {
         self.text = text
         self.linkTitle = linkTitle
         self.fontName = fontName
+        self.fontWeight = fontWeight
         self.link = link
         self.linkColor = linkColor
         self.iconColor = iconColor
